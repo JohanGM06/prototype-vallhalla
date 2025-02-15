@@ -26,7 +26,7 @@
 
     - git checkout -b {nombre de la rama} = Sirve para crear una rama y pasarte de una vez
 
-#### Impotante
+#### Importante
 
     Nota: Si por accidente no te diste cuenta de que no creaste la rama, usa los commandos git stash para retener los cambios, crear la rama y luego si git stash pop, para que los cambios no se pierdan.
     Esto para que no se pierdan los cambios que hiciste.
@@ -35,6 +35,7 @@
         - La rama tiene que ser feature/{su nombre}/{el cambio o lo que agrega}
     - Subir cambios unicamente a la rama propia.
     - Antes de hacer merge, se hace un pull origin dev.
+    - Para hacer un merge, se genera un Pull Request desde la rama hacia dev y luego hacer otro de dev hacia prod
     - Hacer merge desde la rama propia hacia dev, y luego hacia prod, para que todo quede actualizado.
     - Se hace pull origin dev para bajar los cambios de dev hacia la rama de una, y si hay conflictos, resolverlos y hacer push.
     - Siempre bajar cambios desde dev.
