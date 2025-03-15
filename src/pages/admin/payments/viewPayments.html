@@ -19,15 +19,15 @@
         #sidebar.collapsed {
             margin-left: -280px;
         }
-        
+
         .sortable {
             cursor: pointer;
         }
-        
+
         .sortable:hover {
             background-color: #f8f9fa;
         }
-        
+
         .sortable::after {
             content: "\F282";
             font-family: "bootstrap-icons";
@@ -35,45 +35,45 @@
             margin-left: 5px;
             opacity: 0.5;
         }
-        
+
         .sortable.asc::after {
             content: "\F282";
             opacity: 1;
         }
-        
+
         .sortable.desc::after {
             content: "\F286";
             opacity: 1;
         }
-        
+
         /* Estilos para los pills de estado de pago */
         .badge-pendiente {
             background-color: #ffc107;
             color: #212529;
         }
-        
+
         .badge-pagado {
             background-color: #198754;
             color: white;
         }
-        
+
         /* Mejoras para responsividad */
         @media (max-width: 992px) {
             .table-responsive {
                 overflow-x: auto;
             }
-            
-            #paymentsTable th, 
+
+            #paymentsTable th,
             #paymentsTable td {
                 white-space: nowrap;
             }
         }
-        
+
         /* Estilos para los campos de formulario en modales */
         .form-control:disabled {
             background-color: #f8f9fa;
         }
-        
+
         .estado-badge {
             width: 100%;
             text-align: center;
@@ -81,22 +81,22 @@
             border-radius: 4px;
             display: block;
         }
-        
+
         .estado-activo {
             background-color: #d1e7dd;
             color: #0f5132;
         }
-        
+
         .estado-inactivo {
             background-color: #e2e3e5;
             color: #41464b;
         }
-        
+
         .estado-pendiente {
             background-color: #fff3cd;
             color: #664d03;
         }
-        
+
         .estado-pagado {
             background-color: #d1e7dd;
             color: #0f5132;
@@ -133,11 +133,6 @@
                         <li class="nav-item w-100">
                             <a href="#" class="nav-link text-dark px-0">
                                 <i class="bi bi-shield"></i> <span class="ms-2">VIGILANTE</span>
-                            </a>
-                        </li>
-                        <li class="nav-item w-100">
-                            <a href="#" class="nav-link text-dark px-0">
-                                <i class="bi bi-building"></i> <span class="ms-2">TORRES</span>
                             </a>
                         </li>
                         <li class="nav-item w-100">
@@ -220,232 +215,211 @@
                 <!-- Main content area -->
                 <div class="container-fluid p-4">
                     <h3 class="mb-4">Lista de pagos pendiente</h3>
-                    
+
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex justify-content-between mb-3">
-                                <div></div>
+
+                                <div class="d-flex justify-content-between mb-3">
+                                    <button class="btn btn-success" data-bs-toggle="modal"
+                                        data-bs-target="#createPaymentModal">
+                                        <i class="bi bi-plus-circle me-2"></i>Crear Pago
+                                    </button>
+                                </div>
                                 <div class="input-group" style="max-width: 300px;">
                                     <span class="input-group-text bg-white border-end-0">
                                         <i class="bi bi-search"></i>
                                     </span>
-                                    <input type="text" class="form-control border-start-0" id="searchInput" placeholder="Search">
+                                    <input type="text" class="form-control border-start-0" id="searchInput"
+                                        placeholder="Search">
+
+
                                 </div>
                             </div>
-                            
-                            <div class="table-responsive">
-                                <table class="table table-hover table-bordered" id="paymentsTable">
-                                    <thead class="table-light">
-                                        <tr>
-                                            <th style="width: 40px;"></th>
-                                            <th class="sortable" data-sort="pago">#Pago</th>
-                                            <th class="sortable" data-sort="nombres">Nombres</th>
-                                            <th class="sortable" data-sort="apellidos">Apellidos</th>
-                                            <th class="sortable" data-sort="torre">Torre</th>
-                                            <th class="sortable" data-sort="casa">#Casa</th>
-                                            <th class="sortable" data-sort="celular">Celular</th>
-                                            <th class="sortable" data-sort="estado">Estado Servicio</th>
-                                            <th class="sortable" data-sort="email">Email</th>
-                                            <th class="sortable" data-sort="estadoPago">Estado de pago</th>
-                                            <th style="width: 100px;">ACCIONES</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td class="text-center"><i class="bi bi-dash-square"></i></td>
-                                            <td>000001</td>
-                                            <td>Juan Andres</td>
-                                            <td>Quintero</td>
-                                            <td>3</td>
-                                            <td>106</td>
-                                            <td>3116743525</td>
-                                            <td><span class="badge bg-success">activo</span></td>
-                                            <td>juan.quintero@gmail.com</td>
-                                            <td><span class="badge badge-pendiente rounded-pill">Pendiente por pagar</span></td>
-                                            <td class="text-center">
-                                                <button class="btn btn-sm btn-outline-secondary me-1"><i class="bi bi-eye"></i></button>
-                                                <button class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center"><i class="bi bi-dash-square"></i></td>
-                                            <td>000002</td>
-                                            <td>Pepe</td>
-                                            <td>Cierra</td>
-                                            <td>3</td>
-                                            <td>107</td>
-                                            <td>3148904655</td>
-                                            <td><span class="badge bg-secondary">inactivo</span></td>
-                                            <td>pepe.cierra@gmail.com</td>
-                                            <td><span class="badge badge-pendiente rounded-pill">Pendiente por pagar</span></td>
-                                            <td class="text-center">
-                                                <button class="btn btn-sm btn-outline-secondary me-1"><i class="bi bi-eye"></i></button>
-                                                <button class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center"><i class="bi bi-dash-square"></i></td>
-                                            <td>000003</td>
-                                            <td>Arturo</td>
-                                            <td>Ortega</td>
-                                            <td>1</td>
-                                            <td>201</td>
-                                            <td>3167283909</td>
-                                            <td><span class="badge bg-success">activo</span></td>
-                                            <td>arturo.ortega@gmail.com</td>
-                                            <td><span class="badge badge-pagado rounded-pill">Pagado</span></td>
-                                            <td class="text-center">
-                                                <button class="btn btn-sm btn-outline-secondary me-1"><i class="bi bi-eye"></i></button>
-                                                <button class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center"><i class="bi bi-dash-square"></i></td>
-                                            <td>000004</td>
-                                            <td>Maria</td>
-                                            <td>Hurtado</td>
-                                            <td>2</td>
-                                            <td>307</td>
-                                            <td>3220009878</td>
-                                            <td><span class="badge bg-success">activo</span></td>
-                                            <td>maria.hurtado@gmail.com</td>
-                                            <td><span class="badge badge-pendiente rounded-pill">Pendiente por pagar</span></td>
-                                            <td class="text-center">
-                                                <button class="btn btn-sm btn-outline-secondary me-1"><i class="bi bi-eye"></i></button>
-                                                <button class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center"><i class="bi bi-dash-square"></i></td>
-                                            <td>000005</td>
-                                            <td>Aldaida</td>
-                                            <td>Solano</td>
-                                            <td>3</td>
-                                            <td>207</td>
-                                            <td>3172903789</td>
-                                            <td><span class="badge bg-success">activo</span></td>
-                                            <td>aldaida.solado@gmail.com</td>
-                                            <td><span class="badge badge-pendiente rounded-pill">Pendiente por pagar</span></td>
-                                            <td class="text-center">
-                                                <button class="btn btn-sm btn-outline-secondary me-1"><i class="bi bi-eye"></i></button>
-                                                <button class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil"></i></button>
-                                            </td>
-                                        </tr>
-                                        <!-- Añadir más filas según sea necesario -->
-                                    </tbody>
-                                </table>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table table-hover table-bordered" id="paymentsTable">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th style="width: 40px;"></th>
+                                        <th class="sortable" data-sort="pago">#Pago</th>
+                                        <th class="sortable" data-sort="email">Email</th>
+                                        <th class="sortable" data-sort="nombres">Nombres</th>
+                                        <th class="sortable" data-sort="apellidos">Apellidos</th>
+                                        <th class="sortable" data-sort="torre">Torre</th>
+                                        <th class="sortable" data-sort="casa">#Apartamento</th>
+                                        <th class="sortable" data-sort="celular">Celular</th>
+                                        <th class="sortable" data-sort="tipoServicio">Tipo de Servicio</th>
+                                        <!-- Updated -->
+                                        <th class="sortable" data-sort="total">Total</th>
+                                        <th class="sortable" data-sort="estadoPago">Estado de pago</th>
+                                        <th style="width: 100px;">ACCIONES</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-id="000001" data-email="juan.quintero@gmail.com" data-nombres="Juan Andres"
+                                        data-apellidos="Quintero" data-torre="3" data-casa="106"
+                                        data-celular="3116743525" data-tipo-servicio="Administración"
+                                        data-total="125000" data-estado-pago="Pendiente por pagar">
+                                        <td class="text-center"><i class="bi bi-dash-square"></i></td>
+                                        <td>000001</td>
+                                        <td>juan.quintero@gmail.com</td>
+                                        <td>Juan Andres</td>
+                                        <td>Quintero</td>
+                                        <td>3</td>
+                                        <td>106</td>
+                                        <td>3116743525</td>
+                                        <td><span class="badge bg-success">Administración</span></td>
+                                        <td>$125.000</td>
+                                        <td><span class="badge badge-pendiente rounded-pill">Pendiente por pagar</span>
+                                        </td>
+                                        <td class="text-center">
+                                            <button class="btn btn-sm btn-outline-secondary me-1 view-btn"><i
+                                                    class="bi bi-eye"></i></button>
+                                            <button class="btn btn-sm btn-outline-primary edit-btn"><i
+                                                    class="bi bi-pencil"></i></button>
+                                        </td>
+                                    </tr>
+                                    <!-- Add more rows as needed -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- Modal de Crear Pago -->
+                        <div class="modal fade" id="createPaymentModal" tabindex="-1"
+                            aria-labelledby="createPaymentModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="createPaymentModalLabel">Crear Nuevo Pago</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form id="createPaymentForm">
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <label for="createNombre" class="form-label">Nombre:</label>
+                                                    <input type="text" class="form-control" id="createNombre" required>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="createApellido" class="form-label">Apellido:</label>
+                                                    <input type="text" class="form-control" id="createApellido"
+                                                        required>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <label for="createTorre" class="form-label">Torre:</label>
+                                                    <input type="text" class="form-control" id="createTorre" required>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="createCasa" class="form-label">#Apartamento:</label>
+                                                    <input type="text" class="form-control" id="createCasa" required>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <label for="createCelular" class="form-label">Celular:</label>
+                                                    <input type="text" class="form-control" id="createCelular" required>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="createCorreo" class="form-label">Correo:</label>
+                                                    <input type="email" class="form-control" id="createCorreo" required>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <label for="createTipoServicio" class="form-label">Tipo de
+                                                        Servicio:</label>
+                                                    <select class="form-select" id="createTipoServicio" required>
+                                                        <option value="Administración">Administración</option>
+                                                        <option value="Parqueadero">Parqueadero</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="createTotal" class="form-label">Total:</label>
+                                                    <input type="number" class="form-control" id="createTotal" required>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <label for="createEstadoPago" class="form-label">Estado de
+                                                        Pago:</label>
+                                                    <select class="form-select" id="createEstadoPago" required>
+                                                        <option value="Pendiente por pagar">Pendiente por pagar</option>
+                                                        <option value="Pagado">Pagado</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <label for="createNotificarA" class="form-label">Notificar
+                                                        a:</label>
+                                                    <div class="dropdown">
+                                                        <button class="btn btn-secondary dropdown-toggle w-100"
+                                                            type="button" id="notificarDropdown"
+                                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                                            Seleccionar destinatarios
+                                                        </button>
+                                                        <div class="dropdown-menu w-100"
+                                                            aria-labelledby="notificarDropdown">
+                                                            <input type="text" class="form-control dropdown-item"
+                                                                placeholder="Buscar..." id="searchNotificar">
+                                                            <div id="notificarOptions">
+                                                                <div class="dropdown-item">
+                                                                    <input type="checkbox" id="notificarAll"
+                                                                        value="all">
+                                                                    <label for="notificarAll">Todos</label>
+                                                                </div>
+                                                                <div class="dropdown-item">
+                                                                    <input type="checkbox" id="notificarJuan"
+                                                                        value="juan.quintero@gmail.com">
+                                                                    <label for="notificarJuan">Juan Quintero</label>
+                                                                </div>
+                                                                <div class="dropdown-item">
+                                                                    <input type="checkbox" id="notificarPepe"
+                                                                        value="pepe.cierra@gmail.com">
+                                                                    <label for="notificarPepe">Pepe Cierra</label>
+                                                                </div>
+                                                                <div class="dropdown-item">
+                                                                    <input type="checkbox" id="notificarArturo"
+                                                                        value="arturo.ortega@gmail.com">
+                                                                    <label for="notificarArturo">Arturo Ortega</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Cancelar</button>
+                                        <button type="button" class="btn btn-primary" id="btnCrearPago">Crear
+                                            Pago</button>
+                                    </div>
+                                </div>
                             </div>
-                            
-                            <div class="mt-3">
-                                <button class="btn btn-primary">
-                                    <i class="bi bi-download me-2"></i>Descargar reporte de pagos
-                                </button>
-                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <button class="btn btn-primary">
+                                <i class="bi bi-download me-2"></i>Descargar reporte de pagos
+                            </button>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    </div>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Toggle Script -->
-    <script>
-        document.getElementById('sidebarToggle').addEventListener('click', function () {
-            document.getElementById('sidebar').classList.toggle('collapsed');
-        });
-        
-        window.addEventListener('resize', () => {
-            if (window.innerWidth < 992) { // Less than lg
-                const sidebar = document.getElementById('sidebar');
-                if (!sidebar.classList.contains('collapsed')) {
-                    sidebar.classList.toggle('collapsed');
-                }
-            }
-        });
-        
-        // Sorting functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const table = document.getElementById('paymentsTable');
-            const headers = table.querySelectorAll('th.sortable');
-            const tableBody = table.querySelector('tbody');
-            const rows = tableBody.querySelectorAll('tr');
-            
-            // Add click event to sortable headers
-            headers.forEach(header => {
-                header.addEventListener('click', () => {
-                    const column = header.dataset.sort;
-                    const isAsc = header.classList.contains('asc');
-                    
-                    // Remove sorting classes from all headers
-                    headers.forEach(h => {
-                        h.classList.remove('asc', 'desc');
-                    });
-                    
-                    // Add sorting class to clicked header
-                    header.classList.add(isAsc ? 'desc' : 'asc');
-                    
-                    // Get column index
-                    const columnIndex = Array.from(header.parentElement.children).indexOf(header);
-                    
-                    // Sort the rows
-                    const sortedRows = Array.from(rows).sort((a, b) => {
-                        // Get text content, handling badges
-                        const aCell = a.children[columnIndex];
-                        const bCell = b.children[columnIndex];
-                        
-                        // Check if cell contains a badge
-                        const aValue = aCell.querySelector('.badge') 
-                            ? aCell.querySelector('.badge').textContent.trim() 
-                            : aCell.textContent.trim();
-                        
-                        const bValue = bCell.querySelector('.badge') 
-                            ? bCell.querySelector('.badge').textContent.trim() 
-                            : bCell.textContent.trim();
-                        
-                        // Check if values are numbers
-                        const aNum = parseFloat(aValue);
-                        const bNum = parseFloat(bValue);
-                        
-                        if (!isNaN(aNum) && !isNaN(bNum)) {
-                            return isAsc ? aNum - bNum : bNum - aNum;
-                        }
-                        
-                        // Sort as strings
-                        return isAsc 
-                            ? aValue.localeCompare(bValue, 'es', {sensitivity: 'base'}) 
-                            : bValue.localeCompare(aValue, 'es', {sensitivity: 'base'});
-                    });
-                    
-                    // Append sorted rows to table
-                    tableBody.innerHTML = '';
-                    sortedRows.forEach(row => {
-                        tableBody.appendChild(row);
-                    });
-                });
-            });
-            
-            // Search functionality
-            const searchInput = document.getElementById('searchInput');
-            searchInput.addEventListener('keyup', function() {
-                const searchValue = this.value.toLowerCase();
-                
-                Array.from(rows).forEach(row => {
-                    let found = false;
-                    Array.from(row.cells).forEach(cell => {
-                        const text = cell.textContent.toLowerCase();
-                        if (text.includes(searchValue)) {
-                            found = true;
-                        }
-                    });
-                    
-                    row.style.display = found ? '' : 'none';
-                });
-            });
-        });
-    </script>
+
 
     <!-- Modal de Vista -->
     <div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
@@ -472,7 +446,7 @@
                             <input type="text" class="form-control" id="viewTorre" disabled>
                         </div>
                         <div class="col-md-6">
-                            <label for="viewCasa" class="form-label">Casa:</label>
+                            <label for="viewCasa" class="form-label">#Apartamento:</label>
                             <input type="text" class="form-control" id="viewCasa" disabled>
                         </div>
                     </div>
@@ -488,9 +462,15 @@
                     </div>
                     <div class="row mb-3">
                         <div class="col-md-6">
-                            <label for="viewEstadoServicio" class="form-label">Estado Servicio:</label>
-                            <div id="viewEstadoServicio" class="estado-badge"></div>
+                            <label for="viewTipoServicio" class="form-label">Tipo de Servicio:</label>
+                            <div id="viewTipoServicio" class="estado-badge"></div>
                         </div>
+                        <div class="col-md-6">
+                            <label for="viewTotal" class="form-label">Total:</label>
+                            <input type="text" class="form-control" id="viewTotal" disabled>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
                         <div class="col-md-6">
                             <label for="viewEstadoPago" class="form-label">Estado de Pago:</label>
                             <div id="viewEstadoPago" class="estado-badge"></div>
@@ -532,7 +512,7 @@
                             <input type="text" class="form-control" id="editTorre" disabled>
                         </div>
                         <div class="col-md-6">
-                            <label for="editCasa" class="form-label">Casa:</label>
+                            <label for="editCasa" class="form-label">#Apartamento:</label>
                             <input type="text" class="form-control" id="editCasa" disabled>
                         </div>
                     </div>
@@ -548,12 +528,18 @@
                     </div>
                     <div class="row mb-3">
                         <div class="col-md-6">
-                            <label for="editEstadoServicio" class="form-label">Estado Servicio:</label>
-                            <select class="form-select" id="editEstadoServicio">
-                                <option value="activo">Activo</option>
-                                <option value="inactivo">Inactivo</option>
+                            <label for="editTipoServicio" class="form-label">Tipo de Servicio:</label>
+                            <select class="form-select" id="editTipoServicio">
+                                <option value="Administración">Administración</option>
+                                <option value="Parqueadero">Parqueadero</option>
                             </select>
                         </div>
+                        <div class="col-md-6">
+                            <label for="editTotal" class="form-label">Total:</label>
+                            <input type="number" class="form-control" id="editTotal" disabled>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
                         <div class="col-md-6">
                             <label for="editEstadoPago" class="form-label">Estado de Pago:</label>
                             <select class="form-select" id="editEstadoPago">
@@ -572,177 +558,76 @@
     </div>
 
     <!-- Modificar los botones en la tabla para que abran los modales -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Código de ordenación y búsqueda existente
-            // ... existing code ...
-            
-            // Botón de editar desde el modal de vista
-            document.getElementById('btnEditarDesdeVista').addEventListener('click', function() {
-                // Cerrar el modal de vista
-                const viewModal = bootstrap.Modal.getInstance(document.getElementById('viewModal'));
-                viewModal.hide();
-                
-                // Obtener el ID del pago
-                const paymentId = document.getElementById('viewPaymentId').textContent;
-                
-                // Buscar la fila correspondiente en la tabla
-                const table = document.getElementById('paymentsTable');
-                let targetRow = null;
-                
-                for (let i = 1; i < table.rows.length; i++) {
-                    if (table.rows[i].cells[1].textContent === paymentId) {
-                        targetRow = table.rows[i];
-                        break;
-                    }
-                }
-                
-                if (targetRow) {
-                    // Obtener datos de la fila
-                    const cells = targetRow.cells;
-                    const nombre = cells[2].textContent;
-                    const apellido = cells[3].textContent;
-                    const torre = cells[4].textContent;
-                    const casa = cells[5].textContent;
-                    const celular = cells[6].textContent;
-                    const estadoServicio = cells[7].querySelector('.badge').textContent;
-                    const email = cells[8].textContent;
-                    const estadoPago = cells[9].querySelector('.badge').textContent;
-                    
-                    // Llenar el modal de edición con los datos
-                    document.getElementById('editPaymentId').textContent = paymentId;
-                    document.getElementById('editNombre').value = nombre;
-                    document.getElementById('editApellido').value = apellido;
-                    document.getElementById('editTorre').value = torre;
-                    document.getElementById('editCasa').value = casa;
-                    document.getElementById('editCelular').value = celular;
-                    document.getElementById('editCorreo').value = email;
-                    
-                    // Seleccionar las opciones correctas en los selects
-                    document.getElementById('editEstadoServicio').value = estadoServicio;
-                    document.getElementById('editEstadoPago').value = estadoPago;
-                    
-                    // Guardar referencia a la fila para actualizar después
-                    document.getElementById('btnConfirmar').dataset.rowIndex = targetRow.rowIndex;
-                    
-                    // Mostrar el modal de edición
-                    const editModal = new bootstrap.Modal(document.getElementById('editModal'));
-                    editModal.show();
-                }
-            });
-            
-            // Funcionalidad para los botones de ver y editar
-            const viewButtons = document.querySelectorAll('.btn-outline-secondary');
-            const editButtons = document.querySelectorAll('.btn-outline-primary');
-            
-            // Modal de vista
-            viewButtons.forEach(button => {
-                button.addEventListener('click', function() {
+
+
+
+
+
+        document.getElementById('sidebarToggle').addEventListener('click', function () {
+            document.getElementById('sidebar').classList.toggle('collapsed');
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // View Button Click
+            document.querySelectorAll('.view-btn').forEach(button => {
+                button.addEventListener('click', function () {
                     const row = this.closest('tr');
-                    const cells = row.cells;
-                    
-                    // Obtener datos de la fila
-                    const paymentId = cells[1].textContent;
-                    const nombre = cells[2].textContent;
-                    const apellido = cells[3].textContent;
-                    const torre = cells[4].textContent;
-                    const casa = cells[5].textContent;
-                    const celular = cells[6].textContent;
-                    const estadoServicio = cells[7].querySelector('.badge').textContent;
-                    const email = cells[8].textContent;
-                    const estadoPago = cells[9].querySelector('.badge').textContent;
-                    
-                    // Llenar el modal con los datos
-                    document.getElementById('viewPaymentId').textContent = paymentId;
-                    document.getElementById('viewNombre').value = nombre;
-                    document.getElementById('viewApellido').value = apellido;
-                    document.getElementById('viewTorre').value = torre;
-                    document.getElementById('viewCasa').value = casa;
-                    document.getElementById('viewCelular').value = celular;
-                    document.getElementById('viewCorreo').value = email;
-                    
-                    // Configurar los estados con clases de estilo
-                    const estadoServicioElement = document.getElementById('viewEstadoServicio');
-                    estadoServicioElement.textContent = estadoServicio;
-                    estadoServicioElement.className = 'estado-badge';
-                    estadoServicioElement.classList.add(estadoServicio === 'activo' ? 'estado-activo' : 'estado-inactivo');
-                    
-                    const estadoPagoElement = document.getElementById('viewEstadoPago');
-                    estadoPagoElement.textContent = estadoPago;
-                    estadoPagoElement.className = 'estado-badge';
-                    estadoPagoElement.classList.add(estadoPago === 'Pagado' ? 'estado-pagado' : 'estado-pendiente');
-                    
-                    // Mostrar el modal
-                    const viewModal = new bootstrap.Modal(document.getElementById('viewModal'));
-                    viewModal.show();
+                    document.getElementById('viewPaymentId').textContent = row.getAttribute('data-id');
+                    document.getElementById('viewNombre').value = row.getAttribute('data-nombres');
+                    document.getElementById('viewApellido').value = row.getAttribute('data-apellidos');
+                    document.getElementById('viewTorre').value = row.getAttribute('data-torre');
+                    document.getElementById('viewCasa').value = row.getAttribute('data-casa');
+                    document.getElementById('viewCelular').value = row.getAttribute('data-celular');
+                    document.getElementById('viewCorreo').value = row.getAttribute('data-email');
+                    document.getElementById('viewTipoServicio').textContent = row.getAttribute('data-tipo-servicio');
+                    document.getElementById('viewTotal').value = row.getAttribute('data-total');
+                    document.getElementById('viewEstadoPago').textContent = row.getAttribute('data-estado-pago');
+
+                    // Show the view modal
+                    new bootstrap.Modal(document.getElementById('viewModal')).show();
                 });
             });
-            
-            // Modal de edición
-            editButtons.forEach(button => {
-                button.addEventListener('click', function() {
+
+            // Edit Button Click
+            document.querySelectorAll('.edit-btn').forEach(button => {
+                button.addEventListener('click', function () {
                     const row = this.closest('tr');
-                    const cells = row.cells;
-                    
-                    // Obtener datos de la fila
-                    const paymentId = cells[1].textContent;
-                    const nombre = cells[2].textContent;
-                    const apellido = cells[3].textContent;
-                    const torre = cells[4].textContent;
-                    const casa = cells[5].textContent;
-                    const celular = cells[6].textContent;
-                    const estadoServicio = cells[7].querySelector('.badge').textContent;
-                    const email = cells[8].textContent;
-                    const estadoPago = cells[9].querySelector('.badge').textContent;
-                    
-                    // Llenar el modal con los datos
-                    document.getElementById('editPaymentId').textContent = paymentId;
-                    document.getElementById('editNombre').value = nombre;
-                    document.getElementById('editApellido').value = apellido;
-                    document.getElementById('editTorre').value = torre;
-                    document.getElementById('editCasa').value = casa;
-                    document.getElementById('editCelular').value = celular;
-                    document.getElementById('editCorreo').value = email;
-                    
-                    // Seleccionar las opciones correctas en los selects
-                    document.getElementById('editEstadoServicio').value = estadoServicio;
-                    document.getElementById('editEstadoPago').value = estadoPago;
-                    
-                    // Guardar referencia a la fila para actualizar después
-                    document.getElementById('btnConfirmar').dataset.rowIndex = row.rowIndex;
-                    
-                    // Mostrar el modal
-                    const editModal = new bootstrap.Modal(document.getElementById('editModal'));
-                    editModal.show();
+                    document.getElementById('editPaymentId').textContent = row.getAttribute('data-id');
+                    document.getElementById('editNombre').value = row.getAttribute('data-nombres');
+                    document.getElementById('editApellido').value = row.getAttribute('data-apellidos');
+                    document.getElementById('editTorre').value = row.getAttribute('data-torre');
+                    document.getElementById('editCasa').value = row.getAttribute('data-casa');
+                    document.getElementById('editCelular').value = row.getAttribute('data-celular');
+                    document.getElementById('editCorreo').value = row.getAttribute('data-email');
+                    document.getElementById('editTipoServicio').value = row.getAttribute('data-tipo-servicio');
+                    document.getElementById('editTotal').value = row.getAttribute('data-total');
+                    document.getElementById('editEstadoPago').value = row.getAttribute('data-estado-pago');
+
+                    // Show the edit modal
+                    new bootstrap.Modal(document.getElementById('editModal')).show();
                 });
             });
-            
-            // Botón de confirmar en el modal de edición
-            document.getElementById('btnConfirmar').addEventListener('click', function() {
-                // Obtener los valores actualizados
-                const estadoServicio = document.getElementById('editEstadoServicio').value;
-                const estadoPago = document.getElementById('editEstadoPago').value;
-                
-                // Obtener la fila a actualizar
-                const rowIndex = this.dataset.rowIndex;
-                const table = document.getElementById('paymentsTable');
-                const row = table.rows[rowIndex];
-                
-                // Actualizar los valores en la tabla
-                const estadoServicioCell = row.cells[7];
-                estadoServicioCell.innerHTML = `<span class="badge ${estadoServicio === 'activo' ? 'bg-success' : 'bg-secondary'}">${estadoServicio}</span>`;
-                
-                const estadoPagoCell = row.cells[9];
-                estadoPagoCell.innerHTML = `<span class="badge ${estadoPago === 'Pagado' ? 'badge-pagado' : 'badge-pendiente'} rounded-pill">${estadoPago}</span>`;
-                
-                // Cerrar el modal
-                const editModal = bootstrap.Modal.getInstance(document.getElementById('editModal'));
-                editModal.hide();
-                
-                // Mostrar alerta de éxito
-                alert(`Pago #${document.getElementById('editPaymentId').textContent} actualizado correctamente.`);
+
+            // Confirm Edit Button Click
+            document.getElementById('btnConfirmar').addEventListener('click', function () {
+                // Here you can add logic to save the edited data
+                alert('Changes saved!');
+                new bootstrap.Modal(document.getElementById('editModal')).hide();
             });
         });
+
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth < 992) { // Less than lg
+                const sidebar = document.getElementById('sidebar');
+                if (!sidebar.classList.contains('collapsed')) {
+                    sidebar.classList.toggle('collapsed');
+                }
+            }
+        });
+
     </script>
 </body>
 
