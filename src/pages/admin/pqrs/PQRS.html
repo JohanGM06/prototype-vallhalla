@@ -30,7 +30,7 @@
             <!-- Sidebar -->
             <div id="sidebar" class="col-auto px-0 bg-white border-end" style="width: 280px;">
                 <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 min-vh-100">
-                    <a href="/"
+                    <a href="../dashboard.html"
                         class="d-flex align-items-center pb-3 mb-md-1 mt-md-3 me-md-auto text-dark text-decoration-none">
                         <span class="fs-5 fw-bolder">VALHALLA</span>
                     </a>
@@ -286,34 +286,7 @@
     <!-- SweetAlert2 JS -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <!-- Toggle Script -->
-    <script>
-        document.getElementById('sidebarToggle').addEventListener('click', function () {
-            document.getElementById('sidebar').classList.toggle('collapsed');
-        });
-        window.addEventListener('resize', () => {
-            if (window.innerWidth < 992) { // Less than lg
-                const sidebar = document.getElementById('sidebar');
-                if (!sidebar.classList.contains('collapsed')) {
-                    sidebar.classList.toggle('collapsed');
-                }
-
-            }
-            console.log("loaded")
-        });
-    </script>
-
-    <!-- Add this script at the bottom of your file, after Bootstrap JS -->
-    <script>
-        // Initialize tooltips and modal
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize tooltips
-            let tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-            tooltipTriggerList.map(function (tooltipTriggerEl) {
-                return new bootstrap.Tooltip(tooltipTriggerEl)
-            });
-        });
-    </script>
+    
 
     <!-- Update the modal content -->
     <div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
@@ -411,8 +384,32 @@
         </div>
     </div>
 
-    <!-- Update the script -->
+    <!-- Toggle Script -->
     <script>
+       
+   
+        document.getElementById('sidebarToggle').addEventListener('click', function () {
+            document.getElementById('sidebar').classList.toggle('collapsed');
+        });
+        window.addEventListener('resize', () => {
+            if (window.innerWidth < 992) { // Less than lg
+                const sidebar = document.getElementById('sidebar');
+                if (!sidebar.classList.contains('collapsed')) {
+                    sidebar.classList.toggle('collapsed');
+                }
+
+            }
+            console.log("loaded")
+        });
+        // Initialize tooltips and modal
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize tooltips
+            let tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl)
+            });
+        });
+    
         function toggleResponse(button) {
             const responseForm = document.getElementById('responseForm');
             const responseFormContent = document.getElementById('responseFormContent');

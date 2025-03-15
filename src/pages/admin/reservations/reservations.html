@@ -14,12 +14,12 @@
   <!-- Flatpickr CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/material_blue.css">
-  
+
   <!-- JavaScript Libraries -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"></script>
-  
+
   <style>
     #sidebar {
       transition: margin 0.3s ease-in-out;
@@ -43,23 +43,29 @@
       color: #d32f2f !important;
       text-decoration: line-through;
     }
+
     .flatpickr-day.occupied-date:hover {
       background-color: #ffcdd2 !important;
     }
+
     .calendar-wrapper {
       min-height: 300px;
     }
+
     .flatpickr-calendar.inline {
       width: 100%;
       max-width: none;
       box-shadow: none;
     }
+
     .flatpickr-rContainer {
       width: 100%;
     }
+
     .flatpickr-days {
       width: 100% !important;
     }
+
     .dayContainer {
       width: 100%;
       min-width: 100%;
@@ -67,6 +73,7 @@
       display: flex;
       flex-wrap: wrap;
     }
+
     .flatpickr-day {
       width: calc(100% / 7);
       max-width: none;
@@ -76,17 +83,21 @@
       margin: 0;
       border-radius: 0;
     }
+
     .flatpickr-day.available {
       background-color: #198754;
       color: white;
     }
+
     .flatpickr-day.occupied {
       background-color: #dc3545;
       color: white;
     }
+
     .flatpickr-day.today {
       border: 2px solid #0d6efd;
     }
+
     @media (max-width: 768px) {
       .flatpickr-day {
         height: 40px;
@@ -220,15 +231,7 @@
                 <div class="card">
                   <div class="card-header bg-white">
                     <div class="d-flex justify-content-between align-items-center">
-                      <div class="d-flex align-items-center">
-                        <button class="btn btn-outline-secondary btn-sm me-2">
-                          <i class="bi bi-chevron-left"></i>
-                        </button>
-                        <h5 class="mb-0">Diciembre 2024</h5>
-                        <button class="btn btn-outline-secondary btn-sm ms-2">
-                          <i class="bi bi-chevron-right"></i>
-                        </button>
-                      </div>
+                     
                       <div class="dropdown">
                         <button class="btn btn-outline-secondary dropdown-toggle" type="button"
                           data-bs-toggle="dropdown">
@@ -329,7 +332,7 @@
                     </button>
                   </div>
                 </div>
-                
+
               </div>
             </div>
           </div>
@@ -509,12 +512,10 @@
           }
         }
       });
-    </script>
 
-    <script>
       // Initialize Flatpickr with Spanish locale
       flatpickr.localize(flatpickr.l10ns.es);
-      
+
       // Mock occupied dates with specific hours
       const occupiedDates = [
         { date: '2024-03-20', hours: ['10:00', '14:00'] },
@@ -541,15 +542,15 @@
           minDate: 'today',
           maxDate: new Date().fp_incr(90),
           disable: occupiedDates.map(d => d.date),
-          onChange: function(selectedDates, dateStr) {
+          onChange: function (selectedDates, dateStr) {
             if (selectedDates[0]) {
               updateAvailableHours(selectedDates[0], inputId.includes('create') ? 'create' : 'edit');
             }
           },
-          onDayCreate: function(dObj, dStr, fp, dayElem) {
+          onDayCreate: function (dObj, dStr, fp, dayElem) {
             const dateStr = dayElem.dateObj.toISOString().split('T')[0];
             const isOccupied = occupiedDates.some(d => d.date === dateStr);
-            
+
             if (isOccupied) {
               dayElem.title = "Ocupado";
               dayElem.classList.add('occupied-date');
@@ -563,15 +564,15 @@
         const horaSelect = document.getElementById(`${mode}Hora`);
         const dateStr = selectedDate.toISOString().split('T')[0];
         const occupiedDate = occupiedDates.find(d => d.date === dateStr);
-        
+
         // Reset hour selection
         horaSelect.value = '';
-        
+
         // Enable all options first
         Array.from(horaSelect.options).forEach(option => {
           option.disabled = false;
         });
-        
+
         if (occupiedDate) {
           // Disable occupied hours
           occupiedDate.hours.forEach(hour => {
@@ -584,7 +585,7 @@
       }
 
       // Initialize calendars when modals are shown
-      document.addEventListener('DOMContentLoaded', function() {
+      document.addEventListener('DOMContentLoaded', function () {
         // Initialize create modal calendar
         document.getElementById('createReservationModal').addEventListener('shown.bs.modal', function () {
           createCalendar = initializeCalendar('createFecha', createCalendar);
@@ -610,35 +611,47 @@
           }
         });
       });
-    </script>
 
-    <script>
       // Set min date to today for date inputs
       const today = new Date().toISOString().split('T')[0];
       document.getElementById('createFecha').min = today;
       document.getElementById('editFecha').min = today;
 
       // Update final date min when initial date changes
-      document.getElementById('createFecha').addEventListener('change', function() {
+      document.getElementById('createFecha').addEventListener('change', function () {
         document.getElementById('createFecha').value = this.value;
       });
 
-      document.getElementById('editFecha').addEventListener('change', function() {
+      document.getElementById('editFecha').addEventListener('change', function () {
         document.getElementById('editFecha').value = this.value;
       });
 
       function validateAndSubmit() {
+        console.log("validateAndSubmit function called"); // Debugging line
+
         const form = document.getElementById('createReservationForm');
-        
+        if (!form) {
+          console.error("Form not found"); // Debugging line
+          return;
+        }
+
+        // Validate form
         if (!form.checkValidity()) {
+          console.log("Form is not valid"); // Debugging line
           form.classList.add('was-validated');
           return;
         }
+        console.log("Form is valid"); // Debugging line
 
         // Get form values
         const tipoZona = document.getElementById('createTipoZona').value;
         const fecha = document.getElementById('createFecha').value;
         const hora = document.getElementById('createHora').value;
+
+        // Debugging: Log form values
+        console.log("Tipo de Zona:", tipoZona);
+        console.log("Fecha:", fecha);
+        console.log("Hora:", hora);
 
         // Additional validation
         if (new Date(fecha) < new Date(today)) {
@@ -662,35 +675,53 @@
           cancelButtonText: 'Cancelar'
         }).then((result) => {
           if (result.isConfirmed) {
+            console.log("User confirmed reservation creation"); // Debugging line
+            const modal = bootstrap.Modal.getInstance(document.getElementById('createReservationModal'));
+            if (modal) {
+              modal.hide();
+            }
+            form.reset();
+            form.classList.remove('was-validated');
             // Add new reservation to the list
             const listGroup = document.querySelector('.list-group');
+            if (!listGroup) {
+              console.error("List group not found"); // Debugging line
+              return;
+            }
+            Swal.fire({
+              icon: 'success',
+              title: '¡Reserva creada correctamente!',
+              text: 'La reservación ha sido creada exitosamente',
+              timer: 2000,
+              showConfirmButton: false
+            })
             const newReservation = document.createElement('div');
             newReservation.className = 'list-group-item';
             newReservation.innerHTML = `
-              <div class="d-flex justify-content-between align-items-center">
-                <div>
-                  <h6 class="mb-1">APT #101</h6>
-                  <small class="text-muted">${fecha} - ${hora}</small>
-                </div>
-                <div>
-                  <button class="btn btn-sm btn-outline-primary me-1" data-bs-toggle="modal"
-                    data-bs-target="#editReservationModal">
-                    <i class="bi bi-pencil"></i>
-                  </button>
-                  <button class="btn btn-sm btn-outline-secondary me-1" data-bs-toggle="modal"
-                    data-bs-target="#viewReservationModal">
-                    <i class="bi bi-eye"></i>
-                  </button>
-                  <button class="btn btn-sm btn-outline-danger" onclick="confirmDelete(this)">
-                    <i class="bi bi-trash"></i>
-                  </button>
-                </div>
-              </div>
-            `;
-            
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <h6 class="mb-1">APT #101</h6>
+            <small class="text-muted">${fecha} - ${hora}</small>
+          </div>
+          <div>
+            <button class="btn btn-sm btn-outline-primary me-1" data-bs-toggle="modal"
+              data-bs-target="#editReservationModal">
+              <i class="bi bi-pencil"></i>
+            </button>
+            <button class="btn btn-sm btn-outline-secondary me-1" data-bs-toggle="modal"
+              data-bs-target="#viewReservationModal">
+              <i class="bi bi-eye"></i>
+            </button>
+            <button class="btn btn-sm btn-outline-danger" onclick="confirmDelete(this)">
+              <i class="bi bi-trash"></i>
+            </button>
+          </div>
+        </div>
+      `;
+
             // Add the new reservation at the top of the list
             listGroup.prepend(newReservation);
-            
+
             // Add the date to occupied dates (for calendar)
             const existingDate = occupiedDates.find(d => d.date === fecha);
             if (existingDate) {
@@ -702,37 +733,20 @@
               // Add new date with this hour
               occupiedDates.push({ date: fecha, hours: [hora] });
             }
-            
-            // Update the calendar if needed
-            if (typeof mainCalendar !== 'undefined') {
-              mainCalendar.redraw();
-            }
+
 
             // Show success message
-            Swal.fire({
-              icon: 'success',
-              title: '¡Reservación creada!',
-              text: 'La reservación ha sido creada exitosamente',
-              timer: 2000,
-              showConfirmButton: false
-            }).then(() => {
-              // Close the modal and reset form
-              const modal = bootstrap.Modal.getInstance(document.getElementById('createReservationModal'));
-              modal.hide();
-              form.reset();
-              form.classList.remove('was-validated');
-            });
+
           }
         });
       }
-
       // Reset form when modal is closed
       document.getElementById('createReservationModal').addEventListener('hidden.bs.modal', function () {
         const form = document.getElementById('createReservationForm');
         form.reset();
         form.classList.remove('was-validated');
       });
-    
+
       // Update editReservation function
       function editReservation(id) {
         const reservation = mockReservations.find(r => r.id === id);
@@ -742,7 +756,7 @@
             editCalendar.setDate(reservation.fechaInicial);
           }
           document.getElementById('editHora').value = reservation.hora;
-          
+
           document.getElementById('editReservationForm').setAttribute('data-reservation-id', id);
         }
       }
@@ -751,7 +765,7 @@
       function validateAndSubmitEdit() {
         const form = document.getElementById('editReservationForm');
         const id = parseInt(form.getAttribute('data-reservation-id'));
-        
+
         if (!form.checkValidity()) {
           form.classList.add('was-validated');
           return;
@@ -791,7 +805,7 @@
                 fechaFinal: fecha.toISOString().split('T')[0],
                 hora
               };
-              
+
               renderReservations();
 
               Swal.fire({
@@ -809,8 +823,8 @@
           }
         });
       }
- 
-      document.addEventListener('DOMContentLoaded', function() {
+
+      document.addEventListener('DOMContentLoaded', function () {
         // Initialize main calendar
         const mainCalendar = flatpickr("#mainCalendar", {
           locale: 'es',
@@ -820,10 +834,10 @@
           defaultDate: 'today',
           minDate: 'today',
           maxDate: new Date().fp_incr(90),
-          onDayCreate: function(dObj, dStr, fp, dayElem) {
+          onDayCreate: function (dObj, dStr, fp, dayElem) {
             const dateStr = dayElem.dateObj.toISOString().split('T')[0];
             const isOccupied = occupiedDates.some(d => d.date === dateStr);
-            
+
             if (dayElem.dateObj >= new Date() && dayElem.dateObj <= new Date().fp_incr(90)) {
               if (isOccupied) {
                 dayElem.classList.add('occupied');
@@ -834,7 +848,7 @@
               }
             }
           },
-          onChange: function(selectedDates, dateStr) {
+          onChange: function (selectedDates, dateStr) {
             if (selectedDates[0]) {
               const isOccupied = occupiedDates.some(d => d.date === dateStr);
               if (isOccupied) {
@@ -864,14 +878,14 @@
           document.querySelector('.card-header h5').textContent = `${monthName} ${monthYear}`;
         }
 
-        mainCalendar.config.onMonthChange = function() {
+        mainCalendar.config.onMonthChange = function () {
           updateMonthTitle();
         };
-        
+
         // Initial title update
         updateMonthTitle();
       });
-   
+
       // Function to show delete confirmation
       function confirmDelete(button) {
         Swal.fire({
@@ -887,23 +901,23 @@
           if (result.isConfirmed) {
             // Get the list item and remove it
             const listItem = button.closest('.list-group-item');
-            
+
             // Get date info from the item before removing
             const dateText = listItem.querySelector('small.text-muted').textContent;
             const dateParts = dateText.split(' - ');
             const fecha = dateParts[0];
             const hora = dateParts[1];
-            
+
             // Remove from DOM
             listItem.remove();
-            
+
             // Remove from occupiedDates array
             const dateIndex = occupiedDates.findIndex(d => d.date === fecha);
             if (dateIndex !== -1) {
               // If this is the only hour for this date, remove the entire date
               if (occupiedDates[dateIndex].hours.length === 1 && occupiedDates[dateIndex].hours[0] === hora) {
                 occupiedDates.splice(dateIndex, 1);
-              } 
+              }
               // Otherwise just remove this hour
               else {
                 const hourIndex = occupiedDates[dateIndex].hours.indexOf(hora);
@@ -912,12 +926,12 @@
                 }
               }
             }
-            
+
             // Update the calendar if it exists
             if (typeof mainCalendar !== 'undefined') {
               mainCalendar.redraw();
             }
-            
+
             // Close any open modals
             const openModals = document.querySelectorAll('.modal.show');
             openModals.forEach(modalEl => {
@@ -926,7 +940,7 @@
                 modal.hide();
               }
             });
-            
+
             // Show success message
             Swal.fire({
               icon: 'success',
