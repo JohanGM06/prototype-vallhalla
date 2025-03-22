@@ -406,7 +406,7 @@
       });
     </script>
 
-    <!-- Replace the existing script with this simplified version -->
+    <!-- Replace the existing script with this simplified demo version -->
     <script>
     function submitSurvey(surveyId) {
       const form = document.getElementById(`surveyForm${surveyId}`);
@@ -471,40 +471,29 @@
           // Add visual indication that the card is completed
           card.classList.add('opacity-75');
           
-          // Store completion state in localStorage
-          localStorage.setItem(`survey${surveyId}Completed`, 'true');
-          
           Swal.fire('¡Gracias por completar la encuesta!', '', 'success');
         }
       });
     }
-
-    // Check for completed surveys on page load
-    document.addEventListener('DOMContentLoaded', function() {
-      // Check each survey's completion status
-      const checkSurveyStatus = (surveyId) => {
-        if (localStorage.getItem(`survey${surveyId}Completed`) === 'true') {
-          const card = document.getElementById(`surveyCard${surveyId}`);
-          const badge = document.getElementById(`surveyBadge${surveyId}`);
-          const button = document.getElementById(`surveyButton${surveyId}`);
-          
-          badge.className = 'badge bg-secondary';
-          badge.textContent = 'Ya respondida';
-          
-          button.className = 'btn btn-secondary';
-          button.textContent = 'Respondida';
-          button.disabled = true;
-          button.removeAttribute('data-bs-toggle');
-          button.removeAttribute('data-bs-target');
-          
-          card.classList.add('opacity-75');
-        }
-      };
-
-      // Check status for each survey (add more as needed)
-      checkSurveyStatus(1);
-      checkSurveyStatus(2);
-      });
     </script>
+
+    <!-- Simple CSS for demo -->
+    <style>
+    .card.opacity-75 {
+      transition: opacity 0.3s ease;
+    }
+
+    .badge {
+      transition: all 0.3s ease;
+    }
+
+    .is-invalid {
+      border-color: #dc3545 !important;
+    }
+
+    .border-danger {
+      border-color: #dc3545 !important;
+    }
+    </style>
   </body>
 </html>
