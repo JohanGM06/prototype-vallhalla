@@ -19,10 +19,28 @@
     <style>
       #sidebar {
         transition: margin 0.3s ease-in-out;
+        position: sticky;
+        top: 70px; /* Dar espacio para la navbar fija */
+        height: calc(100vh - 70px); /* Altura ajustada restando el alto de la navbar */
+        overflow-y: auto; /* Permitir desplazamiento si el contenido es muy largo */
       }
 
       #sidebar.collapsed {
         margin-left: -280px;
+      }
+      
+      /* Clase para la navbar fija */
+      .fixed-navbar {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 1030;
+      }
+      
+      /* Espacio para compensar la navbar fija */
+      .content-wrapper {
+        padding-top: 70px;
       }
     </style>
   </head>
@@ -101,7 +119,7 @@
         <!-- Main Content -->
         <div class="col p-0">
           <!-- Topbar -->
-          <nav class="navbar navbar-expand-lg bg-white border-bottom px-3">
+          <nav class="navbar navbar-expand-lg bg-white border-bottom px-3 fixed-navbar">
             <div class="container-fluid">
               <div class="d-flex align-items-center">
                 <button
@@ -140,7 +158,7 @@
           </nav>
 
           <!-- Main content area -->
-          <div class="container-fluid p-4">
+          <div class="container-fluid content-wrapper p-4">
             <h3 class="mb-4">Anuncios Recientes</h3>
             
             <div class="row mb-4">
