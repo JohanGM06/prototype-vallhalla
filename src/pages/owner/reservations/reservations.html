@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VALHALLA - Sistema de Administración de Propiedades</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" />
+
+    <!-- Minimal required CSS for toggle functionality -->
+    <style>
+        #sidebar {
+            transition: margin 0.3s ease-in-out;
+            position: sticky;
+            top: 70px;
+            /* Dar espacio para la navbar fija */
+            height: calc(100vh - 70px);
+            /* Altura ajustada restando el alto de la navbar */
+            overflow-y: auto;
+            /* Permitir desplazamiento si el contenido es muy largo */
+        }
+
+        #sidebar.collapsed {
+            margin-left: -280px;
+        }
+
+        /* Clase para la navbar fija */
+        .fixed-navbar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            z-index: 1030;
+        }
+
+        /* Espacio para compensar la navbar fija */
+        .content-wrapper {
+            padding-top: 70px;
+        }
+
+        .calendar-container {
+            background: white;
+            border-radius: 8px;
+        }
+
+        .table td.bg-danger[data-bs-toggle="tooltip"] {
+            cursor: help;
+        }
+
+        .table td {
+            cursor: pointer;
+        }
+
+        .table td:hover:not(.text-muted):not(.bg-danger) {
+            background-color: #e9ecef;
+        }
+    </style>
+
+    <!-- Add Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/material_blue.css">
+
+    <!-- Add SweetAlert2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row flex-nowrap">
+            <!-- Sidebar -->
+            <div id="sidebar" class="col-auto px-0 bg-white border-end" style="width: 280px">
+                <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 min-vh-100">
+                    <a href="/"
+                        class="d-flex align-items-center pb-3 mb-md-1 mt-md-3 me-md-auto text-dark text-decoration-none">
+                        <span class="fs-5 fw-bolder">VALHALLA</span>
+                    </a>
+                    <ul class="nav flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start w-100">
+                        <li class="nav-item w-100">
+                            <a href="#" class="nav-link text-dark px-0">
+                                <i class="bi bi-bar"></i> <span class="ms-2">ANUNCIOS</span>
+                            </a>
+                        </li>
+                        <li class="nav-item w-100">
+                            <a href="#" class="nav-link text-dark px-0">
+                                <i class="bi bi-clipboard-data"></i>
+                                <span class="ms-2">ENCUESTAS</span>
+                            </a>
+                        </li>
+                        <li class="nav-item w-100">
+                            <a href="#" class="nav-link text-dark px-0">
+                                <i class="bi bi-credit-card"></i>
+                                <span class="ms-2">PAGOS</span>
+                            </a>
+                        </li>
+                        <li class="nav-item w-100">
+                            <a href="#" class="nav-link text-dark px-0">
+                                <i class="bi bi-p-square"></i>
+                                <span class="ms-2">PARQUEADERO</span>
+                            </a>
+                        </li>
+                        <li class="nav-item w-100">
+                            <a href="#" class="nav-link text-dark px-0">
+                                <i class="bi bi-calendar-check"></i>
+                                <span class="ms-2">RESERVAS</span>
+                            </a>
+                        </li>
+                        <li class="nav-item w-100">
+                            <a href="#" class="nav-link text-dark px-0">
+                                <i class="bi bi-heart"></i> <span class="ms-2">MASCOTAS</span>
+                            </a>
+                        </li>
+                        <li class="nav-item w-100">
+                            <a href="#" class="nav-link text-dark px-0">
+                                <i class="bi bi-person-check"></i>
+                                <span class="ms-2">ARRENDATARIOS</span>
+                            </a>
+                        </li>
+                        <li class="nav-item w-100">
+                            <a href="#" class="nav-link text-dark px-0">
+                                <i class="bi bi-question-circle"></i>
+                                <span class="ms-2">PQRS</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col p-0">
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand-lg bg-white border-bottom px-3 fixed-navbar">
+                    <div class="container-fluid">
+                        <div class="d-flex align-items-center">
+                            <button class="btn btn-link text-dark px-0 me-3" id="sidebarToggle">
+                                <i class="bi bi-list fs-4"></i>
+                            </button>
+                            <h2 class="navbar-text fs-4">PUERTA DE LA ALAMEDA</h2>
+                            <h4 class="fs-6" style="margin-top: 20px;">Valhalla</h4>
+                        </div>
+
+                        <div class="d-flex align-items-center ms-auto">
+                            <div class="input-group me-3">
+                                <span class="input-group-text bg-white border-end-0">
+                                    <i class="bi bi-search"></i>
+                                </span>
+                                <input type="text" class="form-control border-start-0" placeholder="Search" />
+                            </div>
+
+                            <button class="btn btn-link text-dark">
+                                <i class="bi bi-bell fs-5"></i>
+                            </button>
+                            <button class="btn btn-link text-dark">
+                                <i class="bi bi-envelope fs-5"></i>
+                            </button>
+                            <button class="btn btn-link text-dark">
+                                <i class="bi bi-escape fs-5"></i>
+                            </button>
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- Main content area -->
+                <div class="container-fluid content-wrapper p-4">
+                    <div class="row mt-5">
+                        <!-- Calendar Section -->
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-header bg-white">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-flex align-items-center">
+
+                                            <h5 class="mb-0" id="monthYearLabel">Diciembre 2024</h5>
+
+                                        </div>
+                                        <div class="dropdown">
+                                            <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                                                data-bs-toggle="dropdown">
+                                                <i class="bi bi-filter"></i> Estado
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href="#">Disponible</a></li>
+                                                <li><a class="dropdown-item" href="#">Ocupado</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body p-3">
+                                    <input type="text" id="mainCalendar" class="d-none">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Reservations List Section -->
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-header bg-white">
+                                    <h5 class="mb-0">Mis Reservas</h5>
+                                </div>
+                                <div class="card-body">
+                                    <!-- Current Reservations -->
+                                    <div class="list-group">
+                                        <div class="list-group-item">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div>
+                                                    <h6 class="mb-1">BBQ</h6>
+                                                    <small class="text-muted">22-11-2024 - 14:00</small>
+                                                </div>
+                                                <div>
+                                                    <button class="btn btn-sm btn-outline-secondary me-1"
+                                                        data-bs-toggle="modal" data-bs-target="#viewReservationModal">
+                                                        <i class="bi bi-eye"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-danger"
+                                                        onclick="confirmDelete(this)">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Add Reservation Button -->
+                                    <button class="btn btn-success w-100 mt-3" data-bs-toggle="modal"
+                                        data-bs-target="#createReservationModal">
+                                        <i class="bi bi-plus-circle me-2"></i>Nueva Reserva
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Create Reservation Modal -->
+                    <div class="modal fade" id="createReservationModal" tabindex="-1">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Crear Reservación</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="createReservationForm" class="needs-validation" novalidate>
+                                        <div class="mb-3">
+                                            <label for="commonArea" class="form-label">Zona común</label>
+                                            <select class="form-select" id="commonArea" required>
+                                                <option value="">Seleccione zona</option>
+                                                <option value="bbq">BBQ</option>
+                                                <option value="salon">Salón Comunal</option>
+                                                <option value="piscina">Piscina</option>
+                                            </select>
+                                            <div class="invalid-feedback">
+                                                Seleccione una zona común
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Día de reserva</label>
+                                            <div class="calendar-wrapper border rounded p-3">
+                                                <input type="text" id="createFecha" class="d-none" required>
+                                            </div>
+                                            <div class="invalid-feedback">
+                                                Seleccione una fecha
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="reservationTime" class="form-label">Hora de la reserva</label>
+                                            <select class="form-select" id="reservationTime" required>
+                                                <option value="">Seleccione hora</option>
+                                                <option value="08:00">8:00 AM</option>
+                                                <option value="10:00">10:00 AM</option>
+                                                <option value="12:00">12:00 PM</option>
+                                                <option value="14:00">2:00 PM</option>
+                                                <option value="16:00">4:00 PM</option>
+                                                <option value="18:00">6:00 PM</option>
+                                            </select>
+                                            <div class="invalid-feedback">
+                                                Seleccione una hora
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Cerrar</button>
+                                    <button type="button" class="btn btn-success"
+                                        onclick="validateAndSubmit()">Reservar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- View Reservation Modal -->
+                    <div class="modal fade" id="viewReservationModal" tabindex="-1">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Ver Reservación</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="mb-3">
+                                            <label class="form-label">Zona Común</label>
+                                            <input type="text" class="form-control" value="BBQ" readonly>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Fecha</label>
+                                            <input type="text" class="form-control" value="22-11-2024" readonly>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Hora</label>
+                                            <input type="text" class="form-control" value="14:00" readonly>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Cerrar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Bootstrap JS -->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+            <!-- Toggle Script -->
+            <script>
+                document
+                    .getElementById("sidebarToggle")
+                    .addEventListener("click", function () {
+                        document.getElementById("sidebar").classList.toggle("collapsed");
+                    });
+                window.addEventListener("resize", () => {
+                    if (window.innerWidth < 992) {
+                        // Less than lg
+                        const sidebar = document.getElementById("sidebar");
+                        if (!sidebar.classList.contains("collapsed")) {
+                            sidebar.classList.toggle("collapsed");
+                        }
+                    }
+                    console.log("loaded");
+                });
+
+            </script>
+
+            <!-- Initialize tooltips -->
+            <script>
+                var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+                var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                    return new bootstrap.Tooltip(tooltipTriggerEl)
+                })
+
+                // Form validation
+                document.querySelector('.needs-validation').addEventListener('submit', function (event) {
+                    if (!this.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    } else {
+                        event.preventDefault()
+                        // Show success alert
+                        var alert = document.getElementById('successAlert')
+                        alert.classList.add('show')
+                        // Close modal
+                        var modal = bootstrap.Modal.getInstance(document.getElementById('reservationModal'))
+                        modal.hide()
+                    }
+                    this.classList.add('was-validated')
+                })
+            </script>
+
+            <!-- Add these styles to the existing style section -->
+            <style>
+                .calendar-container {
+                    background: white;
+                    border-radius: 8px;
+                }
+
+                .flatpickr-calendar.inline {
+                    width: 100%;
+                    max-width: none;
+                    box-shadow: none;
+                }
+
+                .flatpickr-rContainer {
+                    width: 100%;
+                }
+
+                .flatpickr-days {
+                    width: 100% !important;
+                }
+
+                .dayContainer {
+                    width: 100%;
+                    min-width: 100%;
+                    max-width: 100%;
+                    display: flex;
+                    flex-wrap: wrap;
+                }
+
+                .flatpickr-day {
+                    width: calc(100% / 7);
+                    max-width: none;
+                    flex-basis: calc(100% / 7);
+                    height: 50px;
+                    line-height: 50px;
+                    margin: 0;
+                    border-radius: 0;
+                }
+
+                .flatpickr-day.available {
+                    background-color: #198754;
+                    color: white;
+                }
+
+                .flatpickr-day.occupied {
+                    background-color: #dc3545;
+                    color: white;
+                }
+
+                .flatpickr-day.today {
+                    border: 2px solid #0d6efd;
+                }
+
+                @media (max-width: 768px) {
+                    .flatpickr-day {
+                        height: 40px;
+                        line-height: 40px;
+                    }
+                }
+            </style>
+
+            <!-- Add these script tags before the closing body tag -->
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+            <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"></script>
+        </div>
+    </div>
+
+    <!-- At the end of the body, before closing body tag, add scripts in this order -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"></script>
+
+    <!-- Add this new script tag after all other scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initialize Flatpickr with Spanish locale
+            flatpickr.localize(flatpickr.l10ns.es);
+
+            // Mock occupied dates
+            const occupiedDates = [
+                { date: '2024-03-20', hours: ['10:00', '14:00'] },
+                { date: '2024-03-22', hours: ['08:00', '16:00'] },
+                { date: '2024-03-25', hours: ['12:00'] },
+                { date: '2024-03-28', hours: ['14:00', '16:00'] }
+            ];
+
+            // Initialize main calendar
+            const calendar = flatpickr("#mainCalendar", {
+                locale: 'es',
+                inline: true,
+                monthSelectorType: 'static',
+                dateFormat: 'Y-m-d',
+                defaultDate: 'today',
+                minDate: 'today',
+                maxDate: new Date().fp_incr(90),
+                onDayCreate: function (dObj, dStr, fp, dayElem) {
+                    const dateStr = dayElem.dateObj.toISOString().split('T')[0];
+                    const isOccupied = occupiedDates.some(d => d.date === dateStr);
+
+                    if (dayElem.dateObj >= new Date() && dayElem.dateObj <= new Date().fp_incr(90)) {
+                        if (isOccupied) {
+                            dayElem.classList.add('occupied');
+                            dayElem.title = "Ocupado";
+                        } else {
+                            dayElem.classList.add('available');
+                            dayElem.title = "Disponible";
+                        }
+                    }
+                },
+                onChange: function (selectedDates, dateStr) {
+                    if (selectedDates[0]) {
+                        const isOccupied = occupiedDates.some(d => d.date === dateStr);
+                        if (isOccupied) {
+                            const modal = new bootstrap.Modal(document.getElementById('viewReservationModal'));
+                            modal.show();
+                        } else {
+                            const modal = new bootstrap.Modal(document.getElementById('createReservationModal'));
+                            modal.show();
+                        }
+                    }
+                }
+            });
+
+            // Month navigation
+            document.getElementById('prevMonth').addEventListener('click', () => {
+                calendar.changeMonth(-1);
+            });
+
+            document.getElementById('nextMonth').addEventListener('click', () => {
+                calendar.changeMonth(1);
+            });
+
+            // Update month title
+            function updateMonthTitle() {
+                const monthName = calendar.l10n.months.longhand[calendar.currentMonth];
+                const year = calendar.currentYear;
+                document.getElementById('monthYearLabel').textContent = `${monthName} ${year}`;
+            }
+
+            calendar.config.onMonthChange = updateMonthTitle;
+            updateMonthTitle(); // Initial update
+        });
+    </script>
+
+    <!-- Update the styles section -->
+    <style>
+        .content-wrapper {
+            padding-top: 90px;
+        }
+
+        /* Flatpickr calendar styles */
+        .flatpickr-calendar.inline {
+            width: 100% !important;
+            max-width: none !important;
+            box-shadow: none !important;
+            margin: 0 !important;
+        }
+
+        .flatpickr-rContainer {
+            width: 100% !important;
+        }
+
+        .flatpickr-days {
+            width: 100% !important;
+        }
+
+        .dayContainer {
+            width: 100% !important;
+            min-width: 100% !important;
+            max-width: 100% !important;
+            display: flex !important;
+            flex-wrap: wrap !important;
+        }
+
+        .flatpickr-day {
+            width: calc(100% / 7) !important;
+            max-width: none !important;
+            flex-basis: calc(100% / 7) !important;
+            height: 50px !important;
+            line-height: 50px !important;
+            margin: 0 !important;
+            border-radius: 0 !important;
+        }
+
+        .flatpickr-day.available {
+            background-color: #198754 !important;
+            color: white !important;
+        }
+
+        .flatpickr-day.occupied {
+            background-color: #dc3545 !important;
+            color: white !important;
+        }
+
+        .flatpickr-day.today {
+            border: 2px solid #0d6efd !important;
+        }
+
+        @media (max-width: 768px) {
+            .flatpickr-day {
+                height: 40px !important;
+                line-height: 40px !important;
+            }
+        }
+    </style>
+</body>
+
+</html>
