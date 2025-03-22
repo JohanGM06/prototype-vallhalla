@@ -31,7 +31,7 @@
     Nota: Si por accidente no te diste cuenta de que no creaste la rama, usa los commandos git stash para retener los cambios, crear la rama y luego si git stash pop, para que los cambios no se pierdan.
     Esto para que no se pierdan los cambios que hiciste.
 
-    - Crear una rama para cada desarrollo partiendo desde main.
+    - Crear una rama para cada desarrollo partiendo desde dev.
         - La rama tiene que ser feature/{su nombre}/{el cambio o lo que agrega}
     - Subir cambios unicamente a la rama propia.
     - Antes de hacer merge, se hace un pull origin dev.
