@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VALHALLA - Sistema de Administración de Propiedades</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"
+    />
+    <!-- Add just SweetAlert2 in the head section -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Minimal required CSS for toggle functionality -->
+    <style>
+      #sidebar {
+        transition: margin 0.3s ease-in-out;
+        position: sticky;
+        top: 70px; /* Dar espacio para la navbar fija */
+        height: calc(
+          100vh - 70px
+        ); /* Altura ajustada restando el alto de la navbar */
+        overflow-y: auto; /* Permitir desplazamiento si el contenido es muy largo */
+      }
+
+      #sidebar.collapsed {
+        margin-left: -280px;
+      }
+
+      /* Clase para la navbar fija */
+      .fixed-navbar {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 1030;
+      }
+
+      /* Espacio para compensar la navbar fija */
+      .content-wrapper {
+        padding-top: 70px;
+      }
+
+      /* Simple CSS for validation */
+      .is-invalid {
+        border-color: #dc3545 !important;
+      }
+
+      .border-danger {
+        border-color: #dc3545 !important;
+      }
+
+      .card.opacity-75 {
+        transition: opacity 0.3s ease;
+      }
+
+      .badge {
+        transition: all 0.3s ease;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <div class="row flex-nowrap">
+        <!-- Sidebar -->
+        <div
+          id="sidebar"
+          class="col-auto px-0 bg-white border-end"
+          style="width: 280px"
+        >
+          <div
+            class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 min-vh-100"
+          >
+            <a
+              href="/"
+              class="d-flex align-items-center pb-3 mb-md-1 mt-md-3 me-md-auto text-dark text-decoration-none"
+            >
+              <span class="fs-5 fw-bolder">VALHALLA</span>
+            </a>
+            <ul
+              class="nav flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start w-100"
+            >
+              <li class="nav-item w-100">
+                <a href="#" class="nav-link text-dark px-0">
+                  <i class="bi bi-bar"></i> <span class="ms-2">ANUNCIOS</span>
+                </a>
+              </li>
+              <li class="nav-item w-100">
+                <a href="#" class="nav-link text-dark px-0">
+                  <i class="bi bi-clipboard-data"></i>
+                  <span class="ms-2">ENCUESTAS</span>
+                </a>
+              </li>
+              <li class="nav-item w-100">
+                <a href="#" class="nav-link text-dark px-0">
+                  <i class="bi bi-credit-card"></i>
+                  <span class="ms-2">PAGOS</span>
+                </a>
+              </li>
+              <li class="nav-item w-100">
+                <a href="#" class="nav-link text-dark px-0">
+                  <i class="bi bi-p-square"></i>
+                  <span class="ms-2">PARQUEADERO</span>
+                </a>
+              </li>
+              <li class="nav-item w-100">
+                <a href="#" class="nav-link text-dark px-0">
+                  <i class="bi bi-calendar-check"></i>
+                  <span class="ms-2">RESERVAS</span>
+                </a>
+              </li>
+              <li class="nav-item w-100">
+                <a href="#" class="nav-link text-dark px-0">
+                  <i class="bi bi-heart"></i> <span class="ms-2">MASCOTAS</span>
+                </a>
+              </li>
+              <li class="nav-item w-100">
+                <a href="#" class="nav-link text-dark px-0">
+                  <i class="bi bi-person-check"></i>
+                  <span class="ms-2">ARRENDATARIOS</span>
+                </a>
+              </li>
+              <li class="nav-item w-100">
+                <a href="#" class="nav-link text-dark px-0">
+                  <i class="bi bi-question-circle"></i>
+                  <span class="ms-2">PQRS</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="col p-0">
+          <!-- Topbar -->
+          <nav
+            class="navbar navbar-expand-lg bg-white border-bottom px-3 fixed-navbar"
+          >
+            <div class="container-fluid">
+              <div class="d-flex align-items-center">
+                <button
+                  class="btn btn-link text-dark px-0 me-3"
+                  id="sidebarToggle"
+                >
+                  <i class="bi bi-list fs-4"></i>
+                </button>
+                <h2 class="navbar-text fs-4">PUERTA DE LA ALAMEDA</h2>
+                <h4 class="fs-6" style="margin-top: 20px">Valhalla</h4>
+              </div>
+
+              <div class="d-flex align-items-center ms-auto">
+                <div class="input-group me-3">
+                  <span class="input-group-text bg-white border-end-0">
+                    <i class="bi bi-search"></i>
+                  </span>
+                  <input
+                    type="text"
+                    class="form-control border-start-0"
+                    placeholder="Search"
+                  />
+                </div>
+
+                <button class="btn btn-link text-dark">
+                  <i class="bi bi-bell fs-5"></i>
+                </button>
+                <button class="btn btn-link text-dark">
+                  <i class="bi bi-envelope fs-5"></i>
+                </button>
+                <button class="btn btn-link text-dark">
+                  <i class="bi bi-escape fs-5"></i>
+                </button>
+              </div>
+            </div>
+          </nav>
+
+          <!-- Main content area -->
+          <div class="container-fluid content-wrapper p-4">
+            <!-- Header Section -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <div class="d-flex gap-2 mt-5">
+                <div class="input-group">
+                  <input type="text" class="form-control" id="searchInput" placeholder="Buscar parqueadero..." oninput="filterParkings(this.value)">
+                  <span class="input-group-text">
+                    <i class="bi bi-search"></i>
+                  </span>
+                </div>
+                <div class="btn-group">
+                  <button class="btn btn-outline-primary" onclick="toggleSortOrder()">
+                    <i class="bi bi-sort-numeric-down"></i> Ordenar
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Parking Grid -->
+            <div class="row g-4" id="parkingGrid">
+              <!-- Parking spots will be generated here -->
+            </div>
+
+            <!-- Parking Form Modal -->
+            <div class="modal fade" id="parkingModal" tabindex="-1">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">Formulario Parqueadero</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                  </div>
+                  <div class="modal-body">
+                    <form id="parkingForm">
+                      <div class="mb-3">
+                        <label class="form-label">Torre Apartamento</label>
+                        <input type="search" class="form-control" list="towerList" id="towerNumber" required>
+                        <datalist id="towerList">
+                          <option value="Torre 1">
+                          <option value="Torre 2">
+                          <option value="Torre 3">
+                          <option value="Torre 4">
+                        </datalist>
+                      </div>
+                      
+                      <div class="mb-3">
+                        <label class="form-label">Num Apartamento</label>
+                        <input type="search" class="form-control" list="apartmentList" id="apartmentNumber" required>
+                        <datalist id="apartmentList">
+                          <option value="101">
+                          <option value="102">
+                          <option value="103">
+                          <option value="104">
+                          <option value="201">
+                          <option value="202">
+                          <option value="203">
+                          <option value="204">
+                        </datalist>
+                      </div>
+
+                      <div class="mb-3">
+                        <label class="form-label">Tipo de Vehículo</label>
+                        <select class="form-select" id="vehicleType" onchange="toggleVehicleFields()" required>
+                          <option value="">Seleccione...</option>
+                          <option value="car">Automóvil</option>
+                          <option value="motorcycle">Motocicleta</option>
+                        </select>
+                      </div>
+
+                      <!-- Car Fields -->
+                      <div id="carFields" style="display: none;">
+                        <div class="mb-3">
+                          <label class="form-label">Marca del Automóvil</label>
+                          <input type="text" class="form-control" id="carBrand">
+                        </div>
+                        <div class="mb-3">
+                          <label class="form-label">Modelo</label>
+                          <input type="text" class="form-control" id="carModel">
+                        </div>
+                        <div class="mb-3">
+                          <label class="form-label">Placa</label>
+                          <input type="text" class="form-control" id="carPlate" placeholder="ABC123">
+                        </div>
+                        <div class="mb-3">
+                          <label class="form-label">Color</label>
+                          <input type="text" class="form-control" id="carColor">
+                        </div>
+                      </div>
+
+                      <!-- Motorcycle Fields -->
+                      <div id="motorcycleFields" style="display: none;">
+                        <div class="mb-3">
+                          <label class="form-label">Marca de la Motocicleta</label>
+                          <input type="text" class="form-control" id="motorcycleBrand">
+                        </div>
+                        <div class="mb-3">
+                          <label class="form-label">Cilindraje</label>
+                          <input type="number" class="form-control" id="motorcycleCC" placeholder="125">
+                        </div>
+                        <div class="mb-3">
+                          <label class="form-label">Placa</label>
+                          <input type="text" class="form-control" id="motorcyclePlate" placeholder="ABC12D">
+                        </div>
+                        <div class="mb-3">
+                          <label class="form-label">Color</label>
+                          <input type="text" class="form-control" id="motorcycleColor">
+                        </div>
+                      </div>
+
+                      <div class="mb-3">
+                        <label class="form-label">Total a Pagar</label>
+                        <input type="text" class="form-control" id="totalAmount" readonly>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" onclick="proceedToPayment()">
+                      Pagar
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Add PayU Modal after the parking form modal -->
+            <div class="modal fade" id="payuModal" tabindex="-1" aria-labelledby="payuModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="payuModalLabel">
+                      <img src="https://www.payu.com.co/sites/colombia/files/payu_logo_white.png" height="30" alt="PayU Logo">
+                      Pasarela de Pago
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="container">
+                      <!-- Payment Summary -->
+                      <div class="row mb-4">
+                        <div class="col-md-12">
+                          <div class="card bg-light">
+                            <div class="card-body">
+                              <h6 class="card-title">Resumen de Pago</h6>
+                              <div class="d-flex justify-content-between">
+                                <span>Total a pagar:</span>
+                                <strong>50.000 COP</strong>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Payment Method Selection -->
+                      <div class="row mb-4">
+                        <div class="col-12">
+                          <label class="form-label">Método de Pago</label>
+                          <div class="d-flex gap-3">
+                            <div class="form-check">
+                              <input class="form-check-input" type="radio" name="paymentMethod" id="creditCard" value="credit" checked onchange="togglePaymentForm()">
+                              <label class="form-check-label" for="creditCard">
+                                <i class="bi bi-credit-card"></i> Tarjeta de Crédito
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <input class="form-check-input" type="radio" name="paymentMethod" id="debitCard" value="debit" onchange="togglePaymentForm()">
+                              <label class="form-check-label" for="debitCard">
+                                <i class="bi bi-credit-card-2-front"></i> Tarjeta Débito
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <input class="form-check-input" type="radio" name="paymentMethod" id="pse" value="pse" onchange="togglePaymentForm()">
+                              <label class="form-check-label" for="pse">
+                                <i class="bi bi-bank"></i> PSE
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Credit/Debit Card Form -->
+                      <form id="cardPaymentForm" class="payment-form">
+                        <div class="row g-3">
+                          <div class="col-12">
+                            <label class="form-label">Número de Tarjeta</label>
+                            <input type="text" class="form-control" id="cardNumber" maxlength="19" placeholder="1234 5678 9012 3456" required>
+                            <div class="invalid-feedback">Número de tarjeta inválido</div>
+                          </div>
+
+                          <div class="col-12">
+                            <label class="form-label">Nombre en la Tarjeta</label>
+                            <input type="text" class="form-control" id="cardName" placeholder="NOMBRE APELLIDO" required>
+                            <div class="invalid-feedback">Ingrese el nombre como aparece en la tarjeta</div>
+                          </div>
+
+                          <div class="col-md-6">
+                            <label class="form-label">Fecha de Vencimiento</label>
+                            <input type="text" class="form-control" id="expiryDate" placeholder="MM/YY" maxlength="5" required>
+                            <div class="invalid-feedback">Fecha inválida</div>
+                          </div>
+
+                          <div class="col-md-6">
+                            <label class="form-label">CVV</label>
+                            <input type="text" class="form-control" id="cvv" placeholder="CVV" maxlength="4" required>
+                            <div class="invalid-feedback">CVV inválido</div>
+                          </div>
+
+                          <div class="col-12" id="installmentsSection">
+                            <label class="form-label">Cuotas</label>
+                            <select class="form-select">
+                              <option value="1">1 cuota</option>
+                              <option value="3">3 cuotas</option>
+                              <option value="6">6 cuotas</option>
+                              <option value="12">12 cuotas</option>
+                            </select>
+                          </div>
+                        </div>
+                      </form>
+
+                      <!-- PSE Form -->
+                      <form id="psePaymentForm" class="payment-form d-none">
+                        <div class="row g-3">
+                          <div class="col-12">
+                            <label class="form-label">Banco</label>
+                            <select class="form-select" required>
+                              <option value="">Seleccione su banco</option>
+                              <option value="bancolombia">Bancolombia</option>
+                              <option value="davivienda">Davivienda</option>
+                              <option value="bbva">BBVA</option>
+                              <option value="bogota">Banco de Bogotá</option>
+                            </select>
+                          </div>
+                          <div class="col-12">
+                            <label class="form-label">Tipo de Cliente</label>
+                            <select class="form-select" required>
+                              <option value="natural">Persona Natural</option>
+                              <option value="juridica">Persona Jurídica</option>
+                            </select>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" onclick="processPayuPayment()">
+                      <i class="bi bi-lock-fill"></i> Pagar Ahora
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Toggle Script -->
+    <script>
+      document
+        .getElementById("sidebarToggle")
+        .addEventListener("click", function () {
+          document.getElementById("sidebar").classList.toggle("collapsed");
+        });
+      window.addEventListener("resize", () => {
+        if (window.innerWidth < 992) {
+          // Less than lg
+          const sidebar = document.getElementById("sidebar");
+          if (!sidebar.classList.contains("collapsed")) {
+            sidebar.classList.toggle("collapsed");
+          }
+        }
+        console.log("loaded");
+      });
+    </script>
+
+    <script>
+    // Parking data structure
+    let parkingSpots = [
+      { id: 1, number: '01', status: 'occupied' },
+      { id: 2, number: '02', status: 'occupied' },
+      { id: 3, number: '03', status: 'available' }
+    ];
+
+    let sortAscending = true;
+
+    // Initialize tooltips
+    function initTooltips() {
+      const tooltips = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+      tooltips.forEach(tooltip => new bootstrap.Tooltip(tooltip));
+    }
+
+    // Render parking grid
+    function renderParkingGrid() {
+      const grid = document.getElementById('parkingGrid');
+      grid.innerHTML = '';
+
+      // Sort parking spots if needed
+      const sortedSpots = [...parkingSpots].sort((a, b) => {
+        return sortAscending ? 
+          a.number.localeCompare(b.number) : 
+          b.number.localeCompare(a.number);
+      });
+
+      sortedSpots.forEach(spot => {
+        const card = document.createElement('div');
+        card.className = 'col-md-4 col-lg-3';
+        
+        const isOccupied = spot.status === 'occupied';
+        const statusClass = isOccupied ? 'danger' : 'success';
+        const statusDot = isOccupied ? 'red' : 'green';
+        
+        card.innerHTML = `
+          <div class="card ${isOccupied ? 'opacity-75' : ''}" 
+               ${isOccupied ? 'data-bs-toggle="tooltip" data-bs-title="Parqueadero ocupado"' : ''}
+               ${!isOccupied ? 'onclick="openParkingModal(' + spot.id + ')"' : ''}
+               style="cursor: ${isOccupied ? 'not-allowed' : 'pointer'}">
+            <div class="card-body text-center">
+              <div class="position-absolute top-0 end-0 p-2">
+                <span class="badge bg-${statusClass} rounded-circle" style="width: 10px; height: 10px; display: inline-block;"></span>
+              </div>
+              <i class="bi bi-car-front display-4"></i>
+              <h5 class="mt-2">Parqueadero ${spot.number}</h5>
+            </div>
+          </div>
+        `;
+        
+        grid.appendChild(card);
+      });
+
+      initTooltips();
+    }
+
+    // Toggle sort order
+    function toggleSortOrder() {
+      sortAscending = !sortAscending;
+      renderParkingGrid();
+    }
+
+    // Filter parkings
+    function filterParkings(searchTerm) {
+      const cards = document.querySelectorAll('.card');
+      searchTerm = searchTerm.toLowerCase();
+      
+      cards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        card.parentElement.style.display = text.includes(searchTerm) ? '' : 'none';
+      });
+    }
+
+    // Simple toggle function for vehicle fields
+    function toggleVehicleFields() {
+      const vehicleType = document.getElementById('vehicleType').value;
+      const carFields = document.getElementById('carFields');
+      const motorcycleFields = document.getElementById('motorcycleFields');
+      const totalAmount = document.getElementById('totalAmount');
+      
+      carFields.style.display = 'none';
+      motorcycleFields.style.display = 'none';
+      
+      if (vehicleType === 'car') {
+        carFields.style.display = 'block';
+        totalAmount.value = '$50.000';
+      } else if (vehicleType === 'motorcycle') {
+        motorcycleFields.style.display = 'block';
+        totalAmount.value = '$25.000';
+      } else {
+        totalAmount.value = '$0';
+      }
+    }
+
+    // Reset form when opening modal
+    function openParkingModal(parkingId) {
+      const parkingModal = new bootstrap.Modal(document.getElementById('parkingModal'));
+      const form = document.getElementById('parkingForm');
+      form.reset();
+      document.getElementById('carFields').style.display = 'none';
+      document.getElementById('motorcycleFields').style.display = 'none';
+      document.getElementById('totalAmount').value = '$0';
+      form.dataset.parkingId = parkingId;
+      parkingModal.show();
+    }
+
+    // Modify the proceedToPayment function to show PayU modal
+    function proceedToPayment() {
+      const form = document.getElementById('parkingForm');
+      const parkingId = form.dataset.parkingId;
+      
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      // Close parking form modal and open PayU modal
+      bootstrap.Modal.getInstance(document.getElementById('parkingModal')).hide();
+      const payuModal = new bootstrap.Modal(document.getElementById('payuModal'));
+      payuModal.show();
+    }
+
+    // Add PayU related functions
+    function togglePaymentForm() {
+      const cardForm = document.getElementById('cardPaymentForm');
+      const pseForm = document.getElementById('psePaymentForm');
+      const installmentsSection = document.getElementById('installmentsSection');
+      
+      if (document.getElementById('pse').checked) {
+        cardForm.classList.add('d-none');
+        pseForm.classList.remove('d-none');
+      } else {
+        cardForm.classList.remove('d-none');
+        pseForm.classList.add('d-none');
+        installmentsSection.style.display = document.getElementById('creditCard').checked ? 'block' : 'none';
+      }
+    }
+
+    function processPayuPayment() {
+      const selectedMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+      let isValid = true;
+      
+      if (selectedMethod !== 'pse') {
+        const inputs = document.querySelectorAll('#cardPaymentForm input[required]');
+        inputs.forEach(input => {
+          if (!input.value.trim()) {
+            input.classList.add('is-invalid');
+            isValid = false;
+          } else {
+            input.classList.remove('is-invalid');
+          }
+        });
+      }
+
+      if (!isValid) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error de Validación',
+          text: 'Por favor complete todos los campos requeridos',
+          confirmButtonText: 'Entendido'
+        });
+        return;
+      }
+
+      // Close PayU modal
+      bootstrap.Modal.getInstance(document.getElementById('payuModal')).hide();
+      
+      // Show processing animation
+      Swal.fire({
+        title: 'Procesando pago...',
+        text: 'Por favor espere',
+        allowOutsideClick: false,
+        showConfirmButton: false,
+        willOpen: () => {
+          Swal.showLoading();
+        }
+      });
+
+      // Simulate payment processing
+      setTimeout(() => {
+        Swal.fire({
+          icon: 'success',
+          title: '¡Pago Exitoso!',
+          text: 'El parqueadero ha sido reservado exitosamente',
+          confirmButtonText: 'Aceptar'
+        }).then(() => {
+          // Update parking spot status
+          const parkingId = document.getElementById('parkingForm').dataset.parkingId;
+          const spotIndex = parkingSpots.findIndex(spot => spot.id === parseInt(parkingId));
+          if (spotIndex !== -1) {
+            parkingSpots[spotIndex].status = 'occupied';
+            renderParkingGrid();
+          }
+        });
+      }, 2000);
+    }
+
+    // Initialize the grid on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      renderParkingGrid();
+    });
+    </script>
+  </body>
+</html>
