@@ -3,6 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Sistema de Administración de Propiedades Valhalla - Gestión integral de propiedades, pagos, reservas y comunicaciones para Puerta de la Alameda" />
+    <meta name="keywords" content="administración propiedades, gestión conjuntos, pagos conjuntos, reservas zonas comunes, mascotas, parqueadero" />
+    <meta name="author" content="Valhalla" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="VALHALLA - Sistema de Administración de Propiedades" />
+    <meta property="og:description" content="Gestión integral de propiedades para Puerta de la Alameda" />
+    <meta property="og:type" content="website" />
+    
     <title>VALHALLA - Sistema de Administración de Propiedades</title>
     <!-- Bootstrap CSS -->
     <link
@@ -26,126 +38,127 @@
       }
     </style>
   </head>
-
+  
   <body>
     <div class="container-fluid">
       <div class="row flex-nowrap">
-        <!-- Sidebar -->
-        <div
-          id="sidebar"
-          class="col-auto px-0 bg-white border-end"
-          style="width: 280px"
-        >
-          <div
-            class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 min-vh-100"
-          >
-            <a
-              href="/"
-              class="d-flex align-items-center pb-3 mb-md-1 mt-md-3 me-md-auto text-dark text-decoration-none"
-            >
+        <!-- Sidebar Navigation -->
+        <aside id="sidebar" class="col-auto px-0 bg-white border-end" style="width: 280px">
+          <nav class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 min-vh-100">
+            <a href="../owner.html" class="d-flex align-items-center pb-3 mb-md-1 mt-md-3 me-md-auto text-dark text-decoration-none">
               <span class="fs-5 fw-bolder">VALHALLA</span>
             </a>
-            <ul
-              class="nav flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start w-100"
-            >
-              <li class="nav-item w-100">
-                <a href="#" class="nav-link text-dark px-0">
-                  <i class="bi bi-bar"></i> <span class="ms-2">ANUNCIOS</span>
+            <ul class="nav flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start w-100" role="navigation">
+              <!-- Navigation items with semantic roles -->
+              <li class="nav-item w-100" role="menuitem">
+                <a href="../owner.html" class="nav-link text-dark px-0">
+                  <i class="bi bi-megaphone" aria-hidden="true"></i> 
+                  <span class="ms-2">ANUNCIOS</span>
                 </a>
               </li>
-              <li class="nav-item w-100">
-                <a href="#" class="nav-link text-dark px-0">
+              <li class="nav-item w-100" role="menuitem">
+                <a href="../surveys/surveys.html" class="nav-link text-dark px-0">
                   <i class="bi bi-clipboard-data"></i>
                   <span class="ms-2">ENCUESTAS</span>
                 </a>
               </li>
-              <li class="nav-item w-100">
-                <a href="#" class="nav-link text-dark px-0">
+              <li class="nav-item w-100" role="menuitem">
+                <a href="../payments/payments.html" class="nav-link text-dark px-0">
                   <i class="bi bi-credit-card"></i>
                   <span class="ms-2">PAGOS</span>
                 </a>
               </li>
-              <li class="nav-item w-100">
-                <a href="#" class="nav-link text-dark px-0">
+              <li class="nav-item w-100" role="menuitem">
+                <a href="../parking/parking.html" class="nav-link text-dark px-0">
                   <i class="bi bi-p-square"></i>
                   <span class="ms-2">PARQUEADERO</span>
                 </a>
               </li>
-              <li class="nav-item w-100">
-                <a href="#" class="nav-link text-dark px-0">
+              <li class="nav-item w-100" role="menuitem">
+                <a href="../reservations/reservations.html" class="nav-link text-dark px-0">
                   <i class="bi bi-calendar-check"></i>
                   <span class="ms-2">RESERVAS</span>
                 </a>
               </li>
-              <li class="nav-item w-100">
-                <a href="#" class="nav-link text-dark px-0">
+              <li class="nav-item w-100" role="menuitem">
+                <a href="../pets/pets.html" class="nav-link text-dark px-0">
                   <i class="bi bi-heart"></i> <span class="ms-2">MASCOTAS</span>
                 </a>
               </li>
-              <li class="nav-item w-100">
-                <a href="#" class="nav-link text-dark px-0">
+              <li class="nav-item w-100" role="menuitem">
+                <a href="../tenants/tenants.html" class="nav-link text-dark px-0">
                   <i class="bi bi-person-check"></i>
                   <span class="ms-2">ARRENDATARIOS</span>
                 </a>
               </li>
-              <li class="nav-item w-100">
-                <a href="#" class="nav-link text-dark px-0">
+              <li class="nav-item w-100" role="menuitem">
+                <a href="../pqrs/pqrs.html" class="nav-link text-dark px-0">
                   <i class="bi bi-question-circle"></i>
                   <span class="ms-2">PQRS</span>
                 </a>
               </li>
             </ul>
-          </div>
-        </div>
+          </nav>
+        </aside>
 
+<<<<<<< Updated upstream
         <!-- Main Content -->
         <div class="col p-0">
           <!-- Topbar -->
           <nav class="navbar navbar-expand-lg bg-white border-bottom px-3">
+=======
+        <!-- Main Content Area -->
+        <main class="col p-0">
+          <!-- Header -->
+          <header class="navbar navbar-expand-lg bg-white border-bottom px-3 fixed-navbar">
+>>>>>>> Stashed changes
             <div class="container-fluid">
               <div class="d-flex align-items-center">
-                <button
-                  class="btn btn-link text-dark px-0 me-3"
-                  id="sidebarToggle"
-                >
-                  <i class="bi bi-list fs-4"></i>
+                <button class="btn btn-link text-dark px-0 me-3" id="sidebarToggle" aria-label="Toggle sidebar">
+                  <i class="bi bi-list fs-4" aria-hidden="true"></i>
                 </button>
-                <h2 class="navbar-text fs-4">PUERTA DE LA ALAMEDA</h2>
-                <h4 class="fs-6" style="margin-top: 20px;">Valhalla</h4>
+                <h1 class="navbar-text fs-4">PUERTA DE LA ALAMEDA</h1>
+                <h2 class="fs-6" style="margin-top: 20px;">Valhalla</h2>
               </div>
 
+              <!-- Search and Actions -->
               <div class="d-flex align-items-center ms-auto">
-                <div class="input-group me-3">
-                  <span class="input-group-text bg-white border-end-0">
-                    <i class="bi bi-search"></i>
-                  </span>
-                  <input
-                    type="text"
-                    class="form-control border-start-0"
-                    placeholder="Search"
-                  />
-                </div>
+                <form class="input-group me-3" role="search">
+                  <label class="input-group-text bg-white border-end-0" for="searchInput">
+                    <i class="bi bi-search" aria-hidden="true"></i>
+                  </label>
+                  <input type="search" id="searchInput" class="form-control border-start-0" placeholder="Buscar" aria-label="Buscar en el sitio" />
+                </form>
 
-                <button class="btn btn-link text-dark">
-                  <i class="bi bi-bell fs-5"></i>
-                </button>
-                <button class="btn btn-link text-dark">
-                  <i class="bi bi-envelope fs-5"></i>
-                </button>
-                <button class="btn btn-link text-dark">
-                  <i class="bi bi-escape fs-5"></i>
-                </button>
+                <nav class="d-flex">
+                  <button class="btn btn-link text-dark" aria-label="Notificaciones">
+                    <i class="bi bi-bell fs-5" aria-hidden="true"></i>
+                  </button>
+                  <button class="btn btn-link text-dark" aria-label="Mensajes">
+                    <i class="bi bi-envelope fs-5" aria-hidden="true"></i>
+                  </button>
+                  <button class="btn btn-link text-dark" aria-label="Salir">
+                    <i class="bi bi-escape fs-5" aria-hidden="true"></i>
+                  </button>
+                </nav>
               </div>
             </div>
-          </nav>
+          </header>
 
+<<<<<<< Updated upstream
           <!-- Main content area -->
           <div class="container-fluid p-4">
             <h3 class="mb-4">Anuncios Recientes</h3>
+=======
+          <!-- Main Content -->
+          <section class="container-fluid content-wrapper p-4">
+            <h2 class="mb-4">Anuncios Recientes</h2>
+>>>>>>> Stashed changes
             
-            <div class="row mb-4">
+            <!-- Search Section -->
+            <section class="row mb-4">
               <div class="col-md-4 ms-auto">
-                <div class="position-relative">
+                <form class="position-relative" role="search">
                   <div class="input-group">
                     <span class="input-group-text bg-white">
                       <i class="bi bi-search"></i>
@@ -163,13 +176,14 @@
                   <div id="searchResults" class="position-absolute w-100 mt-1 rounded shadow-sm bg-white" style="display: none; z-index: 1000; border: 1px solid #dee2e6; max-height: 300px; overflow-y: auto;">
                     <!-- Los resultados de búsqueda se mostrarán aquí -->
                   </div>
-                </div>
+                </form>
               </div>
-            </div>
+            </section>
             
-            <div class="row row-cols-1 row-cols-md-3 g-4">
-              <!-- Tarjeta 1 -->
-              <div class="col">
+            <!-- Announcements Grid -->
+            <section class="row row-cols-1 row-cols-md-3 g-4">
+              <!-- Each announcement card wrapped in article tag -->
+              <article class="col">
                 <div class="card h-100 border-primary" data-bs-toggle="modal" data-bs-target="#announcementModal1" style="cursor: pointer;">
                   <div class="card-header bg-white text-primary">
                     Los papas de DeadPool
@@ -186,10 +200,10 @@
                     <small class="text-muted">Publicado: 23 de Mayo, 2023</small>
                   </div>
                 </div>
-              </div>
+              </article>
               
               <!-- Tarjeta 2 -->
-              <div class="col">
+              <article class="col">
                 <div class="card h-100 border-success" data-bs-toggle="modal" data-bs-target="#announcementModal2" style="cursor: pointer;">
                   <div class="card-header bg-white text-success">
                     Los programadores felices
@@ -206,10 +220,10 @@
                     <small class="text-muted">Publicado: 15 de Mayo, 2023</small>
                   </div>
                 </div>
-              </div>
+              </article>
               
               <!-- Tarjeta 3 -->
-              <div class="col">
+              <article class="col">
                 <div class="card h-100 border-danger" data-bs-toggle="modal" data-bs-target="#announcementModal3" style="cursor: pointer;">
                   <div class="card-header bg-white text-danger">
                     Ya tu sabe
@@ -226,10 +240,10 @@
                     <small class="text-muted">Publicado: 10 de Mayo, 2023</small>
                   </div>
                 </div>
-              </div>
+              </article>
               
               <!-- Tarjeta 4 -->
-              <div class="col">
+              <article class="col">
                 <div class="card h-100 border-dark" data-bs-toggle="modal" data-bs-target="#announcementModal4" style="cursor: pointer;">
                   <div class="card-header bg-white text-dark">
                     Noooooo
@@ -246,10 +260,10 @@
                     <small class="text-muted">Publicado: 5 de Mayo, 2023</small>
                   </div>
                 </div>
-              </div>
+              </article>
               
               <!-- Tarjeta 5 -->
-              <div class="col">
+              <article class="col">
                 <div class="card h-100 border-info" data-bs-toggle="modal" data-bs-target="#announcementModal5" style="cursor: pointer;">
                   <div class="card-header bg-white text-info">
                     Soy programador
@@ -266,10 +280,10 @@
                     <small class="text-muted">Publicado: 2 de Mayo, 2023</small>
                   </div>
                 </div>
-              </div>
+              </article>
               
               <!-- Tarjeta 6 -->
-              <div class="col">
+              <article class="col">
                 <div class="card h-100 border-warning" data-bs-toggle="modal" data-bs-target="#announcementModal6" style="cursor: pointer;">
                   <div class="card-header bg-white text-warning">
                     Aprobado pa
@@ -286,18 +300,15 @@
                     <small class="text-muted">Publicado: 1 de Mayo, 2023</small>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
+              </article>
+            </section>
+          </section>
+        </main>
       </div>
     </div>
 
-    
-
-    <!-- Modales para cada anuncio -->
-    <!-- Modal 1 -->
-    <div class="modal fade" id="announcementModal1" tabindex="-1" aria-labelledby="announcementModalLabel1" aria-hidden="true">
+    <!-- Modals -->
+    <div role="dialog" class="modal fade" id="announcementModal1" tabindex="-1" aria-labelledby="announcementModalLabel1" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header bg-primary text-white">
