@@ -64,7 +64,7 @@
                 </a>
               </li>
               <li class="nav-item w-100">
-                <a href="vigilante.html" class="nav-link text-dark px-0">
+                <a href="/src/pages/admin/guard/vigilante.html" class="nav-link text-dark px-0">
                   <i class="bi bi-shield"></i>
                   <span class="ms-2">VIGILANTE</span>
                 </a>
@@ -82,7 +82,7 @@
                 </a>
               </li>
               <li class="nav-item w-100">
-                <a href="encuesta.html" class="nav-link text-dark px-0 active bg-light">
+                <a href="/src/pages/admin/surveys/encuesta.html" class="nav-link text-dark px-0 active bg-light">
                   <i class="bi bi-clipboard-data"></i>
                   <span class="ms-2">ENCUESTAS</span>
                 </a>
@@ -106,7 +106,7 @@
                 </a>
               </li>
               <li class="nav-item w-100">
-                <a href="parqueadero.html" class="nav-link text-dark px-0">
+                <a href="/src/pages/admin/parking/verParqueadero.html" class="nav-link text-dark px-0">
                   <i class="bi bi-p-square"></i>
                   <span class="ms-2">PARQUEADERO</span>
                 </a>
@@ -168,9 +168,9 @@
 
               <!-- Action buttons -->
               <div class="mb-4">
-                <button class="btn btn-success me-2">
+                <a href="/src/pages/admin/surveys/crearEncuesta.html" class="btn btn-success me-2">
                   <i class="bi bi-plus-lg"></i> Crear encuesta
-                </button>
+                </a>
                 <button class="btn btn-primary">
                   <i class="bi bi-download"></i> Descargar reporte de encuestas
                 </button>
@@ -186,7 +186,7 @@
                       <div class="d-flex justify-content-between mt-4">
                         <div>
                           <a
-                            href="editarEncuesta.html"
+                            href="/src/pages/admin/surveys/editarEncuesta.html"
                             class="btn btn-sm btn-outline-primary me-2"
                           >
                             <i class="bi bi-pencil"></i> Editar
@@ -211,7 +211,7 @@
                       <div class="d-flex justify-content-between mt-4">
                         <div>
                           <a
-                            href="editarEncuesta.html"
+                            href="/src/pages/admin/surveys/editarEncuesta.html"
                             class="btn btn-sm btn-outline-primary me-2"
                           >
                             <i class="bi bi-pencil"></i> Editar
@@ -236,7 +236,7 @@
                       <div class="d-flex justify-content-between mt-4">
                         <div>
                           <a
-                            href="editarEncuesta.html"
+                            href="/src/pages/admin/surveys/editarEncuesta.html"
                             class="btn btn-sm btn-outline-primary me-2"
                           >
                             <i class="bi bi-pencil"></i> Editar
@@ -264,7 +264,7 @@
                       <div class="d-flex justify-content-between mt-4">
                         <div>
                           <a
-                            href="#"
+                            href="/src/pages/admin/surveys/editarEncuesta.html"
                             class="btn btn-sm btn-outline-primary me-2"
                           >
                             <i class="bi bi-pencil"></i> Editar
@@ -289,7 +289,7 @@
                       <div class="d-flex justify-content-between mt-4">
                         <div>
                           <a
-                            href="#"
+                            href="/src/pages/admin/surveys/editarEncuesta.html"
                             class="btn btn-sm btn-outline-primary me-2"
                           >
                             <i class="bi bi-pencil"></i> Editar
@@ -321,6 +321,73 @@
         .getElementById("sidebarToggle")
         .addEventListener("click", function () {
           document.getElementById("sidebar").classList.toggle("collapsed");
+        });
+
+        const deleteButtons = document.querySelectorAll('.btn-outline-danger');
+
+        // Add click event listener to each delete button
+        deleteButtons.forEach(button => {
+          button.addEventListener('click', function () {
+            // Get the card element that contains this button
+            const card = this.closest('.card').parentElement;
+    
+            // Get the vigilante name from the card
+            const encuestaName = card.querySelector('.card-title').textContent;
+    
+            // Show the modal with the vigilante name
+            showDeleteModal(encuestaName, card);
+          });
+        });
+    
+        // Function to show the delete modal
+        function showDeleteModal(encuestaName, cardElement) {
+          // Get the modal element
+          const modal = document.getElementById('deleteModal');
+    
+          // Set the vigilante name in the modal
+          document.getElementById('encuestaName').textContent = encuestaName;
+    
+          // Show the modal
+          const modalInstance = new bootstrap.Modal(modal);
+          modalInstance.show();
+    
+          // Add click event for the SI button
+          const confirmButton = document.getElementById('confirmDelete');
+    
+          // Remove any existing event listeners
+          const newConfirmButton = confirmButton.cloneNode(true);
+          confirmButton.parentNode.replaceChild(newConfirmButton, confirmButton);
+    
+          // Add new event listener
+          newConfirmButton.addEventListener('click', function () {
+            const confirmDelete = document.getElementById('confirmDelete').value;
+    
+            // Hide the modal
+            modalInstance.hide();
+    
+            // Remove the card from the DOM
+            cardElement.remove();
+    
+            // Show a success message (optional)
+            // You could replace this with a toast notification
+            alert('Encuesta eliminada con éxito!');
+          });
+        }
+    
+        // Make sure we update the modal to match your design
+        document.addEventListener('DOMContentLoaded', function () {
+          // Style adjustments to match the design
+          const modal = document.getElementById('deleteModal');
+          if (modal) {
+            // Add custom styling if needed
+            modal.querySelector('.modal-content').style.borderRadius = '5px';
+            modal.querySelector('.modal-header').style.backgroundColor = '#f8f9fa';
+    
+            // Focus on the input field when the modal opens
+            modal.addEventListener('shown.bs.modal', function () {
+              document.getElementById('confirmText').focus();
+            });
+          }
         });
     </script>
   </body>
