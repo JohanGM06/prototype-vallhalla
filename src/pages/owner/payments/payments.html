@@ -3,267 +3,241 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>VALHALLA - Sistema de Administración de Propiedades</title>
-    <!-- Bootstrap CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <!-- Bootstrap Icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"
-    />
-    <!-- Add just SweetAlert2 in the head section -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"
-      rel="stylesheet"
-    />
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Sistema de gestión de pagos de administración y servicios para propietarios de Puerta de la Alameda. Realice pagos seguros, consulte el historial y descargue comprobantes." />
+    <meta name="keywords" content="pagos administración, pagos conjunto residencial, pagos parqueadero, comprobantes de pago, gestión pagos propiedad horizontal" />
+    <meta name="author" content="Valhalla" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Gestión de Pagos - Puerta de la Alameda | VALHALLA" />
+    <meta property="og:description" content="Sistema de gestión de pagos para propietarios. Realice pagos seguros y acceda a su historial de pagos." />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="VALHALLA" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://puertadelaalameda.com/owner/payments" />
+    
+    <title>Gestión de Pagos - Puerta de la Alameda | VALHALLA</title>
 
-    <!-- Minimal required CSS for toggle functionality -->
-    <style>
-      #sidebar {
-        transition: margin 0.3s ease-in-out;
-        position: sticky;
-        top: 70px; /* Dar espacio para la navbar fija */
-        height: calc(
-          100vh - 70px
-        ); /* Altura ajustada restando el alto de la navbar */
-        overflow-y: auto; /* Permitir desplazamiento si el contenido es muy largo */
-      }
-
-      #sidebar.collapsed {
-        margin-left: -280px;
-      }
-
-      /* Clase para la navbar fija */
-      .fixed-navbar {
-        position: fixed;
-        top: 0;
-        right: 0;
-        left: 0;
-        z-index: 1030;
-      }
-
-      /* Espacio para compensar la navbar fija */
-      .content-wrapper {
-        padding-top: 70px;
-      }
-
-      /* Simple CSS for validation */
-      .is-invalid {
-        border-color: #dc3545 !important;
-      }
-
-      .border-danger {
-        border-color: #dc3545 !important;
-      }
-
-      .card.opacity-75 {
-        transition: opacity 0.3s ease;
-      }
-
-      .badge {
-        transition: all 0.3s ease;
-      }
-    </style>
+    <!-- Preload critical assets -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" as="style" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" as="style" />
+    
+    <!-- Stylesheets -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" />
+    <link rel="stylesheet" href="../../../styles/components/navbar.css" />
   </head>
-
+  
   <body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="visually-hidden-focusable">Saltar al contenido principal</a>
+
     <div class="container-fluid">
       <div class="row flex-nowrap">
-        <!-- Sidebar -->
-        <div
-          id="sidebar"
-          class="col-auto px-0 bg-white border-end"
-          style="width: 280px"
-        >
-          <div
-            class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 min-vh-100"
-          >
-            <a
-              href="/"
-              class="d-flex align-items-center pb-3 mb-md-1 mt-md-3 me-md-auto text-dark text-decoration-none"
-            >
+        <!-- Sidebar Navigation -->
+        <aside id="sidebar" class="col-auto px-0 bg-white border-end" style="width: 280px">
+          <nav class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 min-vh-100" aria-label="Menú principal">
+            <a href="../owner.html" class="d-flex align-items-center pb-3 mb-md-1 mt-md-3 me-md-auto text-dark text-decoration-none">
               <span class="fs-5 fw-bolder">VALHALLA</span>
             </a>
-            <ul
-              class="nav flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start w-100"
-            >
-              <li class="nav-item w-100">
-                <a href="#" class="nav-link text-dark px-0">
-                  <i class="bi bi-bar"></i> <span class="ms-2">ANUNCIOS</span>
+            <ul class="nav flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start w-100" role="menu">
+              <!-- Navigation items remain the same but with improved accessibility -->
+              <li class="nav-item w-100" role="none">
+                <a href="../owner.html" class="nav-link text-dark px-0" role="menuitem">
+                  <i class="bi bi-megaphone" aria-hidden="true"></i> 
+                  <span class="ms-2">ANUNCIOS</span>
                 </a>
               </li>
-              <li class="nav-item w-100">
-                <a href="#" class="nav-link text-dark px-0">
-                  <i class="bi bi-clipboard-data"></i>
+              <li class="nav-item w-100" role="none">
+                <a href="../surveys/surveys.html" class="nav-link text-dark px-0" role="menuitem">
+                  <i class="bi bi-clipboard-data" aria-hidden="true"></i>
                   <span class="ms-2">ENCUESTAS</span>
                 </a>
               </li>
-              <li class="nav-item w-100">
-                <a href="#" class="nav-link text-dark px-0">
-                  <i class="bi bi-credit-card"></i>
+              <li class="nav-item w-100" role="none">
+                <a href="../payments/payments.html" class="nav-link text-dark px-0" role="menuitem">
+                  <i class="bi bi-credit-card" aria-hidden="true"></i>
                   <span class="ms-2">PAGOS</span>
                 </a>
               </li>
-              <li class="nav-item w-100">
-                <a href="#" class="nav-link text-dark px-0">
-                  <i class="bi bi-p-square"></i>
+              <li class="nav-item w-100" role="none">
+                <a href="../parking/parking.html" class="nav-link text-dark px-0" role="menuitem">
+                  <i class="bi bi-p-square" aria-hidden="true"></i>
                   <span class="ms-2">PARQUEADERO</span>
                 </a>
               </li>
-              <li class="nav-item w-100">
-                <a href="#" class="nav-link text-dark px-0">
-                  <i class="bi bi-calendar-check"></i>
+              <li class="nav-item w-100" role="none">
+                <a href="../reservations/reservations.html" class="nav-link text-dark px-0" role="menuitem">
+                  <i class="bi bi-calendar-check" aria-hidden="true"></i>
                   <span class="ms-2">RESERVAS</span>
                 </a>
               </li>
-              <li class="nav-item w-100">
-                <a href="#" class="nav-link text-dark px-0">
-                  <i class="bi bi-heart"></i> <span class="ms-2">MASCOTAS</span>
+              <li class="nav-item w-100" role="none">
+                <a href="../pets/pets.html" class="nav-link text-dark px-0" role="menuitem">
+                  <i class="bi bi-heart" aria-hidden="true"></i> <span class="ms-2">MASCOTAS</span>
                 </a>
               </li>
-              <li class="nav-item w-100">
-                <a href="#" class="nav-link text-dark px-0">
-                  <i class="bi bi-person-check"></i>
+              <li class="nav-item w-100" role="none">
+                <a href="../tenants/tenants.html" class="nav-link text-dark px-0" role="menuitem">
+                  <i class="bi bi-person-check" aria-hidden="true"></i>
                   <span class="ms-2">ARRENDATARIOS</span>
                 </a>
               </li>
-              <li class="nav-item w-100">
-                <a href="#" class="nav-link text-dark px-0">
-                  <i class="bi bi-question-circle"></i>
+              <li class="nav-item w-100" role="none">
+                <a href="../pqrs/pqrs.html" class="nav-link text-dark px-0" role="menuitem">
+                  <i class="bi bi-question-circle" aria-hidden="true"></i>
                   <span class="ms-2">PQRS</span>
                 </a>
               </li>
             </ul>
-          </div>
-        </div>
+          </nav>
+        </aside>
 
         <!-- Main Content -->
-        <div class="col p-0">
-          <!-- Topbar -->
-          <nav
-            class="navbar navbar-expand-lg bg-white border-bottom px-3 fixed-navbar"
-          >
+        <main id="main-content" class="col p-0">
+          <!-- Header -->
+          <header class="navbar navbar-expand-lg bg-white border-bottom px-3 fixed-navbar">
             <div class="container-fluid">
               <div class="d-flex align-items-center">
-                <button
-                  class="btn btn-link text-dark px-0 me-3"
-                  id="sidebarToggle"
-                >
-                  <i class="bi bi-list fs-4"></i>
+                <button class="btn btn-link text-dark px-0 me-3" id="sidebarToggle" aria-label="Alternar menú lateral">
+                  <i class="bi bi-list fs-4" aria-hidden="true"></i>
                 </button>
-                <h2 class="navbar-text fs-4">PUERTA DE LA ALAMEDA</h2>
-                <h4 class="fs-6" style="margin-top: 20px">Valhalla</h4>
+                <h1 class="navbar-text fs-4">PUERTA DE LA ALAMEDA</h1>
+                <p class="fs-6 mb-0 ms-2">Valhalla</p>
               </div>
 
+              <!-- Search and Actions -->
               <div class="d-flex align-items-center ms-auto">
-                <div class="input-group me-3">
-                  <span class="input-group-text bg-white border-end-0">
-                    <i class="bi bi-search"></i>
-                  </span>
-                  <input
-                    type="text"
-                    class="form-control border-start-0"
-                    placeholder="Search"
-                  />
-                </div>
+                <form class="input-group me-3" role="search">
+                  <label class="input-group-text bg-white border-end-0" for="globalSearch">
+                    <i class="bi bi-search" aria-hidden="true"></i>
+                  </label>
+                  <input type="search" id="globalSearch" class="form-control border-start-0" placeholder="Buscar en el sitio" aria-label="Buscar en el sitio" />
+                </form>
 
-                <button class="btn btn-link text-dark">
-                  <i class="bi bi-bell fs-5"></i>
-                </button>
-                <button class="btn btn-link text-dark">
-                  <i class="bi bi-envelope fs-5"></i>
-                </button>
-                <button class="btn btn-link text-dark">
-                  <i class="bi bi-escape fs-5"></i>
-                </button>
+                <nav class="d-flex" aria-label="Acciones rápidas">
+                  <button class="btn btn-link text-dark" aria-label="Ver notificaciones">
+                    <i class="bi bi-bell fs-5" aria-hidden="true"></i>
+                  </button>
+                  <button class="btn btn-link text-dark" aria-label="Ver mensajes">
+                    <i class="bi bi-envelope fs-5" aria-hidden="true"></i>
+                  </button>
+                  <button class="btn btn-link text-dark" aria-label="Cerrar sesión">
+                    <i class="bi bi-escape fs-5" aria-hidden="true"></i>
+                  </button>
+                </nav>
               </div>
             </div>
-          </nav>
+          </header>
 
-          <!-- Main content area -->
-          <div class="container-fluid content-wrapper p-4">
-            <!-- Header Section -->
-            <div class="d-flex justify-content-between align-items-center mb-4">
-             
+          <section class="container-fluid content-wrapper p-4">
+            <!-- Payments Header Section -->
+            <header class="d-flex justify-content-between align-items-center mb-4">
               <div class="d-flex gap-2 mt-5">
                 <div class="input-group">
-                  <input type="text" class="form-control" id="searchInput" placeholder="Buscar pago..." oninput="filterPayments(this.value)">
+                  <input type="text" class="form-control" id="paymentSearch" 
+                         placeholder="Buscar pago..." 
+                         oninput="filterPayments(this.value)"
+                         aria-label="Buscar pagos" />
                   <span class="input-group-text">
-                    <i class="bi bi-search"></i>
+                    <i class="bi bi-search" aria-hidden="true"></i>
                   </span>
                 </div>
-                <div class="btn-group">
-                  <button class="btn btn-outline-primary">
-                    <i class="bi bi-filter"></i> Filtrar
+                <div class="btn-group" role="group" aria-label="Opciones de filtrado">
+                  <button class="btn btn-outline-primary" aria-label="Filtrar pagos">
+                    <i class="bi bi-filter" aria-hidden="true"></i> Filtrar
                   </button>
-                  <button class="btn btn-outline-primary">
-                    <i class="bi bi-sort-down"></i> Ordenar
+                  <button class="btn btn-outline-primary" aria-label="Ordenar pagos">
+                    <i class="bi bi-sort-down" aria-hidden="true"></i> Ordenar
                   </button>
                 </div>
               </div>
-            </div>
+            </header>
 
-            <!-- Updated Payments Table -->
-            <div class="card shadow-sm">
+            <!-- Payments Table Section -->
+            <section class="card shadow-sm">
               <div class="card-body">
                 <div class="table-responsive">
-                  <table class="table table-hover">
+                  <table class="table table-hover" aria-label="Lista de pagos">
+                    <caption>Lista de pagos pendientes y realizados</caption>
                     <thead>
                       <tr>
-                        <th>ID Pago (Servicio)</th>
-                        <th>Monto</th>
-                        <th>Fecha Límite</th>
-                        <th>Estado</th>
-                        <th>Acción</th>
+                        <th scope="col">ID Pago (Servicio)</th>
+                        <th scope="col">Monto</th>
+                        <th scope="col">Fecha Límite</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Acción</th>
                       </tr>
                     </thead>
                     <tbody>
+                      <!-- Payment rows with improved accessibility -->
                       <tr>
-                        <td>1001<br><small class="text-muted">(Administración)</small></td>
+                        <td>
+                          <span class="d-block">1001</span>
+                          <small class="text-muted">(Administración)</small>
+                        </td>
                         <td>120.000 COP</td>
                         <td>2024-11-30</td>
-                        <td><span class="badge bg-warning">Pendiente</span></td>
+                        <td><span class="badge bg-warning" role="status">Pendiente</span></td>
                         <td>
-                          <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#payuModal">
-                            <i class="bi bi-credit-card"></i> Pagar
+                          <button class="btn btn-primary btn-sm" 
+                                  data-bs-toggle="modal" 
+                                  data-bs-target="#payuModal"
+                                  aria-label="Pagar administración">
+                            <i class="bi bi-credit-card" aria-hidden="true"></i> Pagar
                           </button>
                         </td>
                       </tr>
                       <tr>
-                        <td>1002<br><small class="text-muted">(Parqueadero)</small></td>
+                        <td>
+                          <span class="d-block">1002</span>
+                          <small class="text-muted">(Parqueadero)</small>
+                        </td>
                         <td>50.000 COP</td>
                         <td>2024-11-30</td>
-                        <td><span class="badge bg-warning">Pendiente</span></td>
+                        <td><span class="badge bg-warning" role="status">Pendiente</span></td>
                         <td>
-                          <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#payuModal">
-                            <i class="bi bi-credit-card"></i> Pagar
+                          <button class="btn btn-primary btn-sm" 
+                                  data-bs-toggle="modal" 
+                                  data-bs-target="#payuModal"
+                                  aria-label="Pagar parqueadero">
+                            <i class="bi bi-credit-card" aria-hidden="true"></i> Pagar
                           </button>
                         </td>
                       </tr>
-                      <!-- Add paid payments -->
                       <tr>
-                        <td>1000<br><small class="text-muted">(Administración)</small></td>
+                        <td>
+                          <span class="d-block">1000</span>
+                          <small class="text-muted">(Administración)</small>
+                        </td>
                         <td>120.000 COP</td>
                         <td>2024-10-30</td>
-                        <td><span class="badge bg-success">Pagado</span></td>
+                        <td><span class="badge bg-success" role="status">Pagado</span></td>
                         <td>
-                          <button class="btn btn-outline-success btn-sm" onclick="showReceipt(1000, 'Administración', '120.000 COP', '2024-10-30')">
-                            <i class="bi bi-file-text"></i> Ver Comprobante
+                          <button class="btn btn-outline-success btn-sm" 
+                                  onclick="showReceipt(1000, 'Administración', '120.000 COP', '2024-10-30')"
+                                  aria-label="Ver comprobante administración">
+                            <i class="bi bi-file-text" aria-hidden="true"></i> Ver Comprobante
                           </button>
                         </td>
                       </tr>
                       <tr>
-                        <td>999<br><small class="text-muted">(Parqueadero)</small></td>
+                        <td>
+                          <span class="d-block">999</span>
+                          <small class="text-muted">(Parqueadero)</small>
+                        </td>
                         <td>50.000 COP</td>
                         <td>2024-10-30</td>
-                        <td><span class="badge bg-success">Pagado</span></td>
+                        <td><span class="badge bg-success" role="status">Pagado</span></td>
                         <td>
-                          <button class="btn btn-outline-success btn-sm" onclick="showReceipt(999, 'Parqueadero', '50.000 COP', '2024-10-30')">
-                            <i class="bi bi-file-text"></i> Ver Comprobante
+                          <button class="btn btn-outline-success btn-sm" 
+                                  onclick="showReceipt(999, 'Parqueadero', '50.000 COP', '2024-10-30')"
+                                  aria-label="Ver comprobante parqueadero">
+                            <i class="bi bi-file-text" aria-hidden="true"></i> Ver Comprobante
                           </button>
                         </td>
                       </tr>
@@ -271,19 +245,22 @@
                   </table>
                 </div>
               </div>
-            </div>
+            </section>
 
-            <!-- PayU Modal -->
+            <!-- Payment Modal -->
             <div class="modal fade" id="payuModal" tabindex="-1" aria-labelledby="payuModalLabel" aria-hidden="true">
               <div class="modal-dialog modal-lg">
                 <div class="modal-content">
-                  <div class="modal-header bg-primary text-white">
-                    <h5 class="modal-title" id="payuModalLabel">
-                      <img src="https://www.payu.com.co/sites/colombia/files/payu_logo_white.png" height="30" alt="PayU Logo">
+                  <header class="modal-header bg-primary text-white">
+                    <h2 class="modal-title fs-5" id="payuModalLabel">
+                      <img src="https://www.payu.com.co/sites/colombia/files/payu_logo_white.png" 
+                           height="30" 
+                           alt="PayU Logo"
+                           loading="lazy" />
                       Pasarela de Pago
-                    </h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
+                    </h2>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                  </header>
                   <div class="modal-body">
                     <div class="container">
                       <!-- Payment Summary -->
@@ -401,7 +378,7 @@
               </div>
             </div>
 
-            <!-- Add Receipt Modal -->
+            <!-- Receipt Modal -->
             <div class="modal fade" id="receiptModal" tabindex="-1" aria-labelledby="receiptModalLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
@@ -450,144 +427,29 @@
                 </div>
               </div>
             </div>
-          </div>
-        </div>
+          </section>
+        </main>
       </div>
     </div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+    <script src="../../../scripts/components/payments.js" defer></script>
+    <script src="../../../scripts/components/navbarToggle.js" defer></script>
 
-    <!-- Toggle Script -->
-    <script>
-      document
-        .getElementById("sidebarToggle")
-        .addEventListener("click", function () {
-          document.getElementById("sidebar").classList.toggle("collapsed");
-        });
-      window.addEventListener("resize", () => {
-        if (window.innerWidth < 992) {
-          // Less than lg
-          const sidebar = document.getElementById("sidebar");
-          if (!sidebar.classList.contains("collapsed")) {
-            sidebar.classList.toggle("collapsed");
-          }
-        }
-        console.log("loaded");
-      });
-    </script>
-
-    <!-- Simplified JavaScript -->
-    <script>
-    // Simple search function
-    function filterPayments(searchTerm) {
-      const rows = document.querySelectorAll('tbody tr');
-      searchTerm = searchTerm.toLowerCase();
-      
-      rows.forEach(row => {
-        const text = row.textContent.toLowerCase();
-        row.style.display = text.includes(searchTerm) ? '' : 'none';
-      });
-    }
-
-    // Simple payment processing
-    function togglePaymentForm() {
-      const cardForm = document.getElementById('cardPaymentForm');
-      const pseForm = document.getElementById('psePaymentForm');
-      const installmentsSection = document.getElementById('installmentsSection');
-      
-      if (document.getElementById('pse').checked) {
-        cardForm.classList.add('d-none');
-        pseForm.classList.remove('d-none');
-      } else {
-        cardForm.classList.remove('d-none');
-        pseForm.classList.add('d-none');
-        installmentsSection.style.display = document.getElementById('creditCard').checked ? 'block' : 'none';
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Gestión de Pagos - Puerta de la Alameda",
+      "description": "Sistema de gestión de pagos de administración y servicios para propietarios de Puerta de la Alameda",
+      "provider": {
+        "@type": "Organization",
+        "name": "VALHALLA",
+        "description": "Sistema de Administración de Propiedades"
       }
-    }
-
-    function procesarPago() {
-      const selectedMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
-      let isValid = true;
-      
-      if (selectedMethod !== 'pse') {
-        const inputs = document.querySelectorAll('#cardPaymentForm input[required]');
-        inputs.forEach(input => {
-          if (!input.value.trim()) {
-            input.classList.add('is-invalid');
-            isValid = false;
-          } else {
-            input.classList.remove('is-invalid');
-          }
-        });
-      }
-
-      if (!isValid) {
-        Swal.fire({
-          icon: 'error',
-          title: 'Error de Validación',
-          text: 'Por favor complete todos los campos requeridos',
-          confirmButtonText: 'Entendido'
-        });
-        return;
-      }
-
-      const modal = bootstrap.Modal.getInstance(document.getElementById('payuModal'));
-      modal.hide();
-      
-      Swal.fire({
-        title: 'Procesando pago...',
-        text: 'Por favor espere',
-        allowOutsideClick: false,
-        showConfirmButton: false,
-        willOpen: () => {
-          Swal.showLoading();
-        }
-      });
-
-      setTimeout(() => {
-        Swal.fire({
-          icon: 'success',
-          title: '¡Pago Exitoso!',
-          text: 'Su pago ha sido procesado correctamente',
-          confirmButtonText: 'Aceptar'
-        }).then(() => {
-          const badges = document.querySelectorAll('.badge');
-          badges[0].className = 'badge bg-success';
-          badges[0].textContent = 'Pagado';
-          
-          const payButton = document.querySelector('.btn-primary.btn-sm');
-          payButton.className = 'btn btn-outline-success btn-sm';
-          payButton.innerHTML = '<i class="bi bi-file-text"></i> Ver Comprobante';
-          payButton.removeAttribute('data-bs-toggle');
-          payButton.removeAttribute('data-bs-target');
-          payButton.onclick = () => showReceipt(1001, 'Administración', '120.000 COP', '2024-11-30');
-        });
-      }, 2000);
-    }
-
-    function showReceipt(id, service, amount, date) {
-      // Update modal content
-      document.getElementById('receiptId').textContent = id;
-      document.getElementById('receiptService').textContent = service;
-      document.getElementById('receiptAmount').textContent = amount;
-      document.getElementById('receiptDate').textContent = date;
-      
-      // Show modal
-      const receiptModal = new bootstrap.Modal(document.getElementById('receiptModal'));
-      receiptModal.show();
-    }
-
-    function downloadReceipt() {
-      Swal.fire({
-        title: 'Descargando comprobante...',
-        text: 'El archivo se descargará en breve',
-        timer: 1500,
-        showConfirmButton: false,
-        willOpen: () => {
-          Swal.showLoading();
-        }
-      });
     }
     </script>
   </body>
