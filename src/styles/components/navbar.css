@@ -1,7 +1,15 @@
 #sidebar {
     transition: margin 0.3s ease-in-out;
+<<<<<<< HEAD
   }
 
   #sidebar.collapsed {
     margin-left: -280px;
   }
+=======
+}
+
+#sidebar.collapsed {
+    margin-left: -280px;
+}
+>>>>>>> 521db8e8c9ac3207d421e15d94fbd8a2b5d49966
