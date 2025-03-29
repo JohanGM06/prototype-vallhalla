@@ -48,7 +48,7 @@
       href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../../../styles/components/pets.css" />
+    <link rel="stylesheet" href="../../../styles/components/pqrs.css" />
 
     <!-- Add this in the head section, after the other CSS links -->
     <style>
@@ -206,208 +206,137 @@
             <div class="container-fluid content-wrapper">
               <div class="row">
                 <div class="container mt-4">
-                  <!-- Header with Add Pet Button -->
-                  <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h2>Mascotas</h2>
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPetModal">
-                      <i class="bi bi-plus-circle"></i> Añadir Mascota
+                  <!-- Add PQRS Button -->
+                  <div class="d-flex justify-content-between mb-4">
+                    <h3>Mis PQRS</h3>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createPQRSModal">
+                      <i class="bi bi-plus-circle"></i> Crear PQRS
                     </button>
                   </div>
 
-                  <!-- Pets Grid -->
-                  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-                    <!-- Sample Pet Card -->
-                    <div class="col">
-                      <div class="card h-100">
-                        <img src="https://via.placeholder.com/300" class="card-img-top" alt="Mascota">
-                        <div class="card-body">
-                          <h5 class="card-title">Rodrigo</h5>
-                          <p class="card-text">
-                            <small class="text-muted">Especie: Perro</small><br>
-                            <small class="text-muted">Raza: Labrador</small><br>
-                            <small class="text-muted">Propietario: Carlos Armando</small>
-                          </p>
-                        </div>
-                        <div class="card-footer bg-transparent border-top-0">
-                          <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#viewPetModal">
-                              <i class="bi bi-eye"></i>
-                            </button>
-                            <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#editPetModal">
-                              <i class="bi bi-pencil"></i>
-                            </button>
-                            <button type="button" class="btn btn-outline-danger" onclick="deletePet(this)">
-                              <i class="bi bi-trash"></i>
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                  <!-- PQRS Table -->
+                  <div class="table-responsive">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th>ID</th>
+                          <th>Asunto</th>
+                          <th>Categoría</th>
+                          <th>Fecha</th>
+                          <th>Estado</th>
+                          <th>Acciones</th>
+                        </tr>
+                      </thead>
+                      <tbody id="pqrsTableBody">
+                        <!-- Table content will be populated by JavaScript -->
+                      </tbody>
+                    </table>
                   </div>
 
-                  <!-- Add/Edit Pet Modal -->
-                  <div class="modal fade" id="addPetModal" tabindex="-1">
+                  <!-- Create PQRS Modal -->
+                  <div class="modal fade" id="createPQRSModal" tabindex="-1" aria-labelledby="createPQRSModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h5 class="modal-title">Registrar Mascota</h5>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                          <h5 class="modal-title" id="createPQRSModalLabel">Crear PQRS</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                          <form id="petForm" class="needs-validation" novalidate>
-                            <!-- Pet Information -->
+                          <form id="pqrsForm" class="needs-validation" novalidate>
                             <div class="mb-3">
-                              <label class="form-label">Nombre de la mascota</label>
-                              <input type="text" class="form-control" name="petName" required>
+                              <label for="subject" class="form-label">Asunto</label>
+                              <input type="text" class="form-control" id="subject" required>
                               <div class="invalid-feedback">
-                                Por favor ingrese el nombre de la mascota
+                                Por favor ingrese un asunto
                               </div>
                             </div>
-
                             <div class="mb-3">
-                              <label class="form-label">Especie</label>
-                              <select class="form-select" name="species" required>
-                                <option value="">Seleccione una especie</option>
-                                <option value="perro">Perro</option>
-                                <option value="gato">Gato</option>
-                                <option value="ave">Ave</option>
-                                <option value="otro">Otro</option>
+                              <label for="category" class="form-label">Categoría</label>
+                              <select class="form-select" id="category" required>
+                                <option value="">Selecciona la categoría</option>
+                                <option value="peticion">Petición</option>
+                                <option value="queja">Queja</option>
+                                <option value="reclamo">Reclamo</option>
+                                <option value="sugerencia">Sugerencia</option>
                               </select>
                               <div class="invalid-feedback">
-                                Por favor seleccione una especie
+                                Por favor seleccione una categoría
                               </div>
                             </div>
-
                             <div class="mb-3">
-                              <label class="form-label">Raza</label>
-                              <input type="text" class="form-control" name="breed" required>
+                              <label for="description" class="form-label">Descripción</label>
+                              <textarea class="form-control" id="description" rows="3" required></textarea>
                               <div class="invalid-feedback">
-                                Por favor ingrese la raza
+                                Por favor ingrese una descripción
                               </div>
                             </div>
-
                             <div class="mb-3">
-                              <label class="form-label">Propietario</label>
-                              <input type="text" class="form-control" name="owner" required>
-                              <div class="invalid-feedback">
-                                Por favor ingrese el nombre del propietario
-                              </div>
-                            </div>
-
-                            <div class="mb-3">
-                              <label class="form-label">Carnet de vacunas</label>
-                              <input type="file" class="form-control" name="vaccineCard" accept=".pdf,.jpg,.png" required>
-                              <div class="invalid-feedback">
-                                Por favor adjunte el carnet de vacunas
-                              </div>
-                            </div>
-
-                            <div class="mb-3">
-                              <label class="form-label">Foto de la mascota</label>
-                              <input type="file" class="form-control" name="petPhoto" accept="image/*" required>
-                              <div class="invalid-feedback">
-                                Por favor seleccione una foto de la mascota
-                              </div>
+                              <label for="attachment" class="form-label">Adjuntar archivo</label>
+                              <input type="file" class="form-control" id="attachment">
                             </div>
                           </form>
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                          <button type="submit" form="petForm" class="btn btn-primary">Guardar</button>
+                          <button type="button" class="btn btn-primary" id="submitPQRS">Enviar</button>
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  <!-- View Pet Modal -->
-                  <div class="modal fade" id="viewPetModal" tabindex="-1">
-                    <div class="modal-dialog">
+                  <!-- View PQRS Modal -->
+                  <div class="modal fade" id="viewPQRSModal" tabindex="-1" aria-labelledby="viewPQRSModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h5 class="modal-title">Detalles de la Mascota</h5>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                          <h5 class="modal-title" id="viewPQRSModalLabel">Detalles PQRS</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                          <div class="text-center mb-3">
-                            <img src="https://via.placeholder.com/300" class="img-fluid rounded" alt="Mascota" id="viewPetImage">
+                          <!-- PQRS Details Section -->
+                          <div class="card mb-4">
+                            <div class="card-body">
+                              <div class="row">
+                                <div class="col-md-6">
+                                  <div class="mb-3">
+                                    <strong>Asunto:</strong>
+                                    <p id="viewSubject" class="mb-1"></p>
+                                  </div>
+                                  <div class="mb-3">
+                                    <strong>Categoría:</strong>
+                                    <p id="viewCategory" class="mb-1"></p>
+                                  </div>
+                                  <div class="mb-3">
+                                    <strong>Fecha:</strong>
+                                    <p id="viewDate" class="mb-1"></p>
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="mb-3">
+                                    <strong>Estado:</strong>
+                                    <p id="viewStatus" class="mb-1"></p>
+                                  </div>
+                                  <div class="mb-3">
+                                    <strong>Última actualización:</strong>
+                                    <p id="viewLastUpdate" class="mb-1"></p>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="mb-3">
+                                <strong>Descripción:</strong>
+                                <p id="viewDescription" class="mb-1"></p>
+                              </div>
+                            </div>
                           </div>
-                          <dl class="row">
-                            <dt class="col-sm-4">Nombre:</dt>
-                            <dd class="col-sm-8" id="viewPetName">Rodrigo</dd>
 
-                            <dt class="col-sm-4">Especie:</dt>
-                            <dd class="col-sm-8" id="viewSpecies">Perro</dd>
-
-                            <dt class="col-sm-4">Raza:</dt>
-                            <dd class="col-sm-8" id="viewBreed">Labrador</dd>
-
-                            <dt class="col-sm-4">Propietario:</dt>
-                            <dd class="col-sm-8" id="viewOwnerName">Carlos Armando</dd>
-
-                            <dt class="col-sm-4">Carnet de vacunas:</dt>
-                            <dd class="col-sm-8">
-                              <a href="#" id="viewVaccinationCard" target="_blank">Ver carnet</a>
-                            </dd>
-                          </dl>
+                          <!-- Responses Section -->
+                          <h6 class="mb-3">Respuestas y Seguimiento</h6>
+                          <div id="responsesList" class="responses-timeline">
+                            <!-- Responses will be inserted here by JavaScript -->
+                          </div>
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Edit Pet Modal -->
-                  <div class="modal fade" id="editPetModal" tabindex="-1">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title">Editar Mascota</h5>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                        </div>
-                        <div class="modal-body">
-                          <form id="editPetForm" class="needs-validation" novalidate>
-                            <div class="mb-3">
-                              <label class="form-label">Nombre de la mascota</label>
-                              <input type="text" class="form-control" required value="Rodrigo">
-                            </div>
-
-                            <div class="mb-3">
-                              <label class="form-label">Especie</label>
-                              <select class="form-select" required>
-                                <option value="perro" selected>Perro</option>
-                                <option value="gato">Gato</option>
-                                <option value="ave">Ave</option>
-                                <option value="otro">Otro</option>
-                              </select>
-                            </div>
-
-                            <div class="mb-3">
-                              <label class="form-label">Raza</label>
-                              <input type="text" class="form-control" required value="Labrador">
-                            </div>
-
-                            <div class="mb-3">
-                              <label class="form-label">Propietario</label>
-                              <input type="text" class="form-control" required value="Carlos Armando">
-                            </div>
-
-                            <div class="mb-3">
-                              <label class="form-label">Carnet de vacunas</label>
-                              <input type="file" class="form-control" accept=".pdf,.jpg,.png">
-                              <small class="text-muted">Dejar en blanco para mantener el archivo actual</small>
-                            </div>
-
-                            <div class="mb-3">
-                              <label class="form-label">Foto de la mascota</label>
-                              <input type="file" class="form-control" accept="image/*">
-                              <small class="text-muted">Dejar en blanco para mantener la foto actual</small>
-                            </div>
-                          </form>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                          <button type="submit" form="editPetForm" class="btn btn-primary">Guardar Cambios</button>
                         </div>
                       </div>
                     </div>
@@ -426,7 +355,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../../../scripts/components/navbarToggle.js"></script>
-    <script src="../../../scripts/components/pets.js"></script>
+    <script src="../../../scripts/components/pqrs.js"></script>
 
   </body>
 </html>
