@@ -3,82 +3,86 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>VALHALLA - Sistema de Administración de Propiedades</title>
-    <!-- Bootstrap CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <!-- Bootstrap Icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"
-    />
-    <!-- Add just SweetAlert2 in the head section -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"
-      rel="stylesheet"
-    />
+    
+    <!-- Enhanced SEO Meta Tags -->
+    <meta name="description" content="Sistema integral de gestión de parqueaderos en Puerta de la Alameda. Reserve espacios de estacionamiento, administre sus vehículos y realice pagos seguros en línea. Gestión eficiente para propietarios y residentes." />
+    <meta name="keywords" content="parqueadero residencial, reserva parqueadero, gestión vehicular, pago parqueadero, estacionamiento conjunto residencial, Puerta de la Alameda, Valhalla" />
+    <meta name="author" content="Valhalla - Sistema de Administración de Propiedades" />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="Spanish" />
+    <meta name="revisit-after" content="7 days" />
+    
+    <!-- Enhanced Open Graph / Social Media -->
+    <meta property="og:title" content="Sistema de Gestión de Parqueadero | Puerta de la Alameda" />
+    <meta property="og:description" content="Gestione sus espacios de parqueadero de forma eficiente. Reserve, pague y administre sus vehículos en línea." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://puertadelaalameda.com/owner/parking" />
+    <meta property="og:site_name" content="Valhalla - Puerta de la Alameda" />
+    <meta property="og:locale" content="es_CO" />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Sistema de Gestión de Parqueadero | Puerta de la Alameda" />
+    <meta name="twitter:description" content="Gestione sus espacios de parqueadero de forma eficiente. Reserve, pague y administre sus vehículos en línea." />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://puertadelaalameda.com/owner/parking" />
+    
+    <title>Sistema de Gestión de Parqueadero | Puerta de la Alameda</title>
+
+    <!-- Preload critical assets -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" as="style" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" as="style" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" as="style" />
+    
+    <!-- Stylesheets -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" />
+    <link rel="stylesheet" href="../../../styles/components/navbar.css" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Sistema de Gestión de Parqueadero - Puerta de la Alameda",
+      "description": "Sistema integral de gestión de parqueaderos para propietarios y residentes de Puerta de la Alameda",
+      "provider": {
+        "@type": "Organization",
+        "name": "Valhalla",
+        "description": "Sistema de Administración de Propiedades",
+        "url": "https://puertadelaalameda.com",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+57-XXX-XXXX",
+          "contactType": "customer service"
+        }
+      },
+      "offers": {
+        "@type": "Offer",
+        "name": "Servicio de Parqueadero",
+        "priceCurrency": "COP",
+        "price": "50000",
+        "availability": "https://schema.org/InStock"
+      }
+    }
+    </script>
+
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <!-- Minimal required CSS for toggle functionality -->
-    <style>
-      #sidebar {
-        transition: margin 0.3s ease-in-out;
-        position: sticky;
-        top: 70px; /* Dar espacio para la navbar fija */
-        height: calc(
-          100vh - 70px
-        ); /* Altura ajustada restando el alto de la navbar */
-        overflow-y: auto; /* Permitir desplazamiento si el contenido es muy largo */
-      }
-
-      #sidebar.collapsed {
-        margin-left: -280px;
-      }
-
-      /* Clase para la navbar fija */
-      .fixed-navbar {
-        position: fixed;
-        top: 0;
-        right: 0;
-        left: 0;
-        z-index: 1030;
-      }
-
-      /* Espacio para compensar la navbar fija */
-      .content-wrapper {
-        padding-top: 70px;
-      }
-
-      /* Simple CSS for validation */
-      .is-invalid {
-        border-color: #dc3545 !important;
-      }
-
-      .border-danger {
-        border-color: #dc3545 !important;
-      }
-
-      .card.opacity-75 {
-        transition: opacity 0.3s ease;
-      }
-
-      .badge {
-        transition: all 0.3s ease;
-      }
-    </style>
   </head>
 
   <body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="visually-hidden-focusable">
+      Saltar al contenido principal
+    </a>
+
     <div class="container-fluid">
       <div class="row flex-nowrap">
-        <!-- Sidebar -->
-        <div
-          id="sidebar"
-          class="col-auto px-0 bg-white border-end"
-          style="width: 280px"
-        >
+        <!-- Sidebar Navigation -->
+        <aside id="sidebar" class="col-auto px-0 bg-white border-end" style="width: 280px" role="navigation" aria-label="Menú principal">
           <div
             class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 min-vh-100"
           >
@@ -139,14 +143,12 @@
               </li>
             </ul>
           </div>
-        </div>
+        </aside>
 
-        <!-- Main Content -->
-        <div class="col p-0">
-          <!-- Topbar -->
-          <nav
-            class="navbar navbar-expand-lg bg-white border-bottom px-3 fixed-navbar"
-          >
+        <!-- Main Content Area -->
+        <main id="main-content" class="col p-0" role="main">
+          <!-- Header -->
+          <header class="navbar navbar-expand-lg bg-white border-bottom px-3 fixed-navbar" role="banner">
             <div class="container-fluid">
               <div class="d-flex align-items-center">
                 <button
@@ -182,29 +184,39 @@
                 </button>
               </div>
             </div>
-          </nav>
+          </header>
 
-          <!-- Main content area -->
-          <div class="container-fluid content-wrapper p-4">
-            <!-- Header Section -->
+          <!-- Main Content Section -->
+          <section class="container-fluid content-wrapper p-4" aria-label="Gestión de parqueaderos">
+            <!-- Search and Filter Controls -->
             <div class="d-flex justify-content-between align-items-center mb-4">
               <div class="d-flex gap-2 mt-5">
-                <div class="input-group">
-                  <input type="text" class="form-control" id="searchInput" placeholder="Buscar parqueadero..." oninput="filterParkings(this.value)">
+                <div class="input-group" role="search">
+                  <label for="searchInput" class="visually-hidden">Buscar parqueadero</label>
+                  <input 
+                    type="text" 
+                    class="form-control" 
+                    id="searchInput" 
+                    placeholder="Buscar parqueadero..." 
+                    oninput="filterParkings(this.value)"
+                    aria-label="Buscar parqueadero">
                   <span class="input-group-text">
-                    <i class="bi bi-search"></i>
+                    <i class="bi bi-search" aria-hidden="true"></i>
                   </span>
                 </div>
                 <div class="btn-group">
-                  <button class="btn btn-outline-primary" onclick="toggleSortOrder()">
-                    <i class="bi bi-sort-numeric-down"></i> Ordenar
+                  <button 
+                    class="btn btn-outline-primary" 
+                    onclick="toggleSortOrder()"
+                    aria-label="Ordenar parqueaderos">
+                    <i class="bi bi-sort-numeric-down" aria-hidden="true"></i> Ordenar
                   </button>
                 </div>
               </div>
             </div>
 
             <!-- Parking Grid -->
-            <div class="row g-4" id="parkingGrid">
+            <div class="row g-4" id="parkingGrid" role="grid" aria-label="Lista de parqueaderos">
               <!-- Parking spots will be generated here -->
             </div>
 
@@ -436,235 +448,14 @@
                 </div>
               </div>
             </div>
-          </div>
-        </div>
+          </section>
+        </main>
       </div>
     </div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Toggle Script -->
-    <script>
-      document
-        .getElementById("sidebarToggle")
-        .addEventListener("click", function () {
-          document.getElementById("sidebar").classList.toggle("collapsed");
-        });
-      window.addEventListener("resize", () => {
-        if (window.innerWidth < 992) {
-          // Less than lg
-          const sidebar = document.getElementById("sidebar");
-          if (!sidebar.classList.contains("collapsed")) {
-            sidebar.classList.toggle("collapsed");
-          }
-        }
-        console.log("loaded");
-      });
-    </script>
-
-    <script>
-    // Parking data structure
-    let parkingSpots = [
-      { id: 1, number: '01', status: 'occupied' },
-      { id: 2, number: '02', status: 'occupied' },
-      { id: 3, number: '03', status: 'available' }
-    ];
-
-    let sortAscending = true;
-
-    // Initialize tooltips
-    function initTooltips() {
-      const tooltips = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-      tooltips.forEach(tooltip => new bootstrap.Tooltip(tooltip));
-    }
-
-    // Render parking grid
-    function renderParkingGrid() {
-      const grid = document.getElementById('parkingGrid');
-      grid.innerHTML = '';
-
-      // Sort parking spots if needed
-      const sortedSpots = [...parkingSpots].sort((a, b) => {
-        return sortAscending ? 
-          a.number.localeCompare(b.number) : 
-          b.number.localeCompare(a.number);
-      });
-
-      sortedSpots.forEach(spot => {
-        const card = document.createElement('div');
-        card.className = 'col-md-4 col-lg-3';
-        
-        const isOccupied = spot.status === 'occupied';
-        const statusClass = isOccupied ? 'danger' : 'success';
-        const statusDot = isOccupied ? 'red' : 'green';
-        
-        card.innerHTML = `
-          <div class="card ${isOccupied ? 'opacity-75' : ''}" 
-               ${isOccupied ? 'data-bs-toggle="tooltip" data-bs-title="Parqueadero ocupado"' : ''}
-               ${!isOccupied ? 'onclick="openParkingModal(' + spot.id + ')"' : ''}
-               style="cursor: ${isOccupied ? 'not-allowed' : 'pointer'}">
-            <div class="card-body text-center">
-              <div class="position-absolute top-0 end-0 p-2">
-                <span class="badge bg-${statusClass} rounded-circle" style="width: 10px; height: 10px; display: inline-block;"></span>
-              </div>
-              <i class="bi bi-car-front display-4"></i>
-              <h5 class="mt-2">Parqueadero ${spot.number}</h5>
-            </div>
-          </div>
-        `;
-        
-        grid.appendChild(card);
-      });
-
-      initTooltips();
-    }
-
-    // Toggle sort order
-    function toggleSortOrder() {
-      sortAscending = !sortAscending;
-      renderParkingGrid();
-    }
-
-    // Filter parkings
-    function filterParkings(searchTerm) {
-      const cards = document.querySelectorAll('.card');
-      searchTerm = searchTerm.toLowerCase();
-      
-      cards.forEach(card => {
-        const text = card.textContent.toLowerCase();
-        card.parentElement.style.display = text.includes(searchTerm) ? '' : 'none';
-      });
-    }
-
-    // Simple toggle function for vehicle fields
-    function toggleVehicleFields() {
-      const vehicleType = document.getElementById('vehicleType').value;
-      const carFields = document.getElementById('carFields');
-      const motorcycleFields = document.getElementById('motorcycleFields');
-      const totalAmount = document.getElementById('totalAmount');
-      
-      carFields.style.display = 'none';
-      motorcycleFields.style.display = 'none';
-      
-      if (vehicleType === 'car') {
-        carFields.style.display = 'block';
-        totalAmount.value = '$50.000';
-      } else if (vehicleType === 'motorcycle') {
-        motorcycleFields.style.display = 'block';
-        totalAmount.value = '$25.000';
-      } else {
-        totalAmount.value = '$0';
-      }
-    }
-
-    // Reset form when opening modal
-    function openParkingModal(parkingId) {
-      const parkingModal = new bootstrap.Modal(document.getElementById('parkingModal'));
-      const form = document.getElementById('parkingForm');
-      form.reset();
-      document.getElementById('carFields').style.display = 'none';
-      document.getElementById('motorcycleFields').style.display = 'none';
-      document.getElementById('totalAmount').value = '$0';
-      form.dataset.parkingId = parkingId;
-      parkingModal.show();
-    }
-
-    // Modify the proceedToPayment function to show PayU modal
-    function proceedToPayment() {
-      const form = document.getElementById('parkingForm');
-      const parkingId = form.dataset.parkingId;
-      
-      if (!form.checkValidity()) {
-        form.reportValidity();
-        return;
-      }
-
-      // Close parking form modal and open PayU modal
-      bootstrap.Modal.getInstance(document.getElementById('parkingModal')).hide();
-      const payuModal = new bootstrap.Modal(document.getElementById('payuModal'));
-      payuModal.show();
-    }
-
-    // Add PayU related functions
-    function togglePaymentForm() {
-      const cardForm = document.getElementById('cardPaymentForm');
-      const pseForm = document.getElementById('psePaymentForm');
-      const installmentsSection = document.getElementById('installmentsSection');
-      
-      if (document.getElementById('pse').checked) {
-        cardForm.classList.add('d-none');
-        pseForm.classList.remove('d-none');
-      } else {
-        cardForm.classList.remove('d-none');
-        pseForm.classList.add('d-none');
-        installmentsSection.style.display = document.getElementById('creditCard').checked ? 'block' : 'none';
-      }
-    }
-
-    function processPayuPayment() {
-      const selectedMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
-      let isValid = true;
-      
-      if (selectedMethod !== 'pse') {
-        const inputs = document.querySelectorAll('#cardPaymentForm input[required]');
-        inputs.forEach(input => {
-          if (!input.value.trim()) {
-            input.classList.add('is-invalid');
-            isValid = false;
-          } else {
-            input.classList.remove('is-invalid');
-          }
-        });
-      }
-
-      if (!isValid) {
-        Swal.fire({
-          icon: 'error',
-          title: 'Error de Validación',
-          text: 'Por favor complete todos los campos requeridos',
-          confirmButtonText: 'Entendido'
-        });
-        return;
-      }
-
-      // Close PayU modal
-      bootstrap.Modal.getInstance(document.getElementById('payuModal')).hide();
-      
-      // Show processing animation
-      Swal.fire({
-        title: 'Procesando pago...',
-        text: 'Por favor espere',
-        allowOutsideClick: false,
-        showConfirmButton: false,
-        willOpen: () => {
-          Swal.showLoading();
-        }
-      });
-
-      // Simulate payment processing
-      setTimeout(() => {
-        Swal.fire({
-          icon: 'success',
-          title: '¡Pago Exitoso!',
-          text: 'El parqueadero ha sido reservado exitosamente',
-          confirmButtonText: 'Aceptar'
-        }).then(() => {
-          // Update parking spot status
-          const parkingId = document.getElementById('parkingForm').dataset.parkingId;
-          const spotIndex = parkingSpots.findIndex(spot => spot.id === parseInt(parkingId));
-          if (spotIndex !== -1) {
-            parkingSpots[spotIndex].status = 'occupied';
-            renderParkingGrid();
-          }
-        });
-      }, 2000);
-    }
-
-    // Initialize the grid on page load
-    document.addEventListener('DOMContentLoaded', () => {
-      renderParkingGrid();
-    });
-    </script>
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+    <script src="../../../scripts/components/parking.js" defer></script>
+    <script src="../../../scripts/components/navbarToggle.js" defer></script>
   </body>
 </html>
