@@ -1,7 +1,0 @@
-#sidebar {
-    transition: margin 0.3s ease-in-out;
-  }
-
-  #sidebar.collapsed {
-    margin-left: -280px;
-  }
