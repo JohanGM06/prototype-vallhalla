@@ -1,445 +1,453 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="Sistema de gestión de pagos de administración y servicios para propietarios de Puerta de la Alameda. Realice pagos seguros, consulte el historial y descargue comprobantes." />
-    <meta name="keywords" content="pagos administración, pagos conjunto residencial, pagos parqueadero, comprobantes de pago, gestión pagos propiedad horizontal" />
-    <meta name="author" content="Valhalla" />
-    <meta name="robots" content="index, follow" />
-    
-    <!-- Open Graph / Social Media -->
-    <meta property="og:title" content="Gestión de Pagos - Puerta de la Alameda | VALHALLA" />
-    <meta property="og:description" content="Sistema de gestión de pagos para propietarios. Realice pagos seguros y acceda a su historial de pagos." />
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="VALHALLA" />
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://puertadelaalameda.com/owner/payments" />
-    
-    <title>Gestión de Pagos - Puerta de la Alameda | VALHALLA</title>
 
-    <!-- Preload critical assets -->
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" as="style" />
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" as="style" />
-    
-    <!-- Stylesheets -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" />
-    <link rel="stylesheet" href="../../../styles/components/navbar.css" />
-  </head>
-  
-  <body>
-    <!-- Skip to main content for accessibility -->
-    <a href="#main-content" class="visually-hidden-focusable">Saltar al contenido principal</a>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <div class="container-fluid">
-      <div class="row flex-nowrap">
-        <!-- Sidebar Navigation -->
-        <aside id="sidebar" class="col-auto px-0 bg-white border-end" style="width: 280px">
-          <nav class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 min-vh-100" aria-label="Menú principal">
-            <a href="../owner.html" class="d-flex align-items-center pb-3 mb-md-1 mt-md-3 me-md-auto text-dark text-decoration-none">
-              <span class="fs-5 fw-bolder">VALHALLA</span>
-            </a>
-            <ul class="nav flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start w-100" role="menu">
-              <!-- Navigation items remain the same but with improved accessibility -->
-              <li class="nav-item w-100" role="none">
-                <a href="../owner.html" class="nav-link text-dark px-0" role="menuitem">
-                  <i class="bi bi-megaphone" aria-hidden="true"></i> 
-                  <span class="ms-2">ANUNCIOS</span>
-                </a>
-              </li>
-              <li class="nav-item w-100" role="none">
-                <a href="../surveys/surveys.html" class="nav-link text-dark px-0" role="menuitem">
-                  <i class="bi bi-clipboard-data" aria-hidden="true"></i>
-                  <span class="ms-2">ENCUESTAS</span>
-                </a>
-              </li>
-              <li class="nav-item w-100" role="none">
-                <a href="../payments/payments.html" class="nav-link text-dark px-0" role="menuitem">
-                  <i class="bi bi-credit-card" aria-hidden="true"></i>
-                  <span class="ms-2">PAGOS</span>
-                </a>
-              </li>
-              <li class="nav-item w-100" role="none">
-                <a href="../parking/parking.html" class="nav-link text-dark px-0" role="menuitem">
-                  <i class="bi bi-p-square" aria-hidden="true"></i>
-                  <span class="ms-2">PARQUEADERO</span>
-                </a>
-              </li>
-              <li class="nav-item w-100" role="none">
-                <a href="../reservations/reservations.html" class="nav-link text-dark px-0" role="menuitem">
-                  <i class="bi bi-calendar-check" aria-hidden="true"></i>
-                  <span class="ms-2">RESERVAS</span>
-                </a>
-              </li>
-              <li class="nav-item w-100" role="none">
-                <a href="../pets/pets.html" class="nav-link text-dark px-0" role="menuitem">
-                  <i class="bi bi-heart" aria-hidden="true"></i> <span class="ms-2">MASCOTAS</span>
-                </a>
-              </li>
-              <li class="nav-item w-100" role="none">
-                <a href="../tenants/tenants.html" class="nav-link text-dark px-0" role="menuitem">
-                  <i class="bi bi-person-check" aria-hidden="true"></i>
-                  <span class="ms-2">ARRENDATARIOS</span>
-                </a>
-              </li>
-              <li class="nav-item w-100" role="none">
-                <a href="../pqrs/pqrs.html" class="nav-link text-dark px-0" role="menuitem">
-                  <i class="bi bi-question-circle" aria-hidden="true"></i>
-                  <span class="ms-2">PQRS</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </aside>
+  <!-- SEO Meta Tags -->
+  <meta name="description"
+    content="Sistema de gestión de pagos de administración y servicios para propietarios de Puerta de la Alameda. Realice pagos seguros, consulte el historial y descargue comprobantes." />
+  <meta name="keywords"
+    content="pagos administración, pagos conjunto residencial, pagos parqueadero, comprobantes de pago, gestión pagos propiedad horizontal" />
+  <meta name="author" content="Valhalla" />
+  <meta name="robots" content="index, follow" />
 
-        <!-- Main Content -->
-        <main id="main-content" class="col p-0">
-          <!-- Header -->
-          <header class="navbar navbar-expand-lg bg-white border-bottom px-3 fixed-navbar">
-            <div class="container-fluid">
-              <div class="d-flex align-items-center">
-                <button class="btn btn-link text-dark px-0 me-3" id="sidebarToggle" aria-label="Alternar menú lateral">
-                  <i class="bi bi-list fs-4" aria-hidden="true"></i>
+  <!-- Open Graph / Social Media -->
+  <meta property="og:title" content="Gestión de Pagos - Puerta de la Alameda | VALHALLA" />
+  <meta property="og:description"
+    content="Sistema de gestión de pagos para propietarios. Realice pagos seguros y acceda a su historial de pagos." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="VALHALLA" />
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://puertadelaalameda.com/owner/payments" />
+
+  <title>Gestión de Pagos - Puerta de la Alameda | VALHALLA</title>
+
+  <!-- Preload critical assets -->
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" as="style" />
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" as="style" />
+
+  <!-- Stylesheets -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" />
+  <link rel="stylesheet" href="../../../styles/components/navbar.css" />
+</head>
+
+<body>
+  <!-- Skip to main content for accessibility -->
+  <a href="#main-content" class="visually-hidden-focusable">Saltar al contenido principal</a>
+
+  <div class="container-fluid">
+    <div class="row flex-nowrap">
+      <!-- Sidebar Navigation -->
+      <aside id="sidebar" class="col-auto px-0 bg-white border-end" style="width: 280px">
+        <nav class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 min-vh-100"
+          aria-label="Menú principal">
+          <a href="../owner.html"
+            class="d-flex align-items-center pb-3 mb-md-1 mt-md-3 me-md-auto text-dark text-decoration-none">
+            <span class="fs-5 fw-bolder">VALHALLA</span>
+          </a>
+          <ul class="nav flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start w-100" role="menu">
+            <!-- Navigation items remain the same but with improved accessibility -->
+            <li class="nav-item w-100" role="none">
+              <a href="../owner.html" class="nav-link text-dark px-0" role="menuitem">
+                <i class="bi bi-megaphone" aria-hidden="true"></i>
+                <span class="ms-2">ANUNCIOS</span>
+              </a>
+            </li>
+            <li class="nav-item w-100" role="none">
+              <a href="../surveys/surveys.html" class="nav-link text-dark px-0" role="menuitem">
+                <i class="bi bi-clipboard-data" aria-hidden="true"></i>
+                <span class="ms-2">ENCUESTAS</span>
+              </a>
+            </li>
+            <li class="nav-item w-100" role="none">
+              <a href="../payments/payments.html" class="nav-link text-dark px-0" role="menuitem">
+                <i class="bi bi-credit-card" aria-hidden="true"></i>
+                <span class="ms-2">PAGOS</span>
+              </a>
+            </li>
+            <li class="nav-item w-100" role="none">
+              <a href="../parking/parking.html" class="nav-link text-dark px-0" role="menuitem">
+                <i class="bi bi-p-square" aria-hidden="true"></i>
+                <span class="ms-2">PARQUEADERO</span>
+              </a>
+            </li>
+            <li class="nav-item w-100" role="none">
+              <a href="../reservations/reservations.html" class="nav-link text-dark px-0" role="menuitem">
+                <i class="bi bi-calendar-check" aria-hidden="true"></i>
+                <span class="ms-2">RESERVAS</span>
+              </a>
+            </li>
+            <li class="nav-item w-100" role="none">
+              <a href="../pets/pets.html" class="nav-link text-dark px-0" role="menuitem">
+                <i class="bi bi-heart" aria-hidden="true"></i> <span class="ms-2">MASCOTAS</span>
+              </a>
+            </li>
+            <li class="nav-item w-100" role="none">
+              <a href="../tenants/tenants.html" class="nav-link text-dark px-0" role="menuitem">
+                <i class="bi bi-person-check" aria-hidden="true"></i>
+                <span class="ms-2">ARRENDATARIOS</span>
+              </a>
+            </li>
+            <li class="nav-item w-100" role="none">
+              <a href="../pqrs/pqrs.html" class="nav-link text-dark px-0" role="menuitem">
+                <i class="bi bi-question-circle" aria-hidden="true"></i>
+                <span class="ms-2">PQRS</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <main id="main-content" class="col p-0">
+        <!-- Header -->
+        <header class="navbar navbar-expand-lg bg-white border-bottom px-3 fixed-navbar">
+          <div class="container-fluid">
+            <div class="d-flex align-items-center">
+              <button class="btn btn-link text-dark px-0 me-3" id="sidebarToggle" aria-label="Alternar menú lateral">
+                <i class="bi bi-list fs-4" aria-hidden="true"></i>
+              </button>
+              <h1 class="navbar-text fs-4">PUERTA DE LA ALAMEDA</h1>
+              <p class="fs-6 mb-0 ms-2">Valhalla</p>
+            </div>
+
+            <!-- Search and Actions -->
+            <div class="d-flex align-items-center ms-auto">
+              <form class="input-group me-3" role="search">
+                <label class="input-group-text bg-white border-end-0" for="globalSearch">
+                  <i class="bi bi-search" aria-hidden="true"></i>
+                </label>
+                <input type="search" id="globalSearch" class="form-control border-start-0"
+                  placeholder="Buscar en el sitio" aria-label="Buscar en el sitio" />
+              </form>
+
+              <nav class="d-flex" aria-label="Acciones rápidas">
+                <button class="btn btn-link text-dark" aria-label="Ver notificaciones">
+                  <i class="bi bi-bell fs-5" aria-hidden="true"></i>
                 </button>
-                <h1 class="navbar-text fs-4">PUERTA DE LA ALAMEDA</h1>
-                <p class="fs-6 mb-0 ms-2">Valhalla</p>
+                <a href="../profile/profile.html" class="btn btn-link text-dark" role="button"
+                  aria-label="Ir a mi perfil">
+                  <i class="bi bi-person fs-5" aria-hidden="true"></i>
+                </a>
+                <button class="btn btn-link text-dark" aria-label="Cerrar sesión">
+                  <i class="bi bi-escape fs-5" aria-hidden="true"></i>
+                </button>
+              </nav>
+            </div>
+          </div>
+        </header>
+
+        <section class="container-fluid content-wrapper p-4">
+          <!-- Payments Header Section -->
+          <header class="d-flex justify-content-between align-items-center mb-4">
+            <div class="d-flex gap-2 mt-5">
+              <div class="input-group">
+                <input type="text" class="form-control" id="paymentSearch" placeholder="Buscar pago..."
+                  oninput="filterPayments(this.value)" aria-label="Buscar pagos" />
+                <span class="input-group-text">
+                  <i class="bi bi-search" aria-hidden="true"></i>
+                </span>
               </div>
-
-              <!-- Search and Actions -->
-              <div class="d-flex align-items-center ms-auto">
-                <form class="input-group me-3" role="search">
-                  <label class="input-group-text bg-white border-end-0" for="globalSearch">
-                    <i class="bi bi-search" aria-hidden="true"></i>
-                  </label>
-                  <input type="search" id="globalSearch" class="form-control border-start-0" placeholder="Buscar en el sitio" aria-label="Buscar en el sitio" />
-                </form>
-
-                <nav class="d-flex" aria-label="Acciones rápidas">
-                  <button class="btn btn-link text-dark" aria-label="Ver notificaciones">
-                    <i class="bi bi-bell fs-5" aria-hidden="true"></i>
-                  </button>
-                  <button class="btn btn-link text-dark" aria-label="Ver mensajes">
-                    <i class="bi bi-envelope fs-5" aria-hidden="true"></i>
-                  </button>
-                  <button class="btn btn-link text-dark" aria-label="Cerrar sesión">
-                    <i class="bi bi-escape fs-5" aria-hidden="true"></i>
-                  </button>
-                </nav>
+              <div class="btn-group" role="group" aria-label="Opciones de filtrado">
+                <button class="btn btn-outline-primary" aria-label="Filtrar pagos">
+                  <i class="bi bi-filter" aria-hidden="true"></i> Filtrar
+                </button>
+                <button class="btn btn-outline-primary" aria-label="Ordenar pagos">
+                  <i class="bi bi-sort-down" aria-hidden="true"></i> Ordenar
+                </button>
               </div>
             </div>
           </header>
 
-          <section class="container-fluid content-wrapper p-4">
-            <!-- Payments Header Section -->
-            <header class="d-flex justify-content-between align-items-center mb-4">
-              <div class="d-flex gap-2 mt-5">
-                <div class="input-group">
-                  <input type="text" class="form-control" id="paymentSearch" 
-                         placeholder="Buscar pago..." 
-                         oninput="filterPayments(this.value)"
-                         aria-label="Buscar pagos" />
-                  <span class="input-group-text">
-                    <i class="bi bi-search" aria-hidden="true"></i>
-                  </span>
-                </div>
-                <div class="btn-group" role="group" aria-label="Opciones de filtrado">
-                  <button class="btn btn-outline-primary" aria-label="Filtrar pagos">
-                    <i class="bi bi-filter" aria-hidden="true"></i> Filtrar
-                  </button>
-                  <button class="btn btn-outline-primary" aria-label="Ordenar pagos">
-                    <i class="bi bi-sort-down" aria-hidden="true"></i> Ordenar
-                  </button>
-                </div>
-              </div>
-            </header>
-
-            <!-- Payments Table Section -->
-            <section class="card shadow-sm">
-              <div class="card-body">
-                <div class="table-responsive">
-                  <table class="table table-hover" aria-label="Lista de pagos">
-                    <caption>Lista de pagos pendientes y realizados</caption>
-                    <thead>
-                      <tr>
-                        <th scope="col">ID Pago (Servicio)</th>
-                        <th scope="col">Monto</th>
-                        <th scope="col">Fecha Límite</th>
-                        <th scope="col">Estado</th>
-                        <th scope="col">Acción</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <!-- Payment rows with improved accessibility -->
-                      <tr>
-                        <td>
-                          <span class="d-block">1001</span>
-                          <small class="text-muted">(Administración)</small>
-                        </td>
-                        <td>120.000 COP</td>
-                        <td>2024-11-30</td>
-                        <td><span class="badge bg-warning" role="status">Pendiente</span></td>
-                        <td>
-                          <button class="btn btn-primary btn-sm" 
-                                  data-bs-toggle="modal" 
-                                  data-bs-target="#payuModal"
-                                  aria-label="Pagar administración">
-                            <i class="bi bi-credit-card" aria-hidden="true"></i> Pagar
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <span class="d-block">1002</span>
-                          <small class="text-muted">(Parqueadero)</small>
-                        </td>
-                        <td>50.000 COP</td>
-                        <td>2024-11-30</td>
-                        <td><span class="badge bg-warning" role="status">Pendiente</span></td>
-                        <td>
-                          <button class="btn btn-primary btn-sm" 
-                                  data-bs-toggle="modal" 
-                                  data-bs-target="#payuModal"
-                                  aria-label="Pagar parqueadero">
-                            <i class="bi bi-credit-card" aria-hidden="true"></i> Pagar
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <span class="d-block">1000</span>
-                          <small class="text-muted">(Administración)</small>
-                        </td>
-                        <td>120.000 COP</td>
-                        <td>2024-10-30</td>
-                        <td><span class="badge bg-success" role="status">Pagado</span></td>
-                        <td>
-                          <button class="btn btn-outline-success btn-sm" 
-                                  onclick="showReceipt(1000, 'Administración', '120.000 COP', '2024-10-30')"
-                                  aria-label="Ver comprobante administración">
-                            <i class="bi bi-file-text" aria-hidden="true"></i> Ver Comprobante
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <span class="d-block">999</span>
-                          <small class="text-muted">(Parqueadero)</small>
-                        </td>
-                        <td>50.000 COP</td>
-                        <td>2024-10-30</td>
-                        <td><span class="badge bg-success" role="status">Pagado</span></td>
-                        <td>
-                          <button class="btn btn-outline-success btn-sm" 
-                                  onclick="showReceipt(999, 'Parqueadero', '50.000 COP', '2024-10-30')"
-                                  aria-label="Ver comprobante parqueadero">
-                            <i class="bi bi-file-text" aria-hidden="true"></i> Ver Comprobante
-                          </button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </section>
-
-            <!-- Payment Modal -->
-            <div class="modal fade" id="payuModal" tabindex="-1" aria-labelledby="payuModalLabel" aria-hidden="true">
-              <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                  <header class="modal-header bg-primary text-white">
-                    <h2 class="modal-title fs-5" id="payuModalLabel">
-                      <img src="https://www.payu.com.co/sites/colombia/files/payu_logo_white.png" 
-                           height="30" 
-                           alt="PayU Logo"
-                           loading="lazy" />
-                      Pasarela de Pago
-                    </h2>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-                  </header>
-                  <div class="modal-body">
-                    <div class="container">
-                      <!-- Payment Summary -->
-                      <div class="row mb-4">
-                        <div class="col-md-12">
-                          <div class="card bg-light">
-                            <div class="card-body">
-                              <h6 class="card-title">Resumen de Pago</h6>
-                              <div class="d-flex justify-content-between">
-                                <span>Total a pagar:</span>
-                                <strong>120.000 COP</strong>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <!-- Payment Method Selection -->
-                      <div class="row mb-4">
-                        <div class="col-12">
-                          <label class="form-label">Método de Pago</label>
-                          <div class="d-flex gap-3">
-                            <div class="form-check">
-                              <input class="form-check-input" type="radio" name="paymentMethod" id="creditCard" value="credit" checked onchange="togglePaymentForm()">
-                              <label class="form-check-label" for="creditCard">
-                                <i class="bi bi-credit-card"></i> Tarjeta de Crédito
-                              </label>
-                            </div>
-                            <div class="form-check">
-                              <input class="form-check-input" type="radio" name="paymentMethod" id="debitCard" value="debit" onchange="togglePaymentForm()">
-                              <label class="form-check-label" for="debitCard">
-                                <i class="bi bi-credit-card-2-front"></i> Tarjeta Débito
-                              </label>
-                            </div>
-                            <div class="form-check">
-                              <input class="form-check-input" type="radio" name="paymentMethod" id="pse" value="pse" onchange="togglePaymentForm()">
-                              <label class="form-check-label" for="pse">
-                                <i class="bi bi-bank"></i> PSE
-                              </label>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <!-- Credit/Debit Card Form -->
-                      <form id="cardPaymentForm" class="payment-form">
-                        <div class="row g-3">
-                          <div class="col-12">
-                            <label class="form-label">Número de Tarjeta</label>
-                            <input type="text" class="form-control" id="cardNumber" maxlength="19" placeholder="1234 5678 9012 3456" required>
-                            <div class="invalid-feedback">Número de tarjeta inválido</div>
-                          </div>
-
-                          <div class="col-12">
-                            <label class="form-label">Nombre en la Tarjeta</label>
-                            <input type="text" class="form-control" id="cardName" placeholder="NOMBRE APELLIDO" required>
-                            <div class="invalid-feedback">Ingrese el nombre como aparece en la tarjeta</div>
-                          </div>
-
-                          <div class="col-md-6">
-                            <label class="form-label">Fecha de Vencimiento</label>
-                            <input type="text" class="form-control" id="expiryDate" placeholder="MM/YY" maxlength="5" required>
-                            <div class="invalid-feedback">Fecha inválida</div>
-                          </div>
-
-                          <div class="col-md-6">
-                            <label class="form-label">CVV</label>
-                            <input type="text" class="form-control" id="cvv" placeholder="CVV" maxlength="4" required>
-                            <div class="invalid-feedback">CVV inválido</div>
-                          </div>
-
-                          <div class="col-12" id="installmentsSection">
-                            <label class="form-label">Cuotas</label>
-                            <select class="form-select">
-                              <option value="1">1 cuota</option>
-                              <option value="3">3 cuotas</option>
-                              <option value="6">6 cuotas</option>
-                              <option value="12">12 cuotas</option>
-                            </select>
-                          </div>
-                        </div>
-                      </form>
-
-                      <!-- PSE Form -->
-                      <form id="psePaymentForm" class="payment-form d-none">
-                        <div class="row g-3">
-                          <div class="col-12">
-                            <label class="form-label">Banco</label>
-                            <select class="form-select" required>
-                              <option value="">Seleccione su banco</option>
-                              <option value="bancolombia">Bancolombia</option>
-                              <option value="davivienda">Davivienda</option>
-                              <option value="bbva">BBVA</option>
-                              <option value="bogota">Banco de Bogotá</option>
-                            </select>
-                          </div>
-                          <div class="col-12">
-                            <label class="form-label">Tipo de Cliente</label>
-                            <select class="form-select" required>
-                              <option value="natural">Persona Natural</option>
-                              <option value="juridica">Persona Jurídica</option>
-                            </select>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary" onclick="procesarPago()">
-                      <i class="bi bi-lock-fill"></i> Pagar Ahora
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Receipt Modal -->
-            <div class="modal fade" id="receiptModal" tabindex="-1" aria-labelledby="receiptModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header bg-success text-white">
-                    <h5 class="modal-title" id="receiptModalLabel">
-                      <i class="bi bi-file-earmark-text"></i> Comprobante de Pago
-                    </h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                    <div class="container">
-                      <!-- Receipt Details -->
-                      <div class="card bg-light mb-3">
-                        <div class="card-body">
-                          <h6 class="card-title mb-3">Detalles del Pago</h6>
-                          <div class="row mb-2">
-                            <div class="col-5">ID de Pago:</div>
-                            <div class="col-7" id="receiptId">1000</div>
-                          </div>
-                          <div class="row mb-2">
-                            <div class="col-5">Servicio:</div>
-                            <div class="col-7" id="receiptService">Administración</div>
-                          </div>
-                          <div class="row mb-2">
-                            <div class="col-5">Monto:</div>
-                            <div class="col-7" id="receiptAmount">120.000 COP</div>
-                          </div>
-                          <div class="row mb-2">
-                            <div class="col-5">Fecha de Pago:</div>
-                            <div class="col-7" id="receiptDate">2024-10-30</div>
-                          </div>
-                          <div class="row mb-2">
-                            <div class="col-5">Estado:</div>
-                            <div class="col-7"><span class="badge bg-success">Pagado</span></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-success" onclick="downloadReceipt()">
-                      <i class="bi bi-download"></i> Descargar Comprobante
-                    </button>
-                  </div>
-                </div>
+          <!-- Payments Table Section -->
+          <section class="card shadow-sm">
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-hover" aria-label="Lista de pagos">
+                  <caption>Lista de pagos pendientes y realizados</caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">ID Pago (Servicio)</th>
+                      <th scope="col">Monto</th>
+                      <th scope="col">Fecha Límite</th>
+                      <th scope="col">Estado</th>
+                      <th scope="col">Acción</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- Payment rows with improved accessibility -->
+                    <tr>
+                      <td>
+                        <span class="d-block">1001</span>
+                        <small class="text-muted">(Administración)</small>
+                      </td>
+                      <td>120.000 COP</td>
+                      <td>2024-11-30</td>
+                      <td><span class="badge bg-warning" role="status">Pendiente</span></td>
+                      <td>
+                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#payuModal"
+                          aria-label="Pagar administración">
+                          <i class="bi bi-credit-card" aria-hidden="true"></i> Pagar
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <span class="d-block">1002</span>
+                        <small class="text-muted">(Parqueadero)</small>
+                      </td>
+                      <td>50.000 COP</td>
+                      <td>2024-11-30</td>
+                      <td><span class="badge bg-warning" role="status">Pendiente</span></td>
+                      <td>
+                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#payuModal"
+                          aria-label="Pagar parqueadero">
+                          <i class="bi bi-credit-card" aria-hidden="true"></i> Pagar
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <span class="d-block">1000</span>
+                        <small class="text-muted">(Administración)</small>
+                      </td>
+                      <td>120.000 COP</td>
+                      <td>2024-10-30</td>
+                      <td><span class="badge bg-success" role="status">Pagado</span></td>
+                      <td>
+                        <button class="btn btn-outline-success btn-sm"
+                          onclick="showReceipt(1000, 'Administración', '120.000 COP', '2024-10-30')"
+                          aria-label="Ver comprobante administración">
+                          <i class="bi bi-file-text" aria-hidden="true"></i> Ver Comprobante
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <span class="d-block">999</span>
+                        <small class="text-muted">(Parqueadero)</small>
+                      </td>
+                      <td>50.000 COP</td>
+                      <td>2024-10-30</td>
+                      <td><span class="badge bg-success" role="status">Pagado</span></td>
+                      <td>
+                        <button class="btn btn-outline-success btn-sm"
+                          onclick="showReceipt(999, 'Parqueadero', '50.000 COP', '2024-10-30')"
+                          aria-label="Ver comprobante parqueadero">
+                          <i class="bi bi-file-text" aria-hidden="true"></i> Ver Comprobante
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </section>
-        </main>
-      </div>
+
+          <!-- Payment Modal -->
+          <div class="modal fade" id="payuModal" tabindex="-1" aria-labelledby="payuModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <header class="modal-header bg-primary text-white">
+                  <h2 class="modal-title fs-5" id="payuModalLabel">
+                    <img src="https://www.payu.com.co/sites/colombia/files/payu_logo_white.png" height="30"
+                      alt="PayU Logo" loading="lazy" />
+                    Pasarela de Pago
+                  </h2>
+                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    aria-label="Cerrar"></button>
+                </header>
+                <div class="modal-body">
+                  <div class="container">
+                    <!-- Payment Summary -->
+                    <div class="row mb-4">
+                      <div class="col-md-12">
+                        <div class="card bg-light">
+                          <div class="card-body">
+                            <h6 class="card-title">Resumen de Pago</h6>
+                            <div class="d-flex justify-content-between">
+                              <span>Total a pagar:</span>
+                              <strong>120.000 COP</strong>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Payment Method Selection -->
+                    <div class="row mb-4">
+                      <div class="col-12">
+                        <label class="form-label">Método de Pago</label>
+                        <div class="d-flex gap-3">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="paymentMethod" id="creditCard"
+                              value="credit" checked onchange="togglePaymentForm()">
+                            <label class="form-check-label" for="creditCard">
+                              <i class="bi bi-credit-card"></i> Tarjeta de Crédito
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="paymentMethod" id="debitCard"
+                              value="debit" onchange="togglePaymentForm()">
+                            <label class="form-check-label" for="debitCard">
+                              <i class="bi bi-credit-card-2-front"></i> Tarjeta Débito
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="paymentMethod" id="pse" value="pse"
+                              onchange="togglePaymentForm()">
+                            <label class="form-check-label" for="pse">
+                              <i class="bi bi-bank"></i> PSE
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Credit/Debit Card Form -->
+                    <form id="cardPaymentForm" class="payment-form">
+                      <div class="row g-3">
+                        <div class="col-12">
+                          <label class="form-label">Número de Tarjeta</label>
+                          <input type="text" class="form-control" id="cardNumber" maxlength="19"
+                            placeholder="1234 5678 9012 3456" required>
+                          <div class="invalid-feedback">Número de tarjeta inválido</div>
+                        </div>
+
+                        <div class="col-12">
+                          <label class="form-label">Nombre en la Tarjeta</label>
+                          <input type="text" class="form-control" id="cardName" placeholder="NOMBRE APELLIDO" required>
+                          <div class="invalid-feedback">Ingrese el nombre como aparece en la tarjeta</div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <label class="form-label">Fecha de Vencimiento</label>
+                          <input type="text" class="form-control" id="expiryDate" placeholder="MM/YY" maxlength="5"
+                            required>
+                          <div class="invalid-feedback">Fecha inválida</div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <label class="form-label">CVV</label>
+                          <input type="text" class="form-control" id="cvv" placeholder="CVV" maxlength="4" required>
+                          <div class="invalid-feedback">CVV inválido</div>
+                        </div>
+
+                        <div class="col-12" id="installmentsSection">
+                          <label class="form-label">Cuotas</label>
+                          <select class="form-select">
+                            <option value="1">1 cuota</option>
+                            <option value="3">3 cuotas</option>
+                            <option value="6">6 cuotas</option>
+                            <option value="12">12 cuotas</option>
+                          </select>
+                        </div>
+                      </div>
+                    </form>
+
+                    <!-- PSE Form -->
+                    <form id="psePaymentForm" class="payment-form d-none">
+                      <div class="row g-3">
+                        <div class="col-12">
+                          <label class="form-label">Banco</label>
+                          <select class="form-select" required>
+                            <option value="">Seleccione su banco</option>
+                            <option value="bancolombia">Bancolombia</option>
+                            <option value="davivienda">Davivienda</option>
+                            <option value="bbva">BBVA</option>
+                            <option value="bogota">Banco de Bogotá</option>
+                          </select>
+                        </div>
+                        <div class="col-12">
+                          <label class="form-label">Tipo de Cliente</label>
+                          <select class="form-select" required>
+                            <option value="natural">Persona Natural</option>
+                            <option value="juridica">Persona Jurídica</option>
+                          </select>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                  <button type="button" class="btn btn-primary" onclick="procesarPago()">
+                    <i class="bi bi-lock-fill"></i> Pagar Ahora
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Receipt Modal -->
+          <div class="modal fade" id="receiptModal" tabindex="-1" aria-labelledby="receiptModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                  <h5 class="modal-title" id="receiptModalLabel">
+                    <i class="bi bi-file-earmark-text"></i> Comprobante de Pago
+                  </h5>
+                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <div class="container">
+                    <!-- Receipt Details -->
+                    <div class="card bg-light mb-3">
+                      <div class="card-body">
+                        <h6 class="card-title mb-3">Detalles del Pago</h6>
+                        <div class="row mb-2">
+                          <div class="col-5">ID de Pago:</div>
+                          <div class="col-7" id="receiptId">1000</div>
+                        </div>
+                        <div class="row mb-2">
+                          <div class="col-5">Servicio:</div>
+                          <div class="col-7" id="receiptService">Administración</div>
+                        </div>
+                        <div class="row mb-2">
+                          <div class="col-5">Monto:</div>
+                          <div class="col-7" id="receiptAmount">120.000 COP</div>
+                        </div>
+                        <div class="row mb-2">
+                          <div class="col-5">Fecha de Pago:</div>
+                          <div class="col-7" id="receiptDate">2024-10-30</div>
+                        </div>
+                        <div class="row mb-2">
+                          <div class="col-5">Estado:</div>
+                          <div class="col-7"><span class="badge bg-success">Pagado</span></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                  <button type="button" class="btn btn-success" onclick="downloadReceipt()">
+                    <i class="bi bi-download"></i> Descargar Comprobante
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
     </div>
+  </div>
 
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
-    <script src="../../../scripts/components/payments.js" defer></script>
-    <script src="../../../scripts/components/navbarToggle.js" defer></script>
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+  <script src="../../../scripts/components/payments.js" defer></script>
+  <script src="../../../scripts/components/navbarToggle.js" defer></script>
 
-    <!-- Structured Data for SEO -->
-    <script type="application/ld+json">
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebPage",
@@ -452,5 +460,6 @@
       }
     }
     </script>
-  </body>
+</body>
+
 </html>
