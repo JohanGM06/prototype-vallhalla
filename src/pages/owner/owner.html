@@ -27,16 +27,7 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"
     />
 
-    <!-- Minimal required CSS for toggle functionality -->
-    <style>
-      #sidebar {
-        transition: margin 0.3s ease-in-out;
-      }
-
-      #sidebar.collapsed {
-        margin-left: -280px;
-      }
-    </style>
+    <link rel="stylesheet" href="../../../styles/components/navbar.css" />
   </head>
   
   <body>
@@ -101,17 +92,17 @@
           </nav>
         </aside>
 
-<<<<<<< Updated upstream
+
         <!-- Main Content -->
         <div class="col p-0">
           <!-- Topbar -->
           <nav class="navbar navbar-expand-lg bg-white border-bottom px-3">
-=======
+
         <!-- Main Content Area -->
         <main class="col p-0">
           <!-- Header -->
           <header class="navbar navbar-expand-lg bg-white border-bottom px-3 fixed-navbar">
->>>>>>> Stashed changes
+
             <div class="container-fluid">
               <div class="d-flex align-items-center">
                 <button class="btn btn-link text-dark px-0 me-3" id="sidebarToggle" aria-label="Toggle sidebar">
@@ -145,15 +136,13 @@
             </div>
           </header>
 
-<<<<<<< Updated upstream
           <!-- Main content area -->
           <div class="container-fluid p-4">
-            <h3 class="mb-4">Anuncios Recientes</h3>
-=======
+     
           <!-- Main Content -->
           <section class="container-fluid content-wrapper p-4">
             <h2 class="mb-4">Anuncios Recientes</h2>
->>>>>>> Stashed changes
+
             
             <!-- Search Section -->
             <section class="row mb-4">
@@ -529,72 +518,8 @@
     </div>
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
+    <script src="../../../scripts/components/owner.js"></script>
     <!-- Toggle Script -->
-    <script>
-      document
-        .getElementById("sidebarToggle")
-        .addEventListener("click", function () {
-          document.getElementById("sidebar").classList.toggle("collapsed");
-        });
-      window.addEventListener("resize", () => {
-        if (window.innerWidth < 992) {
-          // Less than lg
-          const sidebar = document.getElementById("sidebar");
-          if (!sidebar.classList.contains("collapsed")) {
-            sidebar.classList.toggle("collapsed");
-          }
-        }
-        console.log("loaded");
-      });
-   
-      // Función ultra-simplificada de búsqueda con sugerencias
-      function showSuggestions(query) {
-        query = query.toLowerCase().trim();
-        const resultsBox = document.getElementById('searchResults');
-        const cards = document.querySelectorAll('.card');
-        
-        if (query.length < 2) {
-          resultsBox.style.display = 'none';
-          cards.forEach(card => card.closest('.col').style.display = '');
-          return;
-        }
-        
-        let html = '';
-        let count = 0;
-        
-        cards.forEach(card => {
-          const text = card.textContent.toLowerCase();
-          const title = card.querySelector('.card-header').textContent;
-          const cardCol = card.closest('.col');
-          
-          if (text.includes(query)) {
-            cardCol.style.display = '';
-            
-            if (count < 3) {
-              // Color simplificado basado en el texto del encabezado
-              const bgClass = count === 0 ? 'bg-light' : (count === 1 ? 'bg-primary text-white' : 'bg-info text-white');
-              
-              html += `<div class="p-2 border-bottom ${bgClass}" onclick="document.querySelector('${card.getAttribute('data-bs-target')}').classList.add('show'); document.getElementById('searchResults').style.display='none';" style="cursor:pointer;">
-                ${title}
-              </div>`;
-              count++;
-            }
-          } else {
-            cardCol.style.display = 'none';
-          }
-        });
-        
-        resultsBox.innerHTML = html;
-        resultsBox.style.display = count > 0 ? 'block' : 'none';
-        
-        // Cerrar sugerencias al hacer clic fuera
-        document.onclick = function(e) {
-          if (e.target.id !== 'searchAnnouncements' && e.target.id !== 'searchResults') {
-            resultsBox.style.display = 'none';
-          }
-        };
-      }
-    </script>
+    <script src="../../../scripts/components/navbarToggle.js"></script>
   </body>
 </html>
