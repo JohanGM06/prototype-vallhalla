@@ -1,0 +1,363 @@
+/* Variables for consistent theming */
+:root {
+  --calendar-day-size: 40px;
+  --calendar-mobile-day-size: 40px;
+  --spacing-base: 1rem;
+  --header-height: 90px;
+  --border-radius: 50%;
+  
+  /* Colors */
+  --color-available: #198754;
+  --color-occupied: #dc3545;
+  --color-text-light: #ffffff;
+  --color-text-dark: #333333;
+  --color-border: #e9ecef;
+  --color-background: #f8f9fa;
+  --color-header-bg: #33a1ff;
+}
+
+/* Layout */
+.content-wrapper {
+  padding-top: var(--header-height);
+}
+
+/* Calendar Base Styles */
+.calendar-container {
+  position: relative;
+  background: var(--color-text-light);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px var(--color-shadow);
+}
+
+/* Flatpickr Calendar Customization */
+/* Using attribute selectors for higher specificity without !important */
+[class~="flatpickr-calendar"][class~="inline"] {
+  width: 100%;
+  max-width: none;
+  box-shadow: none;
+  margin: 0;
+}
+
+/* Container Styles */
+[class~="flatpickr-rContainer"],
+[class~="flatpickr-days"] {
+  width: 100%;
+}
+
+[class~="dayContainer"] {
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1px;
+  padding: var(--spacing-base);
+}
+
+/* Day Cell Styles */
+[class~="flatpickr-day"] {
+  position: relative;
+  width: calc(100% / 7);
+  max-width: none;
+  flex-basis: calc(100% / 7);
+  height: var(--calendar-day-size);
+  line-height: var(--calendar-day-size);
+  margin: 0;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+/* Status Styles with enhanced specificity */
+[class~="flatpickr-day"][class~="available"] {
+  background-color: var(--color-available);
+  color: var(--color-text-light);
+}
+
+[class~="flatpickr-day"][class~="available"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px var(--color-shadow);
+}
+
+[class~="flatpickr-day"][class~="occupied"] {
+  background-color: var(--color-occupied);
+  color: var(--color-text-light);
+}
+
+[class~="flatpickr-day"][class~="today"] {
+  position: relative;
+  border: none;
+}
+
+[class~="flatpickr-day"][class~="today"]::after {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  border: 2px solid var(--color-today-border);
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+/* Interactive States */
+[class~="flatpickr-day"]:not([class~="occupied"]):hover {
+  cursor: pointer;
+  background-color: var(--color-available);
+  opacity: 0.9;
+}
+
+/* Calendar Navigation */
+.calendar-navigation {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-base);
+  padding: calc(var(--spacing-base) / 2);
+}
+
+.calendar-navigation button {
+  transition: transform 0.2s ease;
+}
+
+.calendar-navigation button:hover {
+  transform: scale(1.1);
+}
+
+/* Status Indicators */
+.calendar-legend {
+  display: flex;
+  gap: var(--spacing-base);
+  padding: calc(var(--spacing-base) / 2);
+  margin-top: var(--spacing-base);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--spacing-base) / 2);
+}
+
+.legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.legend-dot.available {
+  background-color: var(--color-available);
+}
+
+.legend-dot.occupied {
+  background-color: var(--color-occupied);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  :root {
+    --calendar-day-size: var(--calendar-mobile-day-size);
+  }
+
+  [class~="dayContainer"] {
+    padding: calc(var(--spacing-base) / 2);
+  }
+  
+  .calendar-navigation {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .content-wrapper {
+    padding-top: 0;
+  }
+
+  [class~="flatpickr-calendar"] {
+    box-shadow: none;
+  }
+
+  [class~="flatpickr-day"] {
+    border: 1px solid #ddd;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  [class~="flatpickr-day"],
+  .calendar-navigation button {
+    transition: none;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  :root {
+    --color-available: #006400;
+    --color-occupied: #8b0000;
+    --color-today-border: #000000;
+  }
+}
+
+/* Calendar Header Styles */
+.flatpickr-header,
+.flatpickr-month {
+  background-color: var(--color-header-bg) !important;
+  color: var(--color-text-light) !important;
+  height: 50px;
+  padding: 8px;
+}
+
+.flatpickr-current-month {
+  font-size: 1.2rem !important;
+  padding: 0 !important;
+}
+
+.flatpickr-monthDropdown-months,
+.numInputWrapper {
+  color: var(--color-text-light) !important;
+}
+
+/* Calendar Days Header */
+.flatpickr-weekdays {
+  background: var(--color-background);
+  padding: 10px 0;
+}
+
+.flatpickr-weekday {
+  color: var(--color-text-dark) !important;
+  font-weight: 500;
+}
+
+/* Calendar Days */
+.flatpickr-day {
+  width: var(--calendar-day-size) !important;
+  height: var(--calendar-day-size) !important;
+  line-height: var(--calendar-day-size) !important;
+  border-radius: var(--border-radius) !important;
+  margin: 3px !important;
+  color: var(--color-text-dark) !important;
+  font-weight: 500;
+}
+
+/* Available Days */
+.flatpickr-day.available {
+  background-color: var(--color-available) !important;
+  color: var(--color-text-light) !important;
+}
+
+/* Occupied Days */
+.flatpickr-day.occupied {
+  background-color: var(--color-occupied) !important;
+  color: var(--color-text-light) !important;
+  cursor: not-allowed !important;
+  opacity: 0.8 !important;
+}
+
+.flatpickr-day.occupied:hover {
+  background-color: var(--color-occupied) !important;
+  cursor: not-allowed !important;
+}
+
+/* Today */
+.flatpickr-day.today {
+  border: none !important;
+  background-color: var(--color-background) !important;
+  color: var(--color-text-dark) !important;
+  font-weight: bold;
+}
+
+/* Disabled Days */
+.flatpickr-day.prevMonthDay,
+.flatpickr-day.nextMonthDay {
+  color: #aaa !important;
+  background: transparent !important;
+}
+
+/* Navigation Arrows */
+.flatpickr-prev-month,
+.flatpickr-next-month {
+  fill: var(--color-text-light) !important;
+  padding: 10px !important;
+}
+
+.flatpickr-prev-month:hover,
+.flatpickr-next-month:hover {
+  opacity: 0.8;
+}
+
+/* Calendar Container */
+.flatpickr-calendar.inline {
+  width: 100% !important;
+  max-width: none !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+  background: var(--color-background) !important;
+}
+
+.flatpickr-days {
+  width: 100% !important;
+  padding: 8px;
+}
+
+.dayContainer {
+  width: 100% !important;
+  min-width: 100% !important;
+  max-width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  padding: 8px !important;
+}
+
+/* Legend Styles */
+.calendar-legend {
+  display: flex;
+  gap: 20px;
+  padding: 16px;
+  border-top: 1px solid var(--color-border);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--color-text-dark);
+}
+
+.legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.legend-dot.available {
+  background-color: var(--color-available);
+}
+
+.legend-dot.occupied {
+  background-color: var(--color-occupied);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  :root {
+    --calendar-day-size: 35px;
+  }
+  
+  .flatpickr-current-month {
+    font-size: 1rem !important;
+  }
+}
+
+/* Tooltip customization */
+.tooltip {
+  font-size: 0.875rem;
+}
+
+.tooltip .tooltip-inner {
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 8px 12px;
+  border-radius: 4px;
+}
+
+.tooltip.bs-tooltip-top .tooltip-arrow::before {
+  border-top-color: rgba(0, 0, 0, 0.8);
+}
