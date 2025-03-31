@@ -1,0 +1,26 @@
+.fixed-navbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 280px; /* Width of the sidebar */
+    z-index: 1030;
+}
+
+/* Add padding to main content to prevent it from going under the navbar */
+.content-wrapper {
+    padding-top: 70px; /* Height of navbar + some extra space */
+}
+
+/* Adjust sidebar to be fixed as well */
+#sidebar {
+    position: fixed;
+    height: 100vh;
+    z-index: 1031;
+}
+
+/* Add this to ensure the main content doesn't overlap with the fixed sidebar */
+@media (min-width: 992px) {
+    main.col {
+        margin-left: 280px; /* Same as sidebar width */
+    }
+}
