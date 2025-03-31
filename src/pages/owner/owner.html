@@ -92,454 +92,445 @@
 
 
       <!-- Main Content -->
-      <div class="col p-0">
-        <!-- Topbar -->
-        <nav class="navbar navbar-expand-lg bg-white border-bottom px-3">
+      <main class="col p-0" role="main">
+        <!-- Header -->
+        <header class="navbar navbar-expand-lg bg-white border-bottom px-3 fixed-navbar" role="banner">
+          <div class="container-fluid">
+            <div class="d-flex align-items-center">
+              <button class="btn btn-link text-dark px-0 me-3" id="sidebarToggle" aria-label="Alternar menú lateral" aria-expanded="true" aria-controls="sidebar">
+                <i class="bi bi-list fs-4" aria-hidden="true"></i>
+              </button>
+              <h1 class="navbar-text fs-4">PUERTA DE LA ALAMEDA</h1>
+              <p class="fs-6 mb-0 ms-2">Valhalla</p>
+            </div>
 
-          <!-- Main Content Area -->
-          <main class="col p-0">
-            <!-- Header -->
-            <header class="navbar navbar-expand-lg bg-white border-bottom px-3 fixed-navbar">
+            <!-- Search and Actions -->
+            <div class="d-flex align-items-center ms-auto">
+              <form class="input-group me-3" role="search" aria-label="Búsqueda en el sitio">
+                <label class="input-group-text bg-white border-end-0" for="searchInput">
+                  <i class="bi bi-search" aria-hidden="true"></i>
+                </label>
+                <input type="search" id="searchInput" class="form-control border-start-0" placeholder="Buscar" aria-label="Campo de búsqueda" />
+              </form>
 
-              <div class="container-fluid">
-                <div class="d-flex align-items-center">
-                  <button class="btn btn-link text-dark px-0 me-3" id="sidebarToggle" aria-label="Toggle sidebar">
-                    <i class="bi bi-list fs-4" aria-hidden="true"></i>
-                  </button>
-                  <h1 class="navbar-text fs-4">PUERTA DE LA ALAMEDA</h1>
-                  <h2 class="fs-6" style="margin-top: 20px;">Valhalla</h2>
-                </div>
+              <nav class="d-flex" aria-label="Acciones rápidas">
+                <button class="btn btn-link text-dark" aria-label="Ver notificaciones" title="Notificaciones">
+                  <i class="bi bi-bell fs-5" aria-hidden="true"></i>
+                </button>
+                <a href="./profile/profile.html" class="btn btn-link text-dark" role="button" aria-label="Ir a mi perfil">
+                  <i class="bi bi-person fs-5" aria-hidden="true"></i>
+                </a>
+                <button class="btn btn-link text-dark" aria-label="Cerrar sesión" title="Salir">
+                  <i class="bi bi-escape fs-5" aria-hidden="true"></i>
+                </button>
+              </nav>
+            </div>
+          </div>
+        </header>
 
-                <!-- Search and Actions -->
-                <div class="d-flex align-items-center ms-auto">
-                  <form class="input-group me-3" role="search">
-                    <label class="input-group-text bg-white border-end-0" for="searchInput">
-                      <i class="bi bi-search" aria-hidden="true"></i>
-                    </label>
-                    <input type="search" id="searchInput" class="form-control border-start-0" placeholder="Buscar"
-                      aria-label="Buscar en el sitio" />
-                  </form>
-
-                  <nav class="d-flex">
-                    <button class="btn btn-link text-dark" aria-label="Notificaciones">
-                      <i class="bi bi-bell fs-5" aria-hidden="true"></i>
-                    </button>
-                    <a href="./profile/profile.html" class="btn btn-link text-dark" role="button"
-                      aria-label="Ir a mi perfil">
-                      <i class="bi bi-person fs-5" aria-hidden="true"></i>
-                    </a>
-                    <button class="btn btn-link text-dark" aria-label="Salir">
-                      <i class="bi bi-escape fs-5" aria-hidden="true"></i>
-                    </button>
-                  </nav>
-                </div>
-              </div>
-            </header>
-
-            <!-- Main content area -->
-            <div class="container-fluid p-4">
-
-              <!-- Main Content -->
-              <section class="container-fluid content-wrapper p-4">
-                <h2 class="mb-4">Anuncios Recientes</h2>
+        <!-- Main Content Area -->
+        <div class="container-fluid p-4">
+          <section class="container-fluid content-wrapper p-4">
+            <h2 class="mb-4">Anuncios Recientes</h2>
 
 
-                <!-- Search Section -->
-                <section class="row mb-4">
-                  <div class="col-md-4 ms-auto">
-                    <form class="position-relative" role="search">
-                      <div class="input-group">
-                        <span class="input-group-text bg-white">
-                          <i class="bi bi-search"></i>
-                        </span>
-                        <input type="text" class="form-control" id="searchAnnouncements"
-                          placeholder="Buscar anuncios..." aria-label="Buscar anuncios"
-                          oninput="showSuggestions(this.value)" autocomplete="off">
-                      </div>
-                      <div id="searchResults" class="position-absolute w-100 mt-1 rounded shadow-sm bg-white"
-                        style="display: none; z-index: 1000; border: 1px solid #dee2e6; max-height: 300px; overflow-y: auto;">
-                        <!-- Los resultados de búsqueda se mostrarán aquí -->
-                      </div>
-                    </form>
+            <!-- Search Section -->
+            <section class="row mb-4">
+              <div class="col-md-4 ms-auto">
+                <form class="position-relative" role="search">
+                  <div class="input-group">
+                    <span class="input-group-text bg-white">
+                      <i class="bi bi-search"></i>
+                    </span>
+                    <input type="text" class="form-control" id="searchAnnouncements"
+                      placeholder="Buscar anuncios..." aria-label="Buscar anuncios"
+                      oninput="showSuggestions(this.value)" autocomplete="off">
                   </div>
-                </section>
+                  <div id="searchResults" class="position-absolute w-100 mt-1 rounded shadow-sm bg-white"
+                    style="display: none; z-index: 1000; border: 1px solid #dee2e6; max-height: 300px; overflow-y: auto;">
+                    <!-- Los resultados de búsqueda se mostrarán aquí -->
+                  </div>
+                </form>
+              </div>
+            </section>
 
-                <!-- Announcements Grid -->
-                <section class="row row-cols-1 row-cols-md-3 g-4">
-                  <!-- Each announcement card wrapped in article tag -->
-                  <article class="col">
-                    <div class="card h-100 border-primary" data-bs-toggle="modal" data-bs-target="#announcementModal1"
-                      style="cursor: pointer;">
-                      <div class="card-header bg-white text-primary">
-                        Los papas de DeadPool
-                      </div>
-                      <div class="card-body">
-                        <div class="text-center mb-3">
-                          <div class="bg-warning p-5 d-flex align-items-center justify-content-center text-center">
-                            <span class="text-muted">Imagen Placeholder</span>
-                          </div>
-                        </div>
-                        <p class="card-text">Anuncio sobre la próxima reunión de propietarios para discutir temas
-                          importantes.</p>
-                      </div>
-                      <div class="card-footer bg-white">
-                        <small class="text-muted">Publicado: 23 de Mayo, 2023</small>
+            <!-- Announcements Grid -->
+            <section class="row row-cols-1 row-cols-md-3 g-4">
+              <!-- Each announcement card wrapped in article tag -->
+              <article class="col">
+                <div class="card h-100 border-primary" data-bs-toggle="modal" data-bs-target="#announcementModal1"
+                  style="cursor: pointer;">
+                  <div class="card-header bg-white text-primary">
+                    Los papas de DeadPool
+                  </div>
+                  <div class="card-body">
+                    <div class="text-center mb-3">
+                      <div class="bg-warning p-5 d-flex align-items-center justify-content-center text-center">
+                        <span class="text-muted">Imagen Placeholder</span>
                       </div>
                     </div>
-                  </article>
-
-                  <!-- Tarjeta 2 -->
-                  <article class="col">
-                    <div class="card h-100 border-success" data-bs-toggle="modal" data-bs-target="#announcementModal2"
-                      style="cursor: pointer;">
-                      <div class="card-header bg-white text-success">
-                        Los programadores felices
-                      </div>
-                      <div class="card-body">
-                        <div class="text-center mb-3">
-                          <div class="bg-info p-5 d-flex align-items-center justify-content-center text-center">
-                            <span class="text-white">Imagen Placeholder</span>
-                          </div>
-                        </div>
-                        <p class="card-text">Celebración del día del programador con descuentos en servicios para
-                          residentes.</p>
-                      </div>
-                      <div class="card-footer bg-white">
-                        <small class="text-muted">Publicado: 15 de Mayo, 2023</small>
-                      </div>
-                    </div>
-                  </article>
-
-                  <!-- Tarjeta 3 -->
-                  <article class="col">
-                    <div class="card h-100 border-danger" data-bs-toggle="modal" data-bs-target="#announcementModal3"
-                      style="cursor: pointer;">
-                      <div class="card-header bg-white text-danger">
-                        Ya tu sabe
-                      </div>
-                      <div class="card-body">
-                        <div class="text-center mb-3">
-                          <div class="bg-secondary p-5 d-flex align-items-center justify-content-center text-center">
-                            <span class="text-white">Imagen Placeholder</span>
-                          </div>
-                        </div>
-                        <p class="card-text">Información importante sobre los horarios de servicio durante el fin de
-                          semana.</p>
-                      </div>
-                      <div class="card-footer bg-white">
-                        <small class="text-muted">Publicado: 10 de Mayo, 2023</small>
-                      </div>
-                    </div>
-                  </article>
-
-                  <!-- Tarjeta 4 -->
-                  <article class="col">
-                    <div class="card h-100 border-dark" data-bs-toggle="modal" data-bs-target="#announcementModal4"
-                      style="cursor: pointer;">
-                      <div class="card-header bg-white text-dark">
-                        Noooooo
-                      </div>
-                      <div class="card-body">
-                        <div class="text-center mb-3">
-                          <div class="bg-danger p-5 d-flex align-items-center justify-content-center text-center">
-                            <span class="text-white">Imagen Placeholder</span>
-                          </div>
-                        </div>
-                        <p class="card-text">Advertencia sobre cortes de agua programados para mantenimiento del
-                          edificio.</p>
-                      </div>
-                      <div class="card-footer bg-white">
-                        <small class="text-muted">Publicado: 5 de Mayo, 2023</small>
-                      </div>
-                    </div>
-                  </article>
-
-                  <!-- Tarjeta 5 -->
-                  <article class="col">
-                    <div class="card h-100 border-info" data-bs-toggle="modal" data-bs-target="#announcementModal5"
-                      style="cursor: pointer;">
-                      <div class="card-header bg-white text-info">
-                        Soy programador
-                      </div>
-                      <div class="card-body">
-                        <div class="text-center mb-3">
-                          <div class="bg-light p-5 d-flex align-items-center justify-content-center text-center">
-                            <span class="text-muted">Imagen Placeholder</span>
-                          </div>
-                        </div>
-                        <p class="card-text">¿Tienes conocimientos de programación? Se necesitan voluntarios para el
-                          comité técnico.</p>
-                      </div>
-                      <div class="card-footer bg-white">
-                        <small class="text-muted">Publicado: 2 de Mayo, 2023</small>
-                      </div>
-                    </div>
-                  </article>
-
-                  <!-- Tarjeta 6 -->
-                  <article class="col">
-                    <div class="card h-100 border-warning" data-bs-toggle="modal" data-bs-target="#announcementModal6"
-                      style="cursor: pointer;">
-                      <div class="card-header bg-white text-warning">
-                        Aprobado pa
-                      </div>
-                      <div class="card-body">
-                        <div class="text-center mb-3">
-                          <div class="bg-success p-5 d-flex align-items-center justify-content-center text-center">
-                            <span class="text-white">Imagen Placeholder</span>
-                          </div>
-                        </div>
-                        <p class="card-text">Aprobado el nuevo reglamento de convivencia. Revisa los cambios
-                          importantes.</p>
-                      </div>
-                      <div class="card-footer bg-white">
-                        <small class="text-muted">Publicado: 1 de Mayo, 2023</small>
-                      </div>
-                    </div>
-                  </article>
-                </section>
-              </section>
-          </main>
-      </div>
-    </div>
-
-    <!-- Modals -->
-    <div role="dialog" class="modal fade" id="announcementModal1" tabindex="-1"
-      aria-labelledby="announcementModalLabel1" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header bg-primary text-white">
-            <h5 class="modal-title" id="announcementModalLabel1">Los papas de DeadPool</h5>
-            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                <div class="bg-warning p-5 d-flex align-items-center justify-content-center text-center">
-                  <span class="text-muted">Imagen Placeholder</span>
+                    <p class="card-text">Anuncio sobre la próxima reunión de propietarios para discutir temas
+                      importantes.</p>
+                  </div>
+                  <div class="card-footer bg-white">
+                    <small class="text-muted">Publicado: 23 de Mayo, 2023</small>
+                  </div>
                 </div>
-              </div>
-              <div class="col-md-6">
-                <h4>Reunión de Propietarios</h4>
-                <p class="text-muted"><small>Publicado: 23 de Mayo, 2023</small></p>
-                <p>Estimados propietarios de Puerta de la Alameda,</p>
-                <p>Les informamos que se llevará a cabo la reunión mensual de propietarios el próximo viernes 26 de mayo
-                  a las 7:00 PM en el salón comunal. Se discutirán temas de suma importancia como:</p>
-                <ul>
-                  <li>Mantenimiento de áreas comunes</li>
-                  <li>Presupuesto para renovaciones</li>
-                  <li>Elección de nuevo comité de convivencia</li>
-                </ul>
-                <p>Su asistencia es fundamental para la toma de decisiones.</p>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn btn-primary">Confirmar asistencia</button>
-          </div>
-        </div>
-      </div>
-    </div>
+              </article>
 
-    <!-- Modal 2 -->
-    <div class="modal fade" id="announcementModal2" tabindex="-1" aria-labelledby="announcementModalLabel2"
-      aria-hidden="true">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header bg-success text-white">
-            <h5 class="modal-title" id="announcementModalLabel2">Los programadores felices</h5>
-            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                <div class="bg-info p-5 d-flex align-items-center justify-content-center text-center">
-                  <span class="text-white">Imagen Placeholder</span>
+              <!-- Tarjeta 2 -->
+              <article class="col">
+                <div class="card h-100 border-success" data-bs-toggle="modal" data-bs-target="#announcementModal2"
+                  style="cursor: pointer;">
+                  <div class="card-header bg-white text-success">
+                    Los programadores felices
+                  </div>
+                  <div class="card-body">
+                    <div class="text-center mb-3">
+                      <div class="bg-info p-5 d-flex align-items-center justify-content-center text-center">
+                        <span class="text-white">Imagen Placeholder</span>
+                      </div>
+                    </div>
+                    <p class="card-text">Celebración del día del programador con descuentos en servicios para
+                      residentes.</p>
+                  </div>
+                  <div class="card-footer bg-white">
+                    <small class="text-muted">Publicado: 15 de Mayo, 2023</small>
+                  </div>
                 </div>
-              </div>
-              <div class="col-md-6">
-                <h4>¡Feliz Día del Programador!</h4>
-                <p class="text-muted"><small>Publicado: 15 de Mayo, 2023</small></p>
-                <p>Celebramos el Día del Programador con descuentos especiales en servicios para nuestros residentes que
-                  trabajen en el campo de la tecnología.</p>
-                <p>Beneficios:</p>
-                <ul>
-                  <li>15% de descuento en cuota de administración por un mes</li>
-                  <li>Acceso gratuito a la sala de coworking durante todo el mes</li>
-                  <li>Prioridad en reservas de salón comunal para eventos tech</li>
-                </ul>
-                <p>¡Presenta tu credencial o certificación para aplicar!</p>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn btn-success">Solicitar beneficio</button>
-          </div>
-        </div>
-      </div>
-    </div>
+              </article>
 
-    <!-- Modal 3 -->
-    <div class="modal fade" id="announcementModal3" tabindex="-1" aria-labelledby="announcementModalLabel3"
-      aria-hidden="true">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header bg-danger text-white">
-            <h5 class="modal-title" id="announcementModalLabel3">Ya tu sabe</h5>
-            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <!-- Contenido del modal 3 -->
-            <div class="text-center mb-4">
-              <div class="bg-secondary p-5 d-flex align-items-center justify-content-center">
-                <span class="text-white">Imagen Placeholder</span>
-              </div>
-            </div>
-            <h4>Horarios de servicio - Fin de semana</h4>
-            <p class="text-muted"><small>Publicado: 10 de Mayo, 2023</small></p>
-            <p>Informamos a todos los residentes sobre los horarios especiales de servicios durante el próximo fin de
-              semana festivo:</p>
-            <ul>
-              <li><strong>Portería:</strong> 24 horas</li>
-              <li><strong>Administración:</strong> Sábado 8am-1pm, Domingo cerrado</li>
-              <li><strong>Gimnasio:</strong> Sábado y Domingo 6am-10pm</li>
-              <li><strong>Piscina:</strong> Sábado y Domingo 9am-6pm</li>
-            </ul>
-            <p>Agradecemos su comprensión y les deseamos un feliz fin de semana.</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal 4 -->
-    <div class="modal fade" id="announcementModal4" tabindex="-1" aria-labelledby="announcementModalLabel4"
-      aria-hidden="true">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header bg-dark text-white">
-            <h5 class="modal-title" id="announcementModalLabel4">Noooooo</h5>
-            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <!-- Contenido del modal 4 -->
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                <div class="bg-danger p-5 d-flex align-items-center justify-content-center text-center">
-                  <span class="text-white">Imagen Placeholder</span>
+              <!-- Tarjeta 3 -->
+              <article class="col">
+                <div class="card h-100 border-danger" data-bs-toggle="modal" data-bs-target="#announcementModal3"
+                  style="cursor: pointer;">
+                  <div class="card-header bg-white text-danger">
+                    Ya tu sabe
+                  </div>
+                  <div class="card-body">
+                    <div class="text-center mb-3">
+                      <div class="bg-secondary p-5 d-flex align-items-center justify-content-center text-center">
+                        <span class="text-white">Imagen Placeholder</span>
+                      </div>
+                    </div>
+                    <p class="card-text">Información importante sobre los horarios de servicio durante el fin de
+                      semana.</p>
+                  </div>
+                  <div class="card-footer bg-white">
+                    <small class="text-muted">Publicado: 10 de Mayo, 2023</small>
+                  </div>
                 </div>
-              </div>
-              <div class="col-md-6">
-                <h4>Aviso de Corte de Agua</h4>
-                <p class="text-muted"><small>Publicado: 5 de Mayo, 2023</small></p>
-                <p><strong>¡IMPORTANTE!</strong></p>
-                <p>Se informa a todos los residentes que el día martes 9 de mayo se realizará un corte de agua
-                  programado por mantenimiento en el sistema hidráulico del edificio.</p>
-                <p><strong>Horario del corte:</strong> 9:00 AM a 5:00 PM</p>
-                <p>Recomendaciones:</p>
-                <ul>
-                  <li>Almacenar agua suficiente para sus necesidades</li>
-                  <li>Evitar usar electrodomésticos que requieran agua</li>
-                  <li>Reprogramar cualquier actividad que necesite suministro de agua</li>
-                </ul>
-                <p>Agradecemos su comprensión. Este mantenimiento es necesario para mejorar el servicio.</p>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn btn-danger">Solicitar más información</button>
-          </div>
-        </div>
-      </div>
-    </div>
+              </article>
 
-    <!-- Modal 5 -->
-    <div class="modal fade" id="announcementModal5" tabindex="-1" aria-labelledby="announcementModalLabel5"
-      aria-hidden="true">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header bg-info text-white">
-            <h5 class="modal-title" id="announcementModalLabel5">Soy programador</h5>
-            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <!-- Contenido del modal 5 -->
-            <div class="text-center mb-4">
-              <div class="bg-light p-5 d-flex align-items-center justify-content-center">
+              <!-- Tarjeta 4 -->
+              <article class="col">
+                <div class="card h-100 border-dark" data-bs-toggle="modal" data-bs-target="#announcementModal4"
+                  style="cursor: pointer;">
+                  <div class="card-header bg-white text-dark">
+                    Noooooo
+                  </div>
+                  <div class="card-body">
+                    <div class="text-center mb-3">
+                      <div class="bg-danger p-5 d-flex align-items-center justify-content-center text-center">
+                        <span class="text-white">Imagen Placeholder</span>
+                      </div>
+                    </div>
+                    <p class="card-text">Advertencia sobre cortes de agua programados para mantenimiento del
+                      edificio.</p>
+                  </div>
+                  <div class="card-footer bg-white">
+                    <small class="text-muted">Publicado: 5 de Mayo, 2023</small>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Tarjeta 5 -->
+              <article class="col">
+                <div class="card h-100 border-info" data-bs-toggle="modal" data-bs-target="#announcementModal5"
+                  style="cursor: pointer;">
+                  <div class="card-header bg-white text-info">
+                    Soy programador
+                  </div>
+                  <div class="card-body">
+                    <div class="text-center mb-3">
+                      <div class="bg-light p-5 d-flex align-items-center justify-content-center text-center">
+                        <span class="text-muted">Imagen Placeholder</span>
+                      </div>
+                    </div>
+                    <p class="card-text">¿Tienes conocimientos de programación? Se necesitan voluntarios para el
+                      comité técnico.</p>
+                  </div>
+                  <div class="card-footer bg-white">
+                    <small class="text-muted">Publicado: 2 de Mayo, 2023</small>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Tarjeta 6 -->
+              <article class="col">
+                <div class="card h-100 border-warning" data-bs-toggle="modal" data-bs-target="#announcementModal6"
+                  style="cursor: pointer;">
+                  <div class="card-header bg-white text-warning">
+                    Aprobado pa
+                  </div>
+                  <div class="card-body">
+                    <div class="text-center mb-3">
+                      <div class="bg-success p-5 d-flex align-items-center justify-content-center text-center">
+                        <span class="text-white">Imagen Placeholder</span>
+                      </div>
+                    </div>
+                    <p class="card-text">Aprobado el nuevo reglamento de convivencia. Revisa los cambios
+                      importantes.</p>
+                  </div>
+                  <div class="card-footer bg-white">
+                    <small class="text-muted">Publicado: 1 de Mayo, 2023</small>
+                  </div>
+                </div>
+              </article>
+            </section>
+          </section>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Modals -->
+  <div role="dialog" class="modal fade" id="announcementModal1" tabindex="-1"
+    aria-labelledby="announcementModalLabel1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title" id="announcementModalLabel1">Los papas de DeadPool</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <div class="bg-warning p-5 d-flex align-items-center justify-content-center text-center">
                 <span class="text-muted">Imagen Placeholder</span>
               </div>
             </div>
-            <h4>Se buscan voluntarios para comité técnico</h4>
-            <p class="text-muted"><small>Publicado: 2 de Mayo, 2023</small></p>
-            <p>¿Tienes conocimientos en programación, redes o informática?</p>
-            <p>El conjunto residencial está formando un comité técnico para:</p>
-            <ul>
-              <li>Mejorar nuestro sistema de vigilancia</li>
-              <li>Implementar una app para la comunidad</li>
-              <li>Optimizar la página web del conjunto</li>
-              <li>Asesorar en temas de tecnología</li>
-            </ul>
-            <p>Los interesados pueden inscribirse en la administración. El trabajo es voluntario, pero se otorgará un
-              reconocimiento en las cuotas de administración.</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn btn-info text-white">Inscribirme</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal 6 -->
-    <div class="modal fade" id="announcementModal6" tabindex="-1" aria-labelledby="announcementModalLabel6"
-      aria-hidden="true">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header bg-warning text-dark">
-            <h5 class="modal-title" id="announcementModalLabel6">Aprobado pa</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <!-- Contenido del modal 6 -->
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                <div class="bg-success p-5 d-flex align-items-center justify-content-center text-center">
-                  <span class="text-white">Imagen Placeholder</span>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <h4>Nuevo Reglamento de Convivencia</h4>
-                <p class="text-muted"><small>Publicado: 1 de Mayo, 2023</small></p>
-                <p>Nos complace informar que la asamblea de copropietarios ha aprobado el nuevo reglamento de
-                  convivencia para nuestro conjunto residencial.</p>
-                <p>Principales cambios:</p>
-                <ul>
-                  <li>Horarios ampliados para uso de zonas comunes</li>
-                  <li>Nuevas disposiciones para tenencia de mascotas</li>
-                  <li>Actualización de sanciones por incumplimiento</li>
-                  <li>Proceso simplificado para solicitudes y reclamos</li>
-                </ul>
-                <p>El nuevo reglamento entrará en vigor a partir del 15 de mayo de 2023.</p>
-              </div>
+            <div class="col-md-6">
+              <h4>Reunión de Propietarios</h4>
+              <p class="text-muted"><small>Publicado: 23 de Mayo, 2023</small></p>
+              <p>Estimados propietarios de Puerta de la Alameda,</p>
+              <p>Les informamos que se llevará a cabo la reunión mensual de propietarios el próximo viernes 26 de mayo
+                a las 7:00 PM en el salón comunal. Se discutirán temas de suma importancia como:</p>
+              <ul>
+                <li>Mantenimiento de áreas comunes</li>
+                <li>Presupuesto para renovaciones</li>
+                <li>Elección de nuevo comité de convivencia</li>
+              </ul>
+              <p>Su asistencia es fundamental para la toma de decisiones.</p>
             </div>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn btn-warning">Descargar reglamento</button>
-          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary">Confirmar asistencia</button>
         </div>
       </div>
     </div>
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../../../scripts/components/owner.js"></script>
-    <!-- Toggle Script -->
-    <script src="../../scripts/components/navbarToggle.js"></script>
+  </div>
+
+  <!-- Modal 2 -->
+  <div class="modal fade" id="announcementModal2" tabindex="-1" aria-labelledby="announcementModalLabel2"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-success text-white">
+          <h5 class="modal-title" id="announcementModalLabel2">Los programadores felices</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <div class="bg-info p-5 d-flex align-items-center justify-content-center text-center">
+                <span class="text-white">Imagen Placeholder</span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <h4>¡Feliz Día del Programador!</h4>
+              <p class="text-muted"><small>Publicado: 15 de Mayo, 2023</small></p>
+              <p>Celebramos el Día del Programador con descuentos especiales en servicios para nuestros residentes que
+                trabajen en el campo de la tecnología.</p>
+              <p>Beneficios:</p>
+              <ul>
+                <li>15% de descuento en cuota de administración por un mes</li>
+                <li>Acceso gratuito a la sala de coworking durante todo el mes</li>
+                <li>Prioridad en reservas de salón comunal para eventos tech</li>
+              </ul>
+              <p>¡Presenta tu credencial o certificación para aplicar!</p>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-success">Solicitar beneficio</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 3 -->
+  <div class="modal fade" id="announcementModal3" tabindex="-1" aria-labelledby="announcementModalLabel3"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-danger text-white">
+          <h5 class="modal-title" id="announcementModalLabel3">Ya tu sabe</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Contenido del modal 3 -->
+          <div class="text-center mb-4">
+            <div class="bg-secondary p-5 d-flex align-items-center justify-content-center">
+              <span class="text-white">Imagen Placeholder</span>
+            </div>
+          </div>
+          <h4>Horarios de servicio - Fin de semana</h4>
+          <p class="text-muted"><small>Publicado: 10 de Mayo, 2023</small></p>
+          <p>Informamos a todos los residentes sobre los horarios especiales de servicios durante el próximo fin de
+            semana festivo:</p>
+          <ul>
+            <li><strong>Portería:</strong> 24 horas</li>
+            <li><strong>Administración:</strong> Sábado 8am-1pm, Domingo cerrado</li>
+            <li><strong>Gimnasio:</strong> Sábado y Domingo 6am-10pm</li>
+            <li><strong>Piscina:</strong> Sábado y Domingo 9am-6pm</li>
+          </ul>
+          <p>Agradecemos su comprensión y les deseamos un feliz fin de semana.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 4 -->
+  <div class="modal fade" id="announcementModal4" tabindex="-1" aria-labelledby="announcementModalLabel4"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-dark text-white">
+          <h5 class="modal-title" id="announcementModalLabel4">Noooooo</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Contenido del modal 4 -->
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <div class="bg-danger p-5 d-flex align-items-center justify-content-center text-center">
+                <span class="text-white">Imagen Placeholder</span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <h4>Aviso de Corte de Agua</h4>
+              <p class="text-muted"><small>Publicado: 5 de Mayo, 2023</small></p>
+              <p><strong>¡IMPORTANTE!</strong></p>
+              <p>Se informa a todos los residentes que el día martes 9 de mayo se realizará un corte de agua
+                programado por mantenimiento en el sistema hidráulico del edificio.</p>
+              <p><strong>Horario del corte:</strong> 9:00 AM a 5:00 PM</p>
+              <p>Recomendaciones:</p>
+              <ul>
+                <li>Almacenar agua suficiente para sus necesidades</li>
+                <li>Evitar usar electrodomésticos que requieran agua</li>
+                <li>Reprogramar cualquier actividad que necesite suministro de agua</li>
+              </ul>
+              <p>Agradecemos su comprensión. Este mantenimiento es necesario para mejorar el servicio.</p>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-danger">Solicitar más información</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 5 -->
+  <div class="modal fade" id="announcementModal5" tabindex="-1" aria-labelledby="announcementModalLabel5"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-info text-white">
+          <h5 class="modal-title" id="announcementModalLabel5">Soy programador</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Contenido del modal 5 -->
+          <div class="text-center mb-4">
+            <div class="bg-light p-5 d-flex align-items-center justify-content-center">
+              <span class="text-muted">Imagen Placeholder</span>
+            </div>
+          </div>
+          <h4>Se buscan voluntarios para comité técnico</h4>
+          <p class="text-muted"><small>Publicado: 2 de Mayo, 2023</small></p>
+          <p>¿Tienes conocimientos en programación, redes o informática?</p>
+          <p>El conjunto residencial está formando un comité técnico para:</p>
+          <ul>
+            <li>Mejorar nuestro sistema de vigilancia</li>
+            <li>Implementar una app para la comunidad</li>
+            <li>Optimizar la página web del conjunto</li>
+            <li>Asesorar en temas de tecnología</li>
+          </ul>
+          <p>Los interesados pueden inscribirse en la administración. El trabajo es voluntario, pero se otorgará un
+            reconocimiento en las cuotas de administración.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-info text-white">Inscribirme</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 6 -->
+  <div class="modal fade" id="announcementModal6" tabindex="-1" aria-labelledby="announcementModalLabel6"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-warning text-dark">
+          <h5 class="modal-title" id="announcementModalLabel6">Aprobado pa</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Contenido del modal 6 -->
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <div class="bg-success p-5 d-flex align-items-center justify-content-center text-center">
+                <span class="text-white">Imagen Placeholder</span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <h4>Nuevo Reglamento de Convivencia</h4>
+              <p class="text-muted"><small>Publicado: 1 de Mayo, 2023</small></p>
+              <p>Nos complace informar que la asamblea de copropietarios ha aprobado el nuevo reglamento de
+                convivencia para nuestro conjunto residencial.</p>
+              <p>Principales cambios:</p>
+              <ul>
+                <li>Horarios ampliados para uso de zonas comunes</li>
+                <li>Nuevas disposiciones para tenencia de mascotas</li>
+                <li>Actualización de sanciones por incumplimiento</li>
+                <li>Proceso simplificado para solicitudes y reclamos</li>
+              </ul>
+              <p>El nuevo reglamento entrará en vigor a partir del 15 de mayo de 2023.</p>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-warning">Descargar reglamento</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../../../scripts/components/owner.js"></script>
+  <!-- Toggle Script -->
+  <script src="../../scripts/components/navbarToggle.js"></script>
 </body>
 
 </html>
