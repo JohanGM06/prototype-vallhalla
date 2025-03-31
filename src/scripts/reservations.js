@@ -47,6 +47,15 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // Initialize Flatpickr for create modal
+  flatpickr("#createFecha", {
+    locale: 'es',
+    minDate: 'today',
+    maxDate: new Date().fp_incr(90),
+    dateFormat: "Y-m-d",
+    disableMobile: "true"
+  });
+
   // Handle form submission
   submitBtn.addEventListener("click", function () {
     if (!form.checkValidity()) {
@@ -92,9 +101,18 @@ document.addEventListener("DOMContentLoaded", function () {
         form.reset();
         form.classList.remove("was-validated");
 
-        // Close modal properly
+        // Close modal and remove backdrop
         const modalInstance = bootstrap.Modal.getInstance(createModal);
         modalInstance.hide();
+        
+        // Remove modal backdrop manually if it persists
+        const modalBackdrops = document.getElementsByClassName('modal-backdrop');
+        while(modalBackdrops.length > 0) {
+          modalBackdrops[0].remove();
+        }
+        
+        // Remove modal-open class from body
+        document.body.classList.remove('modal-open');
 
         // Update reservations list
         updateReservationsList();
@@ -141,6 +159,16 @@ class ReservationManager {
     ];
 
     this.init();
+
+    // Add event listener for modal events
+    const createModal = document.getElementById('createReservationModal');
+    createModal.addEventListener('hidden.bs.modal', () => {
+      this.initializeTooltips(); // Reinitialize tooltips when modal is hidden
+    });
+
+    createModal.addEventListener('shown.bs.modal', () => {
+      this.initializeTooltips(); // Reinitialize tooltips when modal is shown
+    });
   }
 
   init() {
