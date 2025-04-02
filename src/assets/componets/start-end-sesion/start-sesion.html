@@ -227,6 +227,34 @@
             border-color: var(--accent-color);
             box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
         }
+
+        /* Estilos para efectos hover en iconos */
+        .nav-link i {
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover i {
+            transform: scale(1.2);
+            color: var(--accent-color);
+        }
+
+        .btn-link i {
+            transition: all 0.3s ease;
+        }
+
+        .btn-link:hover i {
+            transform: scale(1.2);
+            color: var(--accent-color);
+        }
+
+        .dropdown-toggle i {
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-toggle:hover i {
+            transform: scale(1.2);
+            color: var(--accent-color);
+        }
     </style>
 </head>
 <body>
@@ -369,10 +397,18 @@
             // Mostrar modal de carga
             loadingModal.show();
 
-            // Simular delay de red y redireccionar
+            // Obtener los valores del formulario
+            const email = emailInput.value;
+            const password = passwordInput.value;
+
+            // Simular delay de red y redireccionar según las credenciales
             setTimeout(() => {
                 loadingModal.hide();
-                window.location.href = '../../../pages/admin/dashboard.html';
+                if (email === 'soyeladmin123@gmail.com' && password === 'S0y4dm1n@') {
+                    window.location.href = '../../../pages/admin/admin_dashboard.html';
+                } else {
+                    window.location.href = '../../../pages/owner/owner_dashboard.html';
+                }
             }, 1500);
         });
     </script>

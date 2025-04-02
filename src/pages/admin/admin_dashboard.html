@@ -19,6 +19,55 @@
         #sidebar.collapsed {
             margin-left: -280px;
         }
+
+        /* Navbar hover effects */
+        .navbar .btn:hover {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+
+        .navbar .dropdown-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        /* Sidebar hover effects */
+        .nav-link:hover {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            transform: translateX(5px);
+            transition: transform 0.3s ease;
+        }
+
+        /* Smooth transition for all hover effects */
+        .nav-link, .navbar .btn {
+            transition: all 0.3s ease;
+        }
+
+        /* Efectos para los botones de acción en el navbar */
+        .btn-link:hover i {
+            transform: scale(1.2);
+            color: #3498db;
+        }
+
+        .dropdown-toggle:hover i {
+            transform: scale(1.2);
+            color: #3498db;
+        }
+
+        /* Mantener los efectos existentes para las tarjetas del dashboard */
+        .card {
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .card:hover i {
+            transform: scale(1.2);
+            color: #3498db;
+        }
     </style>
 </head>
 
@@ -28,13 +77,13 @@
             <!-- Sidebar -->
             <nav id="sidebar" class="col-auto px-0 bg-white border-end" style="width: 280px;">
                 <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 min-vh-100">
-                    <a href="/"
+                    <a href="./admin_dashboard.html"
                         class="d-flex align-items-center pb-3 mb-md-1 mt-md-3 me-md-auto text-dark text-decoration-none">
                         <span class="fs-5 fw-bolder">VALHALLA</span>
                     </a>
                     <ul class="nav flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start w-100">
                         <li class="nav-item w-100">
-                            <a href="./dashboard.html" class="nav-link text-dark px-0">
+                            <a href="../dashboard.html" class="nav-link text-dark px-0">
                                 <i class="bi bi-house"></i> <span class="ms-2">INICIO</span>
                             </a>
                         </li>
@@ -317,7 +366,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <a href="home-page.html" class="btn btn-primary">Cerrar Sesión</a>
+                    <a href="../home-page.html" class="btn btn-primary">Cerrar Sesión</a>
                 </div>
             </div>
         </div>
