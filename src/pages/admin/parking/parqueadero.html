@@ -1,413 +1,1183 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VALHALLA - Sistema de Administración de Propiedades</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO Meta Tags -->
+    <meta
+      name="description"
+      content="Sistema de gestión de parqueaderos Valhalla - Administración eficiente de espacios de estacionamiento para propiedades residenciales"
+    />
+    <meta
+      name="keywords"
+      content="parqueadero, gestión parqueadero, administración parqueadero, parking management"
+    />
+    <meta name="author" content="Valhalla" />
+    <meta name="robots" content="index, follow" />
+
+    <title>VALHALLA - Gestión de Parqueaderos</title>
+
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-    
-    <!-- Minimal required CSS for toggle functionality -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"
+    />
+
     <style>
-        #sidebar {
-            transition: margin 0.3s ease-in-out;
-        }
-        #sidebar.collapsed {
-            margin-left: -280px;
-        }
+      .fixed-navbar {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: white;
+      }
+      .badge.bg-success { background-color: #198754 !important; }
+      .badge.bg-danger { background-color: #dc3545 !important; }
+      .badge.bg-warning { background-color: #ffc107 !important; }
+      
+      .alert {
+        z-index: 1051;
+      }
     </style>
-</head>
-<body>
+    
+  </head>
+  <body>
     <div class="container-fluid">
-        <div class="row flex-nowrap">
-            <!-- Sidebar -->
-            <div id="sidebar" class="col-auto px-0 bg-white border-end" style="width: 280px;">
-                <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 min-vh-100">
-                    <a href="/" class="d-flex align-items-center pb-3 mb-md-1 mt-md-3 me-md-auto text-dark text-decoration-none">
-                        <span class="fs-5 fw-bolder">VALHALLA</span>
-                    </a>
-                    <ul class="nav flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start w-100">
-                        <li class="nav-item w-100">
-                            <a href="#" class="nav-link text-dark px-0">
-                                <i class="bi bi-house"></i> <span class="ms-2">INICIO</span>
-                            </a>
-                        </li>
-                        <li class="nav-item w-100">
-                            <a href="#" class="nav-link text-dark px-0">
-                                <i class="bi bi-people"></i> <span class="ms-2">PROPIETARIOS</span>
-                            </a>
-                        </li>
-                        <li class="nav-item w-100">
-                            <a href="#" class="nav-link text-dark px-0">
-                                <i class="bi bi-person-check"></i> <span class="ms-2">ARRENDATARIOS</span>
-                            </a>
-                        </li>
-                        <li class="nav-item w-100">
-                            <a href="/src/pages/admin/guard/vigilante.html" class="nav-link text-dark px-0">
-                                <i class="bi bi-shield"></i> <span class="ms-2">VIGILANTE</span>
-                            </a>
-                        </li>
-                        <li class="nav-item w-100">
-                            <a href="#" class="nav-link text-dark px-0">
-                                <i class="bi bi-house-door"></i> <span class="ms-2">APARTAMENTOS</span>
-                            </a>
-                        </li>
-                        <li class="nav-item w-100">
-                            <a href="#" class="nav-link text-dark px-0">
-                                <i class="bi bi-credit-card"></i> <span class="ms-2">PAGOS</span>
-                            </a>
-                        </li>
-                        <li class="nav-item w-100">
-                            <a href="/src/pages/admin/surveys/encuesta.html" class="nav-link text-dark px-0">
-                                <i class="bi bi-clipboard-data"></i> <span class="ms-2">ENCUESTAS</span>
-                            </a>
-                        </li>
-                        <li class="nav-item w-100">
-                            <a href="#" class="nav-link text-dark px-0">
-                                <i class="bi bi-calendar-check"></i> <span class="ms-2">RESERVAS</span>
-                            </a>
-                        </li>
-                        <li class="nav-item w-100">
-                            <a href="#" class="nav-link text-dark px-0">
-                                <i class="bi bi-question-circle"></i> <span class="ms-2">PQRS</span>
-                            </a>
-                        </li>
-                        <li class="nav-item w-100">
-                            <a href="#" class="nav-link text-dark px-0">
-                                <i class="bi bi-bell"></i> <span class="ms-2">NOTIFICACIONES</span>
-                            </a>
-                        </li>
-                        <li class="nav-item w-100">
-                            <a href="/src/pages/admin/parking/parqueadero.html" class="nav-link text-dark px-0 active bg-light">
-                                <i class="bi bi-p-square"></i> <span class="ms-2">PARQUEADERO</span>
-                            </a>
-                        </li>
-                        <li class="nav-item w-100">
-                            <a href="#" class="nav-link text-dark px-0">
-                                <i class="bi bi-heart"></i> <span class="ms-2">MASCOTA</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Main Content -->
-            <div class="col p-0">
-                <!-- Topbar -->
-                <nav class="navbar navbar-expand-lg bg-white border-bottom px-3">
-                    <div class="container-fluid">
-                        <div class="d-flex align-items-center">
-                            <button class="btn btn-link text-dark px-0 me-3" id="sidebarToggle">
-                                <i class="bi bi-list fs-4"></i>
-                            </button>
-                            <span class="navbar-text fs-5">BIENVENIDO ADMINISTRADOR</span>
-                        </div>
-                        
-                        <div class="d-flex align-items-center ms-auto">
-                            <div class="input-group me-3">
-                                <span class="input-group-text bg-white border-end-0">
-                                    <i class="bi bi-search"></i>
-                                </span>
-                                <input type="text" class="form-control border-start-0" placeholder="Search">
-                            </div>
-                            
-                            <button class="btn btn-link text-dark">
-                                <i class="bi bi-bell fs-5"></i>
-                            </button>
-                            <button class="btn btn-link text-dark">
-                                <i class="bi bi-envelope fs-5"></i>
-                            </button>
-                            <button class="btn btn-link text-dark">
-                                <i class="bi bi-escape fs-5"></i>
-                            </button>
-                        </div>
-                    </div>
-                </nav>
-
-                <!-- Main content area -->
-                <div class="container-fluid p-4">
-                    <!-- Parking Management Content -->
-                    <div class="row mb-4">
-                        <div class="col-12">
-                            <h2>PARQUEADERO</h2>
-                        </div>
-                    </div>
-                    
-                    <!-- Action Buttons -->
-                    <div class="row mb-4">
-                        <div class="col-12 d-flex gap-2">
-                            <button class="btn btn-outline-dark">
-                                <i class="bi bi-plus"></i> Añadir parqueadero
-                            </button>
-                            <button class="btn btn-outline-dark">
-                                <i class="bi bi-plus"></i> Asignar parqueadero a visitante
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <!-- Search and Filters -->
-                    <div class="row mb-4">
-                        <div class="col-lg-4 col-md-6 mb-3 mb-md-0">
-                            <div class="input-group">
-                                <span class="input-group-text bg-white border-end-0">
-                                    <i class="bi bi-search"></i>
-                                </span>
-                                <input type="text" class="form-control border-start-0" placeholder="Buscar parqueadero...">
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="dropdown">
-                                <button class="btn btn-outline-secondary dropdown-toggle w-100 d-flex align-items-center justify-content-between" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <span>Seleccione</span>
-                                </button>
-                                <ul class="dropdown-menu w-100">
-                                    <li><a class="dropdown-item" href="#">Ocupado</a></li>
-                                    <li><a class="dropdown-item" href="#">Disponible</a></li>
-                                    <li><a class="dropdown-item" href="#">Arrendado</a></li>
-                                    <li><a class="dropdown-item" href="#">Propio</a></li>
-                                    <li><a class="dropdown-item" href="#">Visitante</a></li>
-                                    <li><a class="dropdown-item" href="#">Deshabilitado</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 d-flex align-items-center mt-3 mt-lg-0">
-                            <div class="d-flex align-items-center me-4">
-                                <div class="rounded-circle bg-success me-2" style="width: 15px; height: 15px;"></div>
-                                <span>Disponible</span>
-                            </div>
-                            <div class="d-flex align-items-center me-4">
-                                <div class="rounded-circle bg-danger me-2" style="width: 15px; height: 15px;"></div>
-                                <span>Ocupado</span>
-                            </div>
-                            <div class="d-flex align-items-center">
-                                <div class="rounded-circle bg-secondary me-2" style="width: 15px; height: 15px;"></div>
-                                <span>Deshabilitado</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Parking Spots -->
-                    <div class="row">
-                        <!-- Parking 01 -->
-                        <div class="col-lg-3 col-md-6 mb-4">
-                            <div class="card border">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between mb-3">
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" role="switch" id="parkingSwitch1" checked>
-                                            <label class="form-check-label" for="parkingSwitch1"></label>
-                                        </div>
-                                        <div class="rounded-circle bg-success" style="width: 20px; height: 20px;"></div>
-                                    </div>
-                                    <div class="text-center mb-3">
-                                        <i class="bi bi-car-front display-4"></i>
-                                    </div>
-                                    <h5 class="card-title text-center">Parqueadero 01</h5>
-                                    <div class="d-flex justify-content-center gap-2 mt-3">
-                                        <a href="/src/pages/admin/parking/parqueadero.html" class="btn btn-sm btn-outline-dark">
-                                            <i class="bi bi-eye"></i>
-                                        </a>
-                                        <a href="/src/pages/admin/parking/editarParqueadero.html" class="btn btn-sm btn-outline-dark">
-                                            <i class="bi bi-pencil"></i>
-                                        </a>
-                                        <button class="btn btn-sm btn-outline-dark">
-                                            <i class="bi bi-trash"></i>
-                                        </button>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Parking 02 -->
-                        <div class="col-lg-3 col-md-6 mb-4">
-                            <div class="card border">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between mb-3">
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" role="switch" id="parkingSwitch2" checked>
-                                            <label class="form-check-label" for="parkingSwitch2"></label>
-                                        </div>
-                                        <div class="rounded-circle bg-secondary" style="width: 20px; height: 20px;"></div>
-                                    </div>
-                                    <div class="text-center mb-3">
-                                        <i class="bi bi-car-front display-4"></i>
-                                    </div>
-                                    <h5 class="card-title text-center">Parqueadero 02</h5>
-                                    <div class="d-flex justify-content-center gap-2 mt-3">
-                                        <a href="/src/pages/admin/parking/parqueadero.html" class="btn btn-sm btn-outline-dark">
-                                            <i class="bi bi-eye"></i>
-                                        </a>
-                                        <a href="/src/pages/admin/parking/editarParqueadero.html" class="btn btn-sm btn-outline-dark">
-                                            <i class="bi bi-pencil"></i>
-                                        </a>
-                                        <button class="btn btn-sm btn-outline-dark">
-                                            <i class="bi bi-trash"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Parking 03 -->
-                        <div class="col-lg-3 col-md-6 mb-4">
-                            <div class="card border">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between mb-3">
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" role="switch" id="parkingSwitch3" checked>
-                                            <label class="form-check-label" for="parkingSwitch3"></label>
-                                        </div>
-                                        <div class="rounded-circle bg-danger" style="width: 20px; height: 20px;"></div>
-                                    </div>
-                                    <div class="text-center mb-3">
-                                        <i class="bi bi-car-front display-4"></i>
-                                    </div>
-                                    <h5 class="card-title text-center">Parqueadero 03</h5>
-                                    <div class="d-flex justify-content-center gap-2 mt-3">
-                                        <a href="/src/pages/admin/parking/parqueadero.html" class="btn btn-sm btn-outline-dark">
-                                            <i class="bi bi-eye"></i>
-                                        </a>
-                                        <a href="/src/pages/admin/parking/editarParqueadero.html" class="btn btn-sm btn-outline-dark">
-                                            <i class="bi bi-pencil"></i>
-                                        </a>
-                                        <button class="btn btn-sm btn-outline-dark">
-                                            <i class="bi bi-trash"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Parking 04 -->
-                        <div class="col-lg-3 col-md-6 mb-4">
-                            <div class="card border">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between mb-3">
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" role="switch" id="parkingSwitch4" checked>
-                                            <label class="form-check-label" for="parkingSwitch4"></label>
-                                        </div>
-                                        <div class="rounded-circle bg-success" style="width: 20px; height: 20px;"></div>
-                                    </div>
-                                    <div class="text-center mb-3">
-                                        <i class="bi bi-car-front display-4"></i>
-                                    </div>
-                                    <h5 class="card-title text-center">Parqueadero 04</h5>
-                                    <div class="d-flex justify-content-center gap-2 mt-3">
-                                        <a href="/src/pages/admin/parking/parqueadero.html" class="btn btn-sm btn-outline-dark">
-                                            <i class="bi bi-eye"></i>
-                                        </a>
-                                        <a href="/src/pages/admin/parking/editarParqueadero.html" class="btn btn-sm btn-outline-dark">
-                                            <i class="bi bi-pencil"></i>
-                                        </a>
-                                        <button class="btn btn-sm btn-outline-dark">
-                                            <i class="bi bi-trash"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div class="row flex-nowrap">
+        <!-- Sidebar -->
+        <div
+          id="sidebar"
+          class="col-auto px-0 bg-white border-end"
+          style="width: 280px"
+        >
+          <div
+            class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 min-vh-100"
+          >
+            <a
+              href="/"
+              class="d-flex align-items-center pb-3 mb-md-1 mt-md-3 me-md-auto text-dark text-decoration-none"
+            >
+              <span class="fs-5 fw-bolder">VALHALLA</span>
+            </a>
+            <ul
+              class="nav flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start w-100"
+            >
+              <li class="nav-item w-100">
+                <a href="#" class="nav-link text-dark px-0">
+                  <i class="bi bi-house"></i> <span class="ms-2">INICIO</span>
+                </a>
+              </li>
+              <li class="nav-item w-100">
+                <a href="#" class="nav-link text-dark px-0">
+                  <i class="bi bi-people"></i>
+                  <span class="ms-2">PROPIETARIOS</span>
+                </a>
+              </li>
+              <li class="nav-item w-100">
+                <a href="#" class="nav-link text-dark px-0">
+                  <i class="bi bi-person-check"></i>
+                  <span class="ms-2">ARRENDATARIOS</span>
+                </a>
+              </li>
+              <li class="nav-item w-100">
+                <a
+                  href="/src/pages/admin/guard/vigilante.html"
+                  class="nav-link text-dark px-0"
+                >
+                  <i class="bi bi-shield"></i>
+                  <span class="ms-2">VIGILANTE</span>
+                </a>
+              </li>
+              <li class="nav-item w-100">
+                <a href="#" class="nav-link text-dark px-0">
+                  <i class="bi bi-house-door"></i>
+                  <span class="ms-2">APARTAMENTOS</span>
+                </a>
+              </li>
+              <li class="nav-item w-100">
+                <a href="#" class="nav-link text-dark px-0">
+                  <i class="bi bi-credit-card"></i>
+                  <span class="ms-2">PAGOS</span>
+                </a>
+              </li>
+              <li class="nav-item w-100">
+                <a
+                  href="/src/pages/admin/surveys/encuesta.html"
+                  class="nav-link text-dark px-0"
+                >
+                  <i class="bi bi-clipboard-data"></i>
+                  <span class="ms-2">ENCUESTAS</span>
+                </a>
+              </li>
+              <li class="nav-item w-100">
+                <a href="#" class="nav-link text-dark px-0">
+                  <i class="bi bi-calendar-check"></i>
+                  <span class="ms-2">RESERVAS</span>
+                </a>
+              </li>
+              <li class="nav-item w-100">
+                <a href="#" class="nav-link text-dark px-0">
+                  <i class="bi bi-question-circle"></i>
+                  <span class="ms-2">PQRS</span>
+                </a>
+              </li>
+              <li class="nav-item w-100">
+                <a href="#" class="nav-link text-dark px-0">
+                  <i class="bi bi-bell"></i>
+                  <span class="ms-2">NOTIFICACIONES</span>
+                </a>
+              </li>
+              <li class="nav-item w-100">
+                <a
+                  href="/src/pages/admin/parking/parqueadero.html"
+                  class="nav-link text-dark px-0 active"
+                >
+                  <i class="bi bi-p-square"></i>
+                  <span class="ms-2">PARQUEADERO</span>
+                </a>
+              </li>
+              <li class="nav-item w-100">
+                <a href="#" class="nav-link text-dark px-0">
+                  <i class="bi bi-heart"></i> <span class="ms-2">MASCOTA</span>
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
+
+        <!-- Main Content -->
+        <div class="col p-0">
+          <!-- Topbar/Navbar -->
+          <nav
+            class="navbar navbar-expand-lg bg-white border-bottom px-3 fixed-navbar"
+          >
+            <div class="container-fluid">
+              <div class="d-flex align-items-center">
+                <button
+                  class="btn btn-link text-dark px-0 me-3"
+                  id="sidebarToggle"
+                >
+                  <i class="bi bi-list fs-4"></i>
+                </button>
+                <span class="navbar-text fs-5">BIENVENIDO ADMINISTRADOR</span>
+              </div>
+
+              <div class="d-flex align-items-center ms-auto">
+                <div class="input-group me-3">
+                  <span class="input-group-text bg-white border-end-0">
+                    <i class="bi bi-search"></i>
+                  </span>
+                  <input
+                    type="text"
+                    class="form-control border-start-0"
+                    placeholder="Search"
+                  />
+                </div>
+
+                <button class="btn btn-link text-dark">
+                  <i class="bi bi-bell fs-5"></i>
+                </button>
+                <button class="btn btn-link text-dark">
+                  <i class="bi bi-envelope fs-5"></i>
+                </button>
+                <button class="btn btn-link text-dark">
+                  <i class="bi bi-escape fs-5"></i>
+                </button>
+              </div>
+            </div>
+          </nav>
+
+          <!-- Main content area -->
+          <div class="container-fluid p-4">
+            <header class="row mb-4">
+              <div class="col-12">
+                <h1 class="h2">Gestión de Parqueaderos</h1>
+              </div>
+            </header>
+
+            <!-- Action Buttons -->
+            <div class="row mb-4">
+              <div class="col-12 d-flex gap-2">
+                <button
+                  class="btn btn-primary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#parkingModal"
+                >
+                  <i class="bi bi-plus-lg"></i> Añadir parqueadero
+                </button>
+        
+              </div>
+            </div>
+
+            <!-- Search and Filters -->
+            <section class="row mb-4">
+              <div class="col-lg-4 col-md-6 mb-3">
+                <div class="input-group">
+                  <span class="input-group-text bg-white">
+                    <i class="bi bi-search"></i>
+                  </span>
+                  <input
+                    type="search"
+                    class="form-control"
+                    placeholder="Buscar parqueadero..."
+                    aria-label="Buscar parqueadero"
+                  />
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6 mb-3">
+                <select class="form-select" aria-label="Filtrar por estado">
+                  <option selected>Filtrar por estado</option>
+                  <option value="disponible">Disponible</option>
+                  <option value="ocupado">Ocupado</option>
+                  <option value="mantenimiento">En mantenimiento</option>
+                </select>
+              </div>
+            </section>
+
+            <!-- Parking Spots Grid -->
+            <section class="row g-4">
+              <!-- Parking Card Template -->
+              <article class="col-xl-3 col-lg-4 col-md-6">
+                <div class="card h-100 shadow-sm">
+                  <div
+                    class="card-header bg-transparent border-0 d-flex justify-content-between align-items-center"
+                  >
+                    <span class="badge bg-success">Disponible</span>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" checked />
+                    </div>
+                  </div>
+                  <div class="card-body text-center">
+                    <i class="bi bi-car-front display-4 mb-3"></i>
+                    <h5 class="card-title" data-parking-number>
+                      Parqueadero A-101
+                    </h5>
+                    <div class="small text-muted mb-3">
+                      <p class="mb-1" data-parking-type>Tipo: Residente</p>
+                      <p class="mb-1" data-owner-name>
+                        Propietario: Juan Pérez
+                      </p>
+                      <p class="mb-1" data-apartment>Apartamento: 101</p>
+                      <p class="mb-1" data-license-plate>Placa: ABC123</p>
+                      <p class="mb-1" data-vehicle-type>Tipo: Carro</p>
+                      <p class="mb-0" data-vehicle-model>
+                        Modelo: Toyota Corolla 2022
+                      </p>
+                    </div>
+                  </div>
+                  <div class="card-footer bg-transparent border-0">
+                    <div class="btn-group w-100">
+                      <button
+                        class="btn btn-outline-primary btn-sm"
+                        data-bs-toggle="modal"
+                        data-bs-target="#viewModal"
+                      >
+                        <i class="bi bi-eye"></i>
+                      </button>
+                      <button
+                        class="btn btn-outline-primary btn-sm"
+                        data-bs-toggle="modal"
+                        data-bs-target="#editModal"
+                      >
+                        <i class="bi bi-pencil"></i>
+                      </button>
+                      <button
+                        class="btn btn-outline-danger btn-sm"
+                        data-bs-toggle="modal"
+                        data-bs-target="#deleteModal"
+                      >
+                        <i class="bi bi-trash"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </section>
+          </div>
+        </div>
+      </div>
     </div>
 
-        <!-- Delete Confirmation Modal -->
-        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="deleteModalLabel">Alerta</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body text-center">
-                        <p>Esta seguro que desea eliminar el parqueadero <span id="parkingName">##</span>?</p>
-                    </div>
-                    <div class="modal-footer justify-content-center">
-                        <button type="button" class="btn btn-success" id="confirmDelete">Si</button>
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
-                    </div>
+    <!-- Add/Edit Parking Modal -->
+    <div
+      class="modal fade"
+      id="parkingModal"
+      tabindex="-1"
+      aria-labelledby="parkingModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="parkingModalLabel">
+              Añadir Parqueadero
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form id="parkingForm" class="needs-validation" novalidate>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label for="parkingNumber" class="form-label"
+                    >Número Parqueadero</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="parkingNumber"
+                    required
+                  />
                 </div>
-            </div>
+                <div class="col-md-6">
+                  <label for="parkingType" class="form-label"
+                    >Tipo de Parqueadero</label
+                  >
+                  <select class="form-select" id="parkingType" required>
+                    <option value="">Seleccionar tipo...</option>
+                    <option value="residente">Residente</option>
+                    <option value="visitante">Visitante</option>
+                  </select>
+                </div>
+
+                <!-- Resident Fields (shown/hidden based on type) -->
+                <div class="resident-fields">
+                  <div class="col-md-6">
+                    <label for="ownerName" class="form-label"
+                      >Propietario</label
+                    >
+                    <input type="text" class="form-control" id="ownerName" />
+                  </div>
+                  <div class="col-md-6">
+                    <label for="apartment" class="form-label"
+                      >Apartamento</label
+                    >
+                    <input type="text" class="form-control" id="apartment" />
+                  </div>
+                </div>
+
+                <!-- Visitor Fields (shown/hidden based on type) -->
+                <div class="visitor-fields d-none">
+                  <div class="col-md-6">
+                    <label for="visitorName" class="form-label"
+                      >Nombre Visitante</label
+                    >
+                    <input type="text" class="form-control" id="visitorName" />
+                  </div>
+                  <div class="col-md-6">
+                    <label for="visitDuration" class="form-label"
+                      >Duración de Visita</label
+                    >
+                    <select class="form-select" id="visitDuration">
+                      <option value="1">1 hora</option>
+                      <option value="2">2 horas</option>
+                      <option value="4">4 horas</option>
+                      <option value="8">8 horas</option>
+                      <option value="24">24 horas</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="visitingApartment" class="form-label"
+                      >Apartamento a Visitar</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="visitingApartment"
+                    />
+                  </div>
+                </div>
+
+                <!-- Common Fields -->
+                <div class="col-md-6">
+                  <label for="licensePlate" class="form-label">Placa</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="licensePlate"
+                    required
+                  />
+                </div>
+                <div class="col-md-6">
+                  <label for="vehicleType" class="form-label"
+                    >Tipo de Vehículo</label
+                  >
+                  <select class="form-select" id="vehicleType" required>
+                    <option value="">Seleccionar...</option>
+                    <option value="carro">Carro</option>
+                    <option value="moto">Moto</option>
+                    <option value="bicicleta">Bicicleta</option>
+                  </select>
+                </div>
+                <div class="col-12">
+                  <label for="carModel" class="form-label"
+                    >Modelo del Vehículo</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="carModel"
+                    required
+                  />
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancelar
+            </button>
+            <button type="submit" form="parkingForm" class="btn btn-primary">
+              Guardar
+            </button>
+          </div>
         </div>
+      </div>
+    </div>
+
+    <!-- View Modal -->
+    <div class="modal fade" id="viewModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Detalles del Parqueadero</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <dl class="row">
+              <dt class="col-sm-4">Parqueadero:</dt>
+              <dd class="col-sm-8" id="view-parkingNumber"></dd>
+
+              <dt class="col-sm-4">Tipo:</dt>
+              <dd class="col-sm-8" id="view-parkingType"></dd>
+
+              <dt class="col-sm-4">Propietario:</dt>
+              <dd class="col-sm-8" id="view-ownerName"></dd>
+
+              <dt class="col-sm-4">Apartamento:</dt>
+              <dd class="col-sm-8" id="view-apartment"></dd>
+
+              <dt class="col-sm-4">Placa:</dt>
+              <dd class="col-sm-8" id="view-licensePlate"></dd>
+
+              <dt class="col-sm-4">Tipo Vehículo:</dt>
+              <dd class="col-sm-8" id="view-vehicleType"></dd>
+
+              <dt class="col-sm-4">Modelo:</dt>
+              <dd class="col-sm-8" id="view-carModel"></dd>
+            </dl>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cerrar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Confirmar Eliminación</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body text-center">
+            <p>¿Está seguro que desea eliminar este parqueadero?</p>
+          </div>
+          <div class="modal-footer justify-content-center">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancelar
+            </button>
+            <button type="button" class="btn btn-danger">Eliminar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add a separate Edit Modal -->
+    <div
+      class="modal fade"
+      id="editModal"
+      tabindex="-1"
+      aria-labelledby="editModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editModalLabel">Editar Parqueadero</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form id="editParkingForm" class="needs-validation" novalidate>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label for="editParkingNumber" class="form-label"
+                    >Número Parqueadero</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="editParkingNumber"
+                    required
+                  />
+                </div>
+                <div class="col-md-6">
+                  <label for="editParkingType" class="form-label"
+                    >Tipo de Parqueadero</label
+                  >
+                  <select class="form-select" id="editParkingType" required>
+                    <option value="">Seleccionar tipo...</option>
+                    <option value="residente">Residente</option>
+                    <option value="visitante">Visitante</option>
+                  </select>
+                </div>
+
+                <!-- Resident Fields -->
+                <div class="edit-resident-fields">
+                  <div class="col-md-6">
+                    <label for="editOwnerName" class="form-label"
+                      >Propietario</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="editOwnerName"
+                    />
+                  </div>
+                  <div class="col-md-6">
+                    <label for="editApartment" class="form-label"
+                      >Apartamento</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="editApartment"
+                    />
+                  </div>
+                </div>
+
+                <!-- Visitor Fields -->
+                <div class="edit-visitor-fields d-none">
+                  <div class="col-md-6">
+                    <label for="editVisitorName" class="form-label"
+                      >Nombre Visitante</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="editVisitorName"
+                    />
+                  </div>
+                  <div class="col-md-6">
+                    <label for="editVisitDuration" class="form-label"
+                      >Duración de Visita</label
+                    >
+                    <select class="form-select" id="editVisitDuration">
+                      <option value="1">1 hora</option>
+                      <option value="2">2 horas</option>
+                      <option value="4">4 horas</option>
+                      <option value="8">8 horas</option>
+                      <option value="24">24 horas</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="editVisitingApartment" class="form-label"
+                      >Apartamento a Visitar</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="editVisitingApartment"
+                    />
+                  </div>
+                </div>
+
+                <!-- Common Fields -->
+                <div class="col-md-6">
+                  <label for="editLicensePlate" class="form-label">Placa</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="editLicensePlate"
+                    required
+                  />
+                </div>
+                <div class="col-md-6">
+                  <label for="editVehicleType" class="form-label"
+                    >Tipo de Vehículo</label
+                  >
+                  <select class="form-select" id="editVehicleType" required>
+                    <option value="">Seleccionar...</option>
+                    <option value="carro">Carro</option>
+                    <option value="moto">Moto</option>
+                    <option value="bicicleta">Bicicleta</option>
+                  </select>
+                </div>
+                <div class="col-12">
+                  <label for="editCarModel" class="form-label"
+                    >Modelo del Vehículo</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="editCarModel"
+                    required
+                  />
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancelar
+            </button>
+            <button
+              type="submit"
+              form="editParkingForm"
+              class="btn btn-primary"
+            >
+              Guardar Cambios
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add a separate Visitor Parking Modal -->
+    <div
+      class="modal fade"
+      id="visitorParkingModal"
+      tabindex="-1"
+      aria-labelledby="visitorParkingModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="visitorParkingModalLabel">
+              Asignar Parqueadero Visitante
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form id="visitorParkingForm" class="needs-validation" novalidate>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label for="visitorParkingNumber" class="form-label"
+                    >Número Parqueadero</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="visitorParkingNumber"
+                    required
+                  />
+                </div>
+                <div class="col-md-6">
+                  <label for="visitorName" class="form-label"
+                    >Nombre Visitante</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="visitorName"
+                    required
+                  />
+                </div>
+                <div class="col-md-6">
+                  <label for="visitingApartment" class="form-label"
+                    >Apartamento a Visitar</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="visitingApartment"
+                    required
+                  />
+                </div>
+                <div class="col-md-6">
+                  <label for="visitDuration" class="form-label"
+                    >Duración de Visita</label
+                  >
+                  <select class="form-select" id="visitDuration" required>
+                    <option value="">Seleccionar duración...</option>
+                    <option value="1">1 hora</option>
+                    <option value="2">2 horas</option>
+                    <option value="4">4 horas</option>
+                    <option value="8">8 horas</option>
+                    <option value="24">24 horas</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label for="visitorLicensePlate" class="form-label"
+                    >Placa</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="visitorLicensePlate"
+                    required
+                  />
+                </div>
+                <div class="col-md-6">
+                  <label for="visitorVehicleType" class="form-label"
+                    >Tipo de Vehículo</label
+                  >
+                  <select class="form-select" id="visitorVehicleType" required>
+                    <option value="">Seleccionar...</option>
+                    <option value="carro">Carro</option>
+                    <option value="moto">Moto</option>
+                    <option value="bicicleta">Bicicleta</option>
+                  </select>
+                </div>
+                <div class="col-12">
+                  <label for="visitorCarModel" class="form-label"
+                    >Modelo del Vehículo</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="visitorCarModel"
+                    required
+                  />
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancelar
+            </button>
+            <button
+              type="submit"
+              form="visitorParkingForm"
+              class="btn btn-primary"
+            >
+              Asignar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- Toggle Script -->
+
+    <!-- Simple JavaScript for functionality -->
     <script>
-        document.getElementById('sidebarToggle').addEventListener('click', function() {
-            document.getElementById('sidebar').classList.toggle('collapsed');
+      document.addEventListener("DOMContentLoaded", function () {
+        // Sidebar toggle
+        const sidebarToggle = document.getElementById("sidebarToggle");
+        const sidebar = document.getElementById("sidebar");
+
+        sidebarToggle.addEventListener("click", function () {
+          sidebar.classList.toggle("d-none");
         });
 
-        const deleteButtons = document.querySelectorAll('.btn-outline-dark');
+        // Handle parking type change for Add Modal
+        const parkingTypeSelect = document.getElementById("parkingType");
+        const residentFields = document.querySelector(".resident-fields");
+        const visitorFields = document.querySelector(".visitor-fields");
 
-        // Add click event listener to each delete button
-        deleteButtons.forEach(button => {
-            button.addEventListener('click', function () {
-                // Get the card element that contains this button
-                const card = this.closest('.card').parentElement;
-
-                // Get the parqueadero name from the card
-                const parkingName = card.querySelector('.card-title').textContent;
-
-                // Show the modal with the parqueadero name
-                showDeleteModal(parkingName, card);
-            });
+        parkingTypeSelect?.addEventListener("change", function () {
+          handleParkingTypeChange(this, residentFields, visitorFields);
         });
 
-        // Function to show the delete modal
-        function showDeleteModal(parkingName, cardElement) {
-            // Get the modal element
-            const modal = document.getElementById('deleteModal');
+        // Handle parking type change for Edit Modal
+        const editParkingTypeSelect =
+          document.getElementById("editParkingType");
+        const editResidentFields = document.querySelector(
+          ".edit-resident-fields"
+        );
+        const editVisitorFields = document.querySelector(
+          ".edit-visitor-fields"
+        );
 
-            // Set the parqueadero name in the modal
-            document.getElementById('parkingName').textContent = parkingName;
+        editParkingTypeSelect?.addEventListener("change", function () {
+          handleParkingTypeChange(this, editResidentFields, editVisitorFields);
+        });
 
-            // Show the modal
-            const modalInstance = new bootstrap.Modal(modal);
-            modalInstance.show();
-
-            // Add click event for the SI button
-            const confirmButton = document.getElementById('confirmDelete');
-
-            // Remove any existing event listeners
-            const newConfirmButton = confirmButton.cloneNode(true);
-            confirmButton.parentNode.replaceChild(newConfirmButton, confirmButton);
-
-            // Add new event listener
-            newConfirmButton.addEventListener('click', function () {
-                const confirmDelete = document.getElementById('confirmDelete').value;
-
-                // Hide the modal
-                modalInstance.hide();
-
-                // Remove the card from the DOM
-                cardElement.remove();
-
-                // Show a success message (optional)
-                // You could replace this with a toast notification
-                alert('Parqueadero eliminado con éxito!');
-            });
+        function handleParkingTypeChange(
+          select,
+          residentFields,
+          visitorFields
+        ) {
+          if (select.value === "residente") {
+            residentFields.classList.remove("d-none");
+            visitorFields.classList.add("d-none");
+            toggleRequiredFields(false, true);
+          } else if (select.value === "visitante") {
+            residentFields.classList.add("d-none");
+            visitorFields.classList.remove("d-none");
+            toggleRequiredFields(false, false);
+          }
         }
 
-        // Make sure we update the modal to match your design
-        document.addEventListener('DOMContentLoaded', function () {
-            // Style adjustments to match the design
-            const modal = document.getElementById('deleteModal');
-            if (modal) {
-                // Add custom styling if needed
-                modal.querySelector('.modal-content').style.borderRadius = '5px';
-                modal.querySelector('.modal-header').style.backgroundColor = '#f8f9fa';
+        function toggleRequiredFields(isEdit, isResident) {
+          const prefix = isEdit ? "edit" : "";
+          if (isResident) {
+            document.getElementById(`${prefix}OwnerName`).required = true;
+            document.getElementById(`${prefix}Apartment`).required = true;
+            document.getElementById(`${prefix}VisitorName`).required = false;
+            document.getElementById(
+              `${prefix}VisitingApartment`
+            ).required = false;
+          } else {
+            document.getElementById(`${prefix}OwnerName`).required = false;
+            document.getElementById(`${prefix}Apartment`).required = false;
+            document.getElementById(`${prefix}VisitorName`).required = true;
+            document.getElementById(
+              `${prefix}VisitingApartment`
+            ).required = true;
+          }
+        }
 
-                // Focus on the input field when the modal opens
-                modal.addEventListener('shown.bs.modal', function () {
-                    document.getElementById('confirmText').focus();
-                });
+        // Form validation
+        const forms = document.querySelectorAll(".needs-validation");
+        Array.from(forms).forEach((form) => {
+          form.addEventListener(
+            "submit",
+            (event) => {
+              if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add("was-validated");
+            },
+            false
+          );
+        });
+
+        // Edit button functionality
+        const editButtons = document.querySelectorAll(
+          '[data-bs-target="#editModal"]'
+        );
+        editButtons.forEach((button) => {
+          button.addEventListener("click", function () {
+            const card = this.closest(".card");
+
+            // Get values from the card using data attributes
+            const parkingData = {
+              number: getCardValue(
+                card,
+                "[data-parking-number]",
+                "Parqueadero "
+              ),
+              type: getCardValue(card, "[data-parking-type]", "Tipo: "),
+              owner: getCardValue(card, "[data-owner-name]", "Propietario: "),
+              apartment: getCardValue(
+                card,
+                "[data-apartment]",
+                "Apartamento: "
+              ),
+              plate: getCardValue(card, "[data-license-plate]", "Placa: "),
+              vehicleType: getCardValue(card, "[data-vehicle-type]", "Tipo: "),
+              model: getCardValue(card, "[data-vehicle-model]", "Modelo: "),
+            };
+
+            // Populate edit form with the data
+            document.getElementById("editParkingNumber").value =
+              parkingData.number;
+            document.getElementById("editParkingType").value =
+              parkingData.type.toLowerCase();
+            document.getElementById("editOwnerName").value = parkingData.owner;
+            document.getElementById("editApartment").value =
+              parkingData.apartment;
+            document.getElementById("editLicensePlate").value =
+              parkingData.plate;
+            document.getElementById("editVehicleType").value =
+              parkingData.vehicleType.toLowerCase();
+            document.getElementById("editCarModel").value = parkingData.model;
+
+            // Show/hide fields based on parking type
+            const editParkingTypeSelect =
+              document.getElementById("editParkingType");
+            const editResidentFields = document.querySelector(
+              ".edit-resident-fields"
+            );
+            const editVisitorFields = document.querySelector(
+              ".edit-visitor-fields"
+            );
+
+            if (parkingData.type.toLowerCase() === "residente") {
+              editResidentFields.classList.remove("d-none");
+              editVisitorFields.classList.add("d-none");
+            } else {
+              editResidentFields.classList.add("d-none");
+              editVisitorFields.classList.remove("d-none");
+            }
+          });
+        });
+
+        // View button functionality
+        const viewButtons = document.querySelectorAll(
+          '[data-bs-target="#viewModal"]'
+        );
+        viewButtons.forEach((button) => {
+          button.addEventListener("click", function () {
+            const card = this.closest(".card");
+
+            // Get values from the card
+            document.getElementById("view-parkingNumber").textContent =
+              getCardValue(card, "[data-parking-number]", "Parqueadero ");
+            document.getElementById("view-parkingType").textContent =
+              getCardValue(card, "[data-parking-type]", "Tipo: ");
+            document.getElementById("view-ownerName").textContent =
+              getCardValue(card, "[data-owner-name]", "Propietario: ");
+            document.getElementById("view-apartment").textContent =
+              getCardValue(card, "[data-apartment]", "Apartamento: ");
+            document.getElementById("view-licensePlate").textContent =
+              getCardValue(card, "[data-license-plate]", "Placa: ");
+            document.getElementById("view-vehicleType").textContent =
+              getCardValue(card, "[data-vehicle-type]", "Tipo: ");
+            document.getElementById("view-carModel").textContent = getCardValue(
+              card,
+              "[data-vehicle-model]",
+              "Modelo: "
+            );
+          });
+        });
+
+        // Helper function to get card values
+        function getCardValue(card, selector, prefix) {
+          const element = card.querySelector(selector);
+          return element ? element.textContent.replace(prefix, "").trim() : "";
+        }
+
+        // Form validation for visitor parking
+        const visitorForm = document.getElementById("visitorParkingForm");
+        if (visitorForm) {
+          visitorForm.addEventListener("submit", function (event) {
+            if (!this.checkValidity()) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            this.classList.add("was-validated");
+          });
+        }
+
+        // Container for parking spots
+        const parkingContainer = document.querySelector('#guardsContainer') || document.querySelector('.row.g-4');
+
+        // Handle regular parking form submission
+        const parkingForm = document.getElementById('parkingForm');
+        parkingForm?.addEventListener('submit', function(event) {
+            event.preventDefault();
+            if (this.checkValidity()) {
+                // Get form values
+                const parkingData = {
+                    number: document.getElementById('parkingNumber').value,
+                    type: document.getElementById('parkingType').value,
+                    owner: document.getElementById('ownerName').value,
+                    apartment: document.getElementById('apartment').value,
+                    plate: document.getElementById('licensePlate').value,
+                    vehicleType: document.getElementById('vehicleType').value,
+                    model: document.getElementById('carModel').value
+                };
+
+                // Add new parking card
+                addParkingCard(parkingData);
+
+                // Close modal and reset form
+                const modal = bootstrap.Modal.getInstance(document.getElementById('parkingModal'));
+                modal.hide();
+                this.reset();
+                this.classList.remove('was-validated');
+            } else {
+                this.classList.add('was-validated');
             }
         });
+
+        // Handle visitor parking form submission
+        const visitorParkingForm = document.getElementById('visitorParkingForm');
+        visitorParkingForm?.addEventListener('submit', function(event) {
+            event.preventDefault();
+            if (this.checkValidity()) {
+                // Get form values
+                const visitorData = {
+                    number: document.getElementById('visitorParkingNumber').value,
+                    type: 'visitante',
+                    owner: document.getElementById('visitorName').value,
+                    apartment: document.getElementById('visitingApartment').value,
+                    plate: document.getElementById('visitorLicensePlate').value,
+                    vehicleType: document.getElementById('visitorVehicleType').value,
+                    model: document.getElementById('visitorCarModel').value,
+                    duration: document.getElementById('visitDuration').value
+                };
+
+                // Add new visitor parking card
+                addParkingCard(visitorData);
+
+                // Close modal and reset form
+                const modal = bootstrap.Modal.getInstance(document.getElementById('visitorParkingModal'));
+                modal.hide();
+                this.reset();
+                this.classList.remove('was-validated');
+            } else {
+                this.classList.add('was-validated');
+            }
+        });
+
+        // Function to handle parking status toggle
+        function handleStatusToggle(switchInput) {
+            const card = switchInput.closest('.card');
+            const statusBadge = card.querySelector('.badge');
+            
+            if (switchInput.checked) {
+                statusBadge.className = 'badge bg-success';
+                statusBadge.textContent = 'Disponible';
+            } else {
+                statusBadge.className = 'badge bg-danger';
+                statusBadge.textContent = 'Ocupado';
+            }
+            
+            // Show status change alert
+            showAlert(`Parqueadero ${switchInput.checked ? 'habilitado' : 'deshabilitado'}`, 
+                     switchInput.checked ? 'success' : 'danger');
+        }
+
+        // Add event listeners to existing switches
+        document.querySelectorAll('.form-check-input').forEach(switchInput => {
+            switchInput.addEventListener('change', function() {
+                handleStatusToggle(this);
+            });
+        });
+
+        // Modify the addParkingCard function to include the toggle functionality
+        function addParkingCard(data) {
+            const card = document.createElement('article');
+            card.className = 'col-xl-3 col-lg-4 col-md-6';
+            
+            const isVisitor = data.type === 'visitante';
+            const status = isVisitor ? 'Temporal' : 'Disponible';
+            const statusClass = isVisitor ? 'bg-warning' : 'bg-success';
+
+            card.innerHTML = `
+                <div class="card h-100 shadow-sm">
+                    <div class="card-header bg-transparent border-0 d-flex justify-content-between align-items-center">
+                        <span class="badge ${statusClass}">${status}</span>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" checked>
+                        </div>
+                    </div>
+                    <div class="card-body text-center">
+                        <i class="bi bi-car-front display-4 mb-3"></i>
+                        <h5 class="card-title" data-parking-number>Parqueadero ${data.number}</h5>
+                        <div class="small text-muted mb-3">
+                            <p class="mb-1" data-parking-type>Tipo: ${data.type}</p>
+                            <p class="mb-1" data-owner-name>Propietario: ${data.owner}</p>
+                            <p class="mb-1" data-apartment>Apartamento: ${data.apartment}</p>
+                            <p class="mb-1" data-license-plate>Placa: ${data.plate}</p>
+                            <p class="mb-1" data-vehicle-type>Tipo: ${data.vehicleType}</p>
+                            <p class="mb-0" data-vehicle-model>Modelo: ${data.model}</p>
+                            ${isVisitor ? `<p class="mb-0 text-warning">Duración: ${data.duration} horas</p>` : ''}
+                        </div>
+                    </div>
+                    <div class="card-footer bg-transparent border-0">
+                        <div class="btn-group w-100">
+                            <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#viewModal">
+                                <i class="bi bi-eye"></i>
+                            </button>
+                            <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editModal">
+                                <i class="bi bi-pencil"></i>
+                            </button>
+                            <button class="btn btn-outline-danger btn-sm" onclick="deleteCard(this)">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Add event listener to the new switch
+            const newSwitch = card.querySelector('.form-check-input');
+            newSwitch.addEventListener('change', function() {
+                handleStatusToggle(this);
+            });
+
+            parkingContainer.appendChild(card);
+            showAlert('Parqueadero agregado exitosamente', 'success');
+        }
+
+        // Function to delete parking card
+        window.deleteCard = function(button) {
+            if (confirm('¿Está seguro que desea eliminar este parqueadero?')) {
+                const card = button.closest('.col-xl-3');
+                card.remove();
+                showAlert('Parqueadero eliminado exitosamente', 'danger');
+            }
+        };
+
+        // Function to show alerts
+        function showAlert(message, type) {
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `alert alert-${type} alert-dismissible fade show position-fixed top-0 end-0 m-3`;
+            alertDiv.role = 'alert';
+            alertDiv.innerHTML = `
+                ${message}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            `;
+            document.body.appendChild(alertDiv);
+            
+            // Remove alert after 3 seconds
+            setTimeout(() => {
+                alertDiv.remove();
+            }, 3000);
+        }
+      });
     </script>
-</body>
+  </body>
 </html>
