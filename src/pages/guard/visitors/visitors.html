@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <title>Visitantes | Valhalla</title>
+    <style>
+        .modal-photo-placeholder {
+            width: 120px;
+            height: 120px;
+            background-color: #e9ecef;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin: 0 auto 15px;
+        }
+        .modal-photo-placeholder i {
+            font-size: 2rem;
+            color: #6c757d;
+        }
+        .modal-photo-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .table-responsive {
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+        .list-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .visitor-photo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row flex-nowrap">
+            <!-- Sidebar -->
+            <div id="sidebar" class="col-auto px-0 bg-white border-end" style="width: 280px">
+                <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 min-vh-100">
+                    <a href="/" class="d-flex align-items-center pb-3 mb-md-1 mt-md-3 me-md-auto text-dark text-decoration-none">
+                        <span class="fs-5 fw-bolder">VALHALLA</span>
+                    </a>
+                    <ul class="nav flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start w-100">
+                        <li class="nav-item w-100">
+                            <a href="index.html" class="nav-link text-dark px-0">
+                                <i class="bi bi-house"></i> <span class="ms-2">INICIO</span>
+                            </a>
+                        </li>
+                        <li class="nav-item w-100">
+                            <a href="visitors.html" class="nav-link text-dark px-0 active">
+                                <i class="bi bi-people"></i>
+                                <span class="ms-2">VISITANTES</span>
+                            </a>
+                        </li>
+                        <li class="nav-item w-100">
+                            <a href="parking.html" class="nav-link text-dark px-0">
+                                <i class="bi bi-p-square"></i>
+                                <span class="ms-2">PARQUEADERO</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col p-0">
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand-lg bg-white border-bottom px-3">
+                    <div class="container-fluid">
+                        <div class="d-flex align-items-center">
+                            <button class="btn btn-link text-dark px-0 me-3" id="sidebarToggle">
+                                <i class="bi bi-list fs-4"></i>
+                            </button>
+                            <span class="navbar-text fs-5">LISTA DE VISITANTES</span>
+                        </div>
+                        <div class="d-flex align-items-center ms-auto">
+                            <div class="input-group me-3">
+                                <span class="input-group-text bg-white border-end-0">
+                                    <i class="bi bi-search"></i>
+                                </span>
+                                <input type="text" class="form-control border-start-0" placeholder="Buscar">
+                            </div>
+                            <button class="btn btn-link text-dark">
+                                <i class="bi bi-bell fs-5"></i>
+                            </button>
+                            <button class="btn btn-link text-dark">
+                                <i class="bi bi-envelope fs-5"></i>
+                            </button>
+                            <button class="btn btn-link text-dark">
+                                <i class="bi bi-escape fs-5"></i>
+                            </button>
+                        </div>
+                    </div>
+                </nav>
+                
+                <!-- Main Content -->
+                <div class="container-fluid p-4">
+                    <div class="card">
+                        <div class="card-body p-0">
+                            <!-- Cabecera de la lista con botón -->
+                            <div class="list-header p-3 border-bottom">
+                                <h5 class="mb-0">Registros de Visitantes</h5>
+                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registrarVisitanteModal">
+                                    <i class="bi bi-person-plus"></i> Registrar Visitante
+                                </button>
+                            </div>
+                            
+                            <div class="table-responsive">
+                                <table class="table table-hover mb-0">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Documento</th>
+                                            <th>Torre/Apto</th>
+                                            <th>Hora Ingreso</th>
+                                            <th>Estado</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="visitorsTableBody">
+                                        <!-- Datos se generarán dinámicamente -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Registrar Visitante -->
+    <div class="modal fade" id="registrarVisitanteModal" tabindex="-1" aria-labelledby="registrarVisitanteModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="registrarVisitanteModalLabel"><i class="bi bi-person-plus"></i> Registrar Nuevo Visitante</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="visitorForm">
+                        <div class="row">
+                            <!-- Foto del visitante -->
+                            <div class="col-md-4 text-center">
+                                <div class="modal-photo-placeholder" id="modalPhotoPlaceholder">
+                                    <i class="bi bi-camera"></i>
+                                    <img id="modalVisitorPhoto" style="display: none;">
+                                </div>
+                                <input type="file" id="modalPhotoInput" accept="image/*" style="display: none;">
+                                <button type="button" class="btn btn-sm btn-outline-primary" onclick="document.getElementById('modalPhotoInput').click()">
+                                    <i class="bi bi-upload"></i> Subir Foto
+                                </button>
+                            </div>
+                            
+                            <!-- Datos del visitante -->
+                            <div class="col-md-8">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="modalNombre" class="form-label">Nombre completo</label>
+                                        <input type="text" class="form-control" id="modalNombre" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="modalDocumento" class="form-label">Documento de identidad</label>
+                                        <input type="text" class="form-control" id="modalDocumento" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="modalTipoDocumento" class="form-label">Tipo de documento</label>
+                                        <select class="form-select" id="modalTipoDocumento" required>
+                                            <option value="" selected disabled>Seleccionar...</option>
+                                            <option value="cedula">Cédula</option>
+                                            <option value="pasaporte">Pasaporte</option>
+                                            <option value="extranjeria">Cédula extranjería</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="modalTelefono" class="form-label">Teléfono</label>
+                                        <input type="tel" class="form-control" id="modalTelefono">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="modalTorre" class="form-label">Torre</label>
+                                        <select class="form-select" id="modalTorre" required>
+                                            <option value="" selected disabled>Seleccionar...</option>
+                                            <option value="1">Torre 1</option>
+                                            <option value="2">Torre 2</option>
+                                            <option value="3">Torre 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="modalApartamento" class="form-label">Apartamento</label>
+                                        <input type="text" class="form-control" id="modalApartamento" required>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="modalMotivo" class="form-label">Motivo de visita</label>
+                                        <textarea class="form-control" id="modalMotivo" rows="2"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="guardarVisitanteBtn">Guardar Visitante</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Ver Visitante -->
+    <div class="modal fade" id="verVisitanteModal" tabindex="-1" aria-labelledby="verVisitanteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="verVisitanteModalLabel">Detalles del Visitante</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img id="visitorPhotoDetail" src="https://via.placeholder.com/100" class="visitor-photo mb-3">
+                    <ul class="list-group list-group-flush text-start">
+                        <li class="list-group-item"><strong>Nombre:</strong> <span id="detailNombre"></span></li>
+                        <li class="list-group-item"><strong>Documento:</strong> <span id="detailDocumento"></span></li>
+                        <li class="list-group-item"><strong>Tipo Doc:</strong> <span id="detailTipoDocumento"></span></li>
+                        <li class="list-group-item"><strong>Teléfono:</strong> <span id="detailTelefono"></span></li>
+                        <li class="list-group-item"><strong>Torre/Apto:</strong> <span id="detailTorreApto"></span></li>
+                        <li class="list-group-item"><strong>Motivo:</strong> <span id="detailMotivo"></span></li>
+                        <li class="list-group-item"><strong>Hora Ingreso:</strong> <span id="detailHoraIngreso"></span></li>
+                        <li class="list-group-item"><strong>Estado:</strong> <span id="detailEstado" class="badge"></span></li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Datos de visitantes (simulando una base de datos)
+        let visitors = [
+            {
+                id: 1,
+                nombre: "Juan Pérez",
+                documento: "12345678",
+                tipoDocumento: "Cédula",
+                telefono: "3001234567",
+                torre: "Torre 1",
+                apartamento: "101",
+                motivo: "Visita familiar",
+                horaIngreso: "10:30 AM",
+                estado: "Dentro",
+                foto: "https://randomuser.me/api/portraits/men/1.jpg"
+            },
+            {
+                id: 2,
+                nombre: "María Gómez",
+                documento: "87654321",
+                tipoDocumento: "Cédula",
+                telefono: "3107654321",
+                torre: "Torre 2",
+                apartamento: "305",
+                motivo: "Entrega de paquete",
+                horaIngreso: "11:45 AM",
+                estado: "Salido",
+                foto: "https://randomuser.me/api/portraits/women/1.jpg"
+            }
+        ];
+
+        // Variables globales
+        let selectedVisitor = null;
+        const visitorModal = new bootstrap.Modal(document.getElementById('verVisitanteModal'));
+        const registerModal = new bootstrap.Modal(document.getElementById('registrarVisitanteModal'));
+
+        // Toggle sidebar
+        document.getElementById('sidebarToggle').addEventListener('click', function() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.style.display = sidebar.style.display === 'none' ? 'block' : 'none';
+        });
+        
+        // Foto del visitante en modal de registro
+        document.getElementById('modalPhotoInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const img = document.getElementById('modalVisitorPhoto');
+                    img.src = event.target.result;
+                    img.style.display = 'block';
+                    document.querySelector('#modalPhotoPlaceholder i').style.display = 'none';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Generar tabla de visitantes
+        function generateVisitorsTable() {
+            const tableBody = document.getElementById('visitorsTableBody');
+            tableBody.innerHTML = '';
+            
+            visitors.forEach(visitor => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${visitor.nombre}</td>
+                    <td>${visitor.documento}</td>
+                    <td>${visitor.torre} - ${visitor.apartamento}</td>
+                    <td>${visitor.horaIngreso}</td>
+                    <td><span class="badge ${visitor.estado === 'Dentro' ? 'bg-success' : 'bg-secondary'}">${visitor.estado}</span></td>
+                    <td>
+                        <button class="btn btn-sm btn-outline-primary view-btn" data-id="${visitor.id}">
+                            <i class="bi bi-eye"></i> Ver
+                        </button>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+            
+            // Agregar eventos a los botones de ver
+            document.querySelectorAll('.view-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const visitorId = parseInt(this.getAttribute('data-id'));
+                    showVisitorDetails(visitorId);
+                });
+            });
+        }
+
+        // Mostrar detalles del visitante
+        function showVisitorDetails(id) {
+            selectedVisitor = visitors.find(v => v.id === id);
+            if (!selectedVisitor) return;
+            
+            document.getElementById('visitorPhotoDetail').src = selectedVisitor.foto;
+            document.getElementById('detailNombre').textContent = selectedVisitor.nombre;
+            document.getElementById('detailDocumento').textContent = selectedVisitor.documento;
+            document.getElementById('detailTipoDocumento').textContent = selectedVisitor.tipoDocumento;
+            document.getElementById('detailTelefono').textContent = selectedVisitor.telefono;
+            document.getElementById('detailTorreApto').textContent = `${selectedVisitor.torre} - ${selectedVisitor.apartamento}`;
+            document.getElementById('detailMotivo').textContent = selectedVisitor.motivo;
+            document.getElementById('detailHoraIngreso').textContent = selectedVisitor.horaIngreso;
+            
+            const estadoBadge = document.getElementById('detailEstado');
+            estadoBadge.textContent = selectedVisitor.estado;
+            estadoBadge.className = selectedVisitor.estado === 'Dentro' ? 'badge bg-success' : 'badge bg-secondary';
+            
+            visitorModal.show();
+        }
+
+        // Registrar nuevo visitante
+        document.getElementById('guardarVisitanteBtn').addEventListener('click', function() {
+            const form = document.getElementById('visitorForm');
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+            
+            // Obtener valores del formulario
+            const nombre = document.getElementById('modalNombre').value;
+            const documento = document.getElementById('modalDocumento').value;
+            const tipoDocumento = document.getElementById('modalTipoDocumento').value;
+            const telefono = document.getElementById('modalTelefono').value;
+            const torre = document.getElementById('modalTorre').value;
+            const apartamento = document.getElementById('modalApartamento').value;
+            const motivo = document.getElementById('modalMotivo').value;
+            const foto = document.getElementById('modalVisitorPhoto').src || 'https://via.placeholder.com/100';
+            
+            // Crear nuevo visitante
+            const newVisitor = {
+                id: visitors.length > 0 ? Math.max(...visitors.map(v => v.id)) + 1 : 1,
+                nombre,
+                documento,
+                tipoDocumento: document.getElementById('modalTipoDocumento').options[document.getElementById('modalTipoDocumento').selectedIndex].text,
+                telefono,
+                torre: `Torre ${torre}`,
+                apartamento,
+                motivo,
+                horaIngreso: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+                estado: 'Dentro',
+                foto: foto.includes('data:image') ? foto : 'https://via.placeholder.com/100'
+            };
+            
+            // Agregar a la lista
+            visitors.push(newVisitor);
+            
+            // Actualizar tabla
+            generateVisitorsTable();
+            
+            // Limpiar formulario
+            form.reset();
+            document.getElementById('modalVisitorPhoto').style.display = 'none';
+            document.querySelector('#modalPhotoPlaceholder i').style.display = 'block';
+            
+            // Cerrar modal
+            registerModal.hide();
+            
+            // Mostrar feedback
+            alert('Visitante registrado correctamente');
+        });
+
+        // Inicializar la tabla al cargar la página
+        document.addEventListener('DOMContentLoaded', generateVisitorsTable);
+    </script>
+</body>
+</html>

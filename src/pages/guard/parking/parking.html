@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <title>Parqueaderos | Valhalla</title>
+    <style>
+        .parking-card {
+            height: 150px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .parking-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .parking-number {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .parking-status {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 0.8rem;
+            padding: 3px 8px;
+            border-radius: 20px;
+        }
+        .available {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .occupied {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .reserved {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        .filter-container {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .selected {
+            border: 3px solid #0d6efd;
+        }
+        .status-badge {
+            font-size: 1rem;
+            padding: 5px 12px;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row flex-nowrap">
+            <!-- Sidebar -->
+            <div id="sidebar" class="col-auto px-0 bg-white border-end" style="width: 280px">
+                <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 min-vh-100">
+                    <a href="/" class="d-flex align-items-center pb-3 mb-md-1 mt-md-3 me-md-auto text-dark text-decoration-none">
+                        <span class="fs-5 fw-bolder">VALHALLA</span>
+                    </a>
+                    <ul class="nav flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start w-100">
+                        <li class="nav-item w-100">
+                            <a href="index.html" class="nav-link text-dark px-0">
+                                <i class="bi bi-house"></i> <span class="ms-2">INICIO</span>
+                            </a>
+                        </li>
+                        <li class="nav-item w-100">
+                            <a href="visitors.html" class="nav-link text-dark px-0">
+                                <i class="bi bi-people"></i>
+                                <span class="ms-2">VISITANTES</span>
+                            </a>
+                        </li>
+                        <li class="nav-item w-100">
+                            <a href="parking.html" class="nav-link text-dark px-0 active">
+                                <i class="bi bi-p-square"></i>
+                                <span class="ms-2">PARQUEADERO</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col p-0">
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand-lg bg-white border-bottom px-3">
+                    <div class="container-fluid">
+                        <div class="d-flex align-items-center">
+                            <button class="btn btn-link text-dark px-0 me-3" id="sidebarToggle">
+                                <i class="bi bi-list fs-4"></i>
+                            </button>
+                            <span class="navbar-text fs-5">PARQUEADERO VALHALLA</span>
+                        </div>
+                        <div class="d-flex align-items-center ms-auto">
+                            <div class="input-group me-3">
+                                <span class="input-group-text bg-white border-end-0">
+                                    <i class="bi bi-search"></i>
+                                </span>
+                                <input type="text" class="form-control border-start-0" placeholder="Buscar...">
+                            </div>
+                            <button class="btn btn-link text-dark">
+                                <i class="bi bi-bell fs-5"></i>
+                            </button>
+                            <button class="btn btn-link text-dark">
+                                <i class="bi bi-envelope fs-5"></i>
+                            </button>
+                            <button class="btn btn-link text-dark">
+                                <i class="bi bi-escape fs-5"></i>
+                            </button>
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- Main Content -->
+                <div class="container-fluid p-4">
+                    <!-- Filtros -->
+                    <div class="filter-container">
+                        <div class="row align-items-center">
+                            <div class="col-md-4 mb-2 mb-md-0">
+                                <h5 class="mb-0">Filtrar por:</h5>
+                            </div>
+                            <div class="col-md-4 mb-2 mb-md-0">
+                                <select class="form-select" id="statusFilter">
+                                    <option value="all">Todos los estados</option>
+                                    <option value="available">Disponible</option>
+                                    <option value="occupied">Ocupado</option>
+                                    <option value="reserved">Reservado</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <select class="form-select" id="typeFilter">
+                                    <option value="all">Todos los tipos</option>
+                                    <option value="owner">Propietario</option>
+                                    <option value="rented">Arrendado</option>
+                                    <option value="visitor">Visitante</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tarjetas de Parqueaderos -->
+                    <div class="row g-4" id="parkingContainer">
+                        <!-- Parqueaderos se generarán dinámicamente -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para ver detalles del parqueadero -->
+    <div class="modal fade" id="parkingDetailModal" tabindex="-1" aria-labelledby="parkingDetailModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="parkingDetailModalLabel">Detalle del Parqueadero</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center mb-4">
+                        <div class="parking-number" id="modalDetailNumber">P-000</div>
+                        <span class="status-badge" id="modalDetailStatus">Estado</span>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <p><strong>Tipo:</strong> <span id="modalDetailType">-</span></p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><strong>Torre:</strong> <span id="modalDetailTower">-</span></p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><strong>Propietario:</strong> <span id="modalDetailOwner">-</span></p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><strong>Vehículo:</strong> <span id="modalDetailVehicle">-</span></p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><strong>Hora ingreso:</strong> <span id="modalDetailTime">-</span></p>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="modalChangeStatus" class="form-label">Cambiar estado:</label>
+                        <select class="form-select" id="modalChangeStatus">
+                            <option value="available">Disponible</option>
+                            <option value="occupied">Ocupado</option>
+                            <option value="reserved">Reservado</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-outline-primary" id="editParkingBtn">
+                        <i class="bi bi-pencil"></i> Editar
+                    </button>
+                    <button type="button" class="btn btn-primary" id="saveStatusBtn">
+                        <i class="bi bi-check-circle"></i> Guardar estado
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para editar parqueadero -->
+    <div class="modal fade" id="editParkingModal" tabindex="-1" aria-labelledby="editParkingModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="editParkingModalLabel">Editar Parqueadero</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editParkingForm">
+                        <div class="mb-3">
+                            <label for="editNumber" class="form-label">Número</label>
+                            <input type="text" class="form-control" id="editNumber" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editType" class="form-label">Tipo</label>
+                            <select class="form-select" id="editType">
+                                <option value="owner">Propietario</option>
+                                <option value="rented">Arrendado</option>
+                                <option value="visitor">Visitante</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editTower" class="form-label">Torre</label>
+                            <input type="text" class="form-control" id="editTower">
+                        </div>
+                        <div class="mb-3">
+                            <label for="editOwner" class="form-label">Propietario/Residente</label>
+                            <input type="text" class="form-control" id="editOwner">
+                        </div>
+                        <div class="mb-3">
+                            <label for="editVehicle" class="form-label">Vehículo</label>
+                            <input type="text" class="form-control" id="editVehicle">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="saveChangesBtn">Guardar cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Datos de ejemplo para los parqueaderos
+        const parkingData = [
+            { id: 1, number: 'P-001', status: 'available', type: 'owner', tower: 'Torre 1', owner: 'Juan Pérez', vehicle: 'ABC-123', time: '10:30 AM' },
+            { id: 2, number: 'P-002', status: 'occupied', type: 'rented', tower: 'Torre 1', owner: 'María Gómez', vehicle: 'XYZ-789', time: '09:15 AM' },
+            { id: 3, number: 'P-003', status: 'reserved', type: 'visitor', tower: 'Torre 2', owner: 'Visitante', vehicle: 'DEF-456', time: '02:45 PM' },
+            { id: 4, number: 'P-004', status: 'available', type: 'owner', tower: 'Torre 2', owner: 'Carlos Rojas', vehicle: '', time: '' },
+            { id: 5, number: 'P-005', status: 'occupied', type: 'rented', tower: 'Torre 3', owner: 'Ana López', vehicle: 'GHI-012', time: '11:20 AM' },
+            { id: 6, number: 'P-006', status: 'available', type: 'visitor', tower: 'Torre 3', owner: '', vehicle: '', time: '' },
+            { id: 7, number: 'P-007', status: 'reserved', type: 'owner', tower: 'Torre 4', owner: 'Pedro Sánchez', vehicle: '', time: '' },
+            { id: 8, number: 'P-008', status: 'occupied', type: 'visitor', tower: 'Torre 4', owner: 'Visitante', vehicle: 'JKL-345', time: '03:30 PM' }
+        ];
+
+        // Variables globales
+        let selectedParking = null;
+        const parkingContainer = document.getElementById('parkingContainer');
+        const detailModal = new bootstrap.Modal(document.getElementById('parkingDetailModal'));
+        const editModal = new bootstrap.Modal(document.getElementById('editParkingModal'));
+
+        // Toggle sidebar
+        document.getElementById('sidebarToggle').addEventListener('click', function() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.style.display = sidebar.style.display === 'none' ? 'block' : 'none';
+        });
+
+        // Generar tarjetas de parqueaderos
+        function generateParkingCards() {
+            parkingContainer.innerHTML = '';
+            
+            parkingData.forEach(parking => {
+                const statusText = parking.status === 'available' ? 'Disponible' : 
+                                 parking.status === 'occupied' ? 'Ocupado' : 'Reservado';
+                const typeText = parking.type === 'owner' ? 'Propietario' : 
+                               parking.type === 'rented' ? 'Arrendado' : 'Visitante';
+                
+                const parkingElement = document.createElement('div');
+                parkingElement.className = 'col-md-4 col-lg-3';
+                parkingElement.setAttribute('data-id', parking.id);
+                parkingElement.setAttribute('data-status', parking.status);
+                parkingElement.setAttribute('data-type', parking.type);
+                parkingElement.innerHTML = `
+                    <div class="parking-card bg-light">
+                        <span class="parking-status ${parking.status}">${statusText}</span>
+                        <div class="parking-number">${parking.number}</div>
+                        <div class="parking-type">${typeText}</div>
+                        <div class="parking-info text-muted">${parking.tower}</div>
+                    </div>
+                `;
+                
+                parkingContainer.appendChild(parkingElement);
+                
+                // Agregar evento click a cada tarjeta
+                parkingElement.addEventListener('click', () => {
+                    selectParking(parking.id);
+                    detailModal.show();
+                });
+            });
+        }
+
+        // Seleccionar un parqueadero
+        function selectParking(id) {
+            selectedParking = parkingData.find(p => p.id === id);
+            updateModalDetails();
+            
+            // Resaltar tarjeta seleccionada
+            document.querySelectorAll('#parkingContainer .parking-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            document.querySelector(`#parkingContainer [data-id="${id}"] .parking-card`).classList.add('selected');
+        }
+
+        // Actualizar detalles en el modal
+        function updateModalDetails() {
+            if (!selectedParking) return;
+            
+            const statusText = selectedParking.status === 'available' ? 'Disponible' : 
+                             selectedParking.status === 'occupied' ? 'Ocupado' : 'Reservado';
+            const typeText = selectedParking.type === 'owner' ? 'Propietario' : 
+                           selectedParking.type === 'rented' ? 'Arrendado' : 'Visitante';
+            
+            document.getElementById('modalDetailNumber').textContent = selectedParking.number;
+            document.getElementById('modalDetailStatus').textContent = statusText;
+            document.getElementById('modalDetailStatus').className = `status-badge ${selectedParking.status}`;
+            document.getElementById('modalDetailType').textContent = typeText;
+            document.getElementById('modalDetailTower').textContent = selectedParking.tower;
+            document.getElementById('modalDetailOwner').textContent = selectedParking.owner || '-';
+            document.getElementById('modalDetailVehicle').textContent = selectedParking.vehicle || '-';
+            document.getElementById('modalDetailTime').textContent = selectedParking.time || '-';
+            document.getElementById('modalChangeStatus').value = selectedParking.status;
+        }
+
+        // Cambiar estado del parqueadero
+        document.getElementById('saveStatusBtn').addEventListener('click', function() {
+            if (!selectedParking) return;
+            
+            const newStatus = document.getElementById('modalChangeStatus').value;
+            selectedParking.status = newStatus;
+            
+            // Actualizar en los datos
+            const parkingIndex = parkingData.findIndex(p => p.id === selectedParking.id);
+            if (parkingIndex !== -1) {
+                parkingData[parkingIndex].status = newStatus;
+            }
+            
+            // Actualizar UI
+            generateParkingCards();
+            selectParking(selectedParking.id);
+            
+            // Mostrar feedback
+            alert('Estado del parqueadero actualizado correctamente');
+            detailModal.hide();
+        });
+
+        // Abrir modal de edición
+        document.getElementById('editParkingBtn').addEventListener('click', function() {
+            if (!selectedParking) return;
+            
+            document.getElementById('editNumber').value = selectedParking.number;
+            document.getElementById('editType').value = selectedParking.type;
+            document.getElementById('editTower').value = selectedParking.tower;
+            document.getElementById('editOwner').value = selectedParking.owner || '';
+            document.getElementById('editVehicle').value = selectedParking.vehicle || '';
+            
+            detailModal.hide();
+            editModal.show();
+        });
+
+        // Guardar cambios en el modal de edición
+        document.getElementById('saveChangesBtn').addEventListener('click', function() {
+            if (!selectedParking) return;
+            
+            // Actualizar datos
+            selectedParking.type = document.getElementById('editType').value;
+            selectedParking.tower = document.getElementById('editTower').value;
+            selectedParking.owner = document.getElementById('editOwner').value;
+            selectedParking.vehicle = document.getElementById('editVehicle').value;
+            
+            // Actualizar en los datos
+            const parkingIndex = parkingData.findIndex(p => p.id === selectedParking.id);
+            if (parkingIndex !== -1) {
+                parkingData[parkingIndex] = {...selectedParking};
+            }
+            
+            // Actualizar UI
+            generateParkingCards();
+            selectParking(selectedParking.id);
+            
+            // Cerrar modal y mostrar feedback
+            editModal.hide();
+            alert('Información del parqueadero actualizada correctamente');
+            detailModal.show();
+        });
+
+        // Filtrado de parqueaderos
+        function filterParking() {
+            const statusValue = document.getElementById('statusFilter').value;
+            const typeValue = document.getElementById('typeFilter').value;
+            const parkingSpots = document.querySelectorAll('#parkingContainer > div');
+
+            parkingSpots.forEach(spot => {
+                const statusMatch = statusValue === 'all' || spot.getAttribute('data-status') === statusValue;
+                const typeMatch = typeValue === 'all' || spot.getAttribute('data-type') === typeValue;
+
+                if (statusMatch && typeMatch) {
+                    spot.style.display = 'block';
+                } else {
+                    spot.style.display = 'none';
+                }
+            });
+        }
+
+        // Event listeners para los filtros
+        document.getElementById('statusFilter').addEventListener('change', filterParking);
+        document.getElementById('typeFilter').addEventListener('change', filterParking);
+
+        // Inicializar la aplicación
+        function init() {
+            generateParkingCards();
+            filterParking();
+        }
+
+        // Iniciar cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
