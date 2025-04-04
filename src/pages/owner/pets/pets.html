@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Enhanced SEO Meta Tags -->
+    <title>Gestión de Mascotas - VALHALLA | Sistema de Administración de Propiedades</title>
+    <meta name="description" content="Sistema de gestión de mascotas para residentes de Puerta de la Alameda. Registre, actualice y administre la información de las mascotas del conjunto residencial." />
+    <meta name="keywords" content="gestión mascotas, registro mascotas, administración conjuntos, carnet vacunas, mascotas residenciales, Puerta de la Alameda" />
+    <meta name="author" content="Valhalla" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Gestión de Mascotas - VALHALLA" />
+    <meta property="og:description" content="Sistema de gestión de mascotas para residentes de Puerta de la Alameda" />
+    <meta property="og:site_name" content="VALHALLA" />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Gestión de Mascotas - VALHALLA" />
+    <meta name="twitter:description" content="Sistema de gestión de mascotas para residentes de Puerta de la Alameda" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"
+    />
+
+    <link rel="stylesheet" href="../../../styles/components/navbar.css" />
+    <!-- Add this in the head section, after Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bootstrap-4/bootstrap-4.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </head>
+  
+  <body>
+    <div class="container-fluid">
+      <div class="row flex-nowrap">
+        <!-- Sidebar Navigation -->
+        <aside id="sidebar" class="col-auto px-0 bg-white border-end" style="width: 280px">
+          <nav class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 min-vh-100">
+            <a href="../owner.html" class="d-flex align-items-center pb-3 mb-md-1 mt-md-3 me-md-auto text-dark text-decoration-none">
+              <span class="fs-5 fw-bolder">VALHALLA</span>
+            </a>
+            <ul class="nav flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start w-100" role="navigation">
+              <!-- Navigation items with semantic roles -->
+              <li class="nav-item w-100" role="menuitem">
+                <a href="../owner.html" class="nav-link text-dark px-0">
+                  <i class="bi bi-megaphone" aria-hidden="true"></i> 
+                  <span class="ms-2">ANUNCIOS</span>
+                </a>
+              </li>
+              <li class="nav-item w-100" role="menuitem">
+                <a href="../surveys/surveys.html" class="nav-link text-dark px-0">
+                  <i class="bi bi-clipboard-data"></i>
+                  <span class="ms-2">ENCUESTAS</span>
+                </a>
+              </li>
+              <li class="nav-item w-100" role="menuitem">
+                <a href="../payments/payments.html" class="nav-link text-dark px-0">
+                  <i class="bi bi-credit-card"></i>
+                  <span class="ms-2">PAGOS</span>
+                </a>
+              </li>
+              <li class="nav-item w-100" role="menuitem">
+                <a href="../parking/parking.html" class="nav-link text-dark px-0">
+                  <i class="bi bi-p-square"></i>
+                  <span class="ms-2">PARQUEADERO</span>
+                </a>
+              </li>
+              <li class="nav-item w-100" role="menuitem">
+                <a href="../reservations/reservations.html" class="nav-link text-dark px-0">
+                  <i class="bi bi-calendar-check"></i>
+                  <span class="ms-2">RESERVAS</span>
+                </a>
+              </li>
+              <li class="nav-item w-100" role="menuitem">
+                <a href="../pets/pets.html" class="nav-link text-dark px-0">
+                  <i class="bi bi-heart"></i> <span class="ms-2">MASCOTAS</span>
+                </a>
+              </li>
+              <li class="nav-item w-100" role="menuitem">
+                <a href="../tenants/tenants.html" class="nav-link text-dark px-0">
+                  <i class="bi bi-person-check"></i>
+                  <span class="ms-2">ARRENDATARIOS</span>
+                </a>
+              </li>
+              <li class="nav-item w-100" role="menuitem">
+                <a href="../pqrs/pqrs.html" class="nav-link text-dark px-0">
+                  <i class="bi bi-question-circle"></i>
+                  <span class="ms-2">PQRS</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </aside>
+
+
+        <!-- Main Content -->
+        <div class="col p-0">
+          <!-- Topbar -->
+          <nav class="navbar navbar-expand-lg bg-white border-bottom px-3">
+
+        <!-- Main Content Area -->
+        <main class="col p-0" role="main">
+          <!-- Header -->
+          <header class="navbar navbar-expand-lg bg-white border-bottom px-3 fixed-navbar" role="banner">
+
+            <div class="container-fluid">
+              <div class="d-flex align-items-center">
+                <button class="btn btn-link text-dark px-0 me-3" id="sidebarToggle" aria-label="Toggle sidebar">
+                  <i class="bi bi-list fs-4" aria-hidden="true"></i>
+                </button>
+                <h1 class="navbar-text fs-4">PUERTA DE LA ALAMEDA</h1>
+                <h2 class="fs-6" style="margin-top: 20px;">Valhalla</h2>
+              </div>
+
+              <!-- Search and Actions -->
+              <div class="d-flex align-items-center ms-auto">
+                <form class="input-group me-3" role="search">
+                  <label class="input-group-text bg-white border-end-0" for="searchInput">
+                    <i class="bi bi-search" aria-hidden="true"></i>
+                  </label>
+                  <input type="search" id="searchInput" class="form-control border-start-0" placeholder="Buscar" aria-label="Buscar en el sitio" />
+                </form>
+
+                <nav class="d-flex">
+                  <button class="btn btn-link text-dark" aria-label="Notificaciones">
+                    <i class="bi bi-bell fs-5" aria-hidden="true"></i>
+                  </button>
+                  <a href="../profile/profile.html" class="btn btn-link text-dark" role="button"
+                      aria-label="Ir a mi perfil">
+                      <i class="bi bi-person fs-5" aria-hidden="true"></i>
+                    </a>
+                  <button class="btn btn-link text-dark" aria-label="Salir">
+                    <i class="bi bi-escape fs-5" aria-hidden="true"></i>
+                  </button>
+                </nav>
+              </div>
+            </div>
+          </header>
+
+          <!-- Main content area -->
+          <div class="container-fluid p-4">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2>Gestión de Mascotas</h2>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPetModal" aria-label="Agregar nueva mascota">
+                        <i class="bi bi-plus-circle" aria-hidden="true"></i> Agregar Mascota
+                    </button>
+                </div>
+
+                <!-- Pets Grid -->
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="petsContainer">
+                    <!-- Pet cards will be dynamically added here -->
+                </div>
+
+                <!-- Add/Edit Pet Modal -->
+                <div class="modal fade" id="addPetModal" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <header class="modal-header">
+                                <h2 class="modal-title h5" id="modalTitle">Agregar Mascota</h2>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                            </header>
+                            <div class="modal-body">
+                                <form id="petForm" class="needs-validation" novalidate aria-label="Formulario de mascota">
+                                    <input type="hidden" id="petId">
+                                    <div class="mb-3">
+                                        <label for="petName" class="form-label">Nombre de la Mascota</label>
+                                        <input type="text" class="form-control" id="petName" required 
+                                               minlength="2" maxlength="50" pattern="[A-Za-zÀ-ÿ\s]+"
+                                               title="Solo letras y espacios permitidos"
+                                               aria-describedby="petNameHelp">
+                                        <div class="invalid-feedback" role="alert">
+                                            El nombre debe tener entre 2 y 50 caracteres, solo letras permitidas
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="petSpecies" class="form-label">Especie</label>
+                                        <select class="form-select" id="petSpecies" required aria-describedby="speciesHelp">
+                                            <option value="">Seleccione especie</option>
+                                            <option value="Perro">Perro</option>
+                                            <option value="Gato">Gato</option>
+                                            <option value="Ave">Ave</option>
+                                            <option value="Otro">Otro</option>
+                                        </select>
+                                        <div class="invalid-feedback" role="alert">
+                                            Por favor seleccione una especie
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="petBreed" class="form-label">Raza</label>
+                                        <input type="text" class="form-control" id="petBreed" required
+                                               minlength="2" maxlength="50" pattern="[A-Za-zÀ-ÿ\s]+"
+                                               title="Solo letras y espacios permitidos">
+                                        <div class="invalid-feedback">
+                                            La raza debe tener entre 2 y 50 caracteres, solo letras permitidas
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="petOwner" class="form-label">Propietario</label>
+                                        <select class="form-select" id="petOwner" required>
+                                            <option value="">Seleccione propietario</option>
+                                            <option value="1">Juan Pérez - Apto 101</option>
+                                            <option value="2">María García - Apto 202</option>
+                                            <option value="3">Carlos López - Apto 303</option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Por favor seleccione un propietario
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="petVaccineCard" class="form-label">Carnet de Vacunas</label>
+                                        <input type="file" class="form-control" id="petVaccineCard" 
+                                               accept=".pdf,.jpg,.jpeg,.png">
+                                        <div class="invalid-feedback">
+                                            Por favor seleccione un archivo válido (PDF, JPG, PNG)
+                                        </div>
+                                        <div class="form-text">
+                                            Formatos aceptados: PDF, JPG, PNG. Tamaño máximo: 5MB
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="petImage" class="form-label">Foto de la Mascota</label>
+                                        <input type="file" class="form-control" id="petImage" 
+                                               accept="image/*">
+                                        <div class="invalid-feedback">
+                                            Por favor seleccione una imagen válida
+                                        </div>
+                                        <div class="form-text">
+                                            Formatos aceptados: JPG, PNG. Tamaño máximo: 5MB
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <footer class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-primary" onclick="savePet()">Guardar</button>
+                            </footer>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- View Pet Modal -->
+                <div class="modal fade" id="viewPetModal" tabindex="-1" aria-labelledby="viewModalTitle" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <header class="modal-header">
+                                <h2 class="modal-title h5" id="viewModalTitle">Detalles de la Mascota</h2>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                            </header>
+                            <div class="modal-body" id="petDetails">
+                                <!-- Pet details will be inserted here -->
+                            </div>
+                            <footer class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            </footer>
+                        </div>
+                    </div>
+                </div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "VALHALLA - Gestión de Mascotas",
+      "description": "Sistema de gestión de mascotas para residentes de Puerta de la Alameda",
+      "applicationCategory": "Property Management Application",
+      "operatingSystem": "Web Browser",
+      "offers": {
+        "@type": "Offer",
+        "price": "0"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "VALHALLA"
+      }
+    }
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+   <script src="../../../scripts/components/pets.js"></script>
+    <!-- Toggle Script -->
+    <script src="../../../scripts/components/navbarToggle.js"></script>
+  </body>
+</html>
