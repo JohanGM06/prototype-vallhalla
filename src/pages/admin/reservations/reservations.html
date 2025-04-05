@@ -4,16 +4,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
+
   <!-- Enhanced SEO Meta Tags -->
-  <meta name="description" content="Sistema de reservas de áreas comunes del conjunto residencial Valhalla - Gestione eficientemente las reservas del salón comunal, piscina y zonas de parrilla">
-  <meta name="keywords" content="reservas, áreas comunes, salón comunal, piscina, parrilla, conjunto residencial, valhalla, administración residencial">
+  <meta name="description"
+    content="Sistema de reservas de áreas comunes del conjunto residencial Valhalla - Gestione eficientemente las reservas del salón comunal, piscina y zonas de parrilla">
+  <meta name="keywords"
+    content="reservas, áreas comunes, salón comunal, piscina, parrilla, conjunto residencial, valhalla, administración residencial">
   <meta name="author" content="Valhalla Residencial">
   <meta name="robots" content="index, follow">
 
   <!-- Open Graph / Social Media -->
   <meta property="og:title" content="VALHALLA - Sistema de Reservas de Áreas Comunes">
-  <meta property="og:description" content="Gestione eficientemente las reservas de áreas comunes en el conjunto residencial Valhalla">
+  <meta property="og:description"
+    content="Gestione eficientemente las reservas de áreas comunes en el conjunto residencial Valhalla">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Valhalla Residencial">
   <meta property="og:locale" content="es_CO">
@@ -37,7 +40,7 @@
   <link rel="stylesheet" href="../../../styles/components/navbar.css">
 
   <!-- Essential Custom Styles -->
- 
+
 </head>
 
 <body>
@@ -109,7 +112,7 @@
                 </a>
               </li>
               <li class="nav-item w-100">
-                <a href="/src/pages/admin/pet/pet.html" class="nav-link text-dark px-0">
+                <a href="/src/pages/admin/pets/pets.html" class="nav-link text-dark px-0">
                   <i class="bi bi-heart"></i> <span class="ms-2">MASCOTA</span>
                 </a>
               </li>
@@ -143,13 +146,15 @@
                   <i class="bi bi-envelope fs-5"></i>
                 </button>
                 <div class="dropdown">
-                  <button class="btn btn-link text-dark dropdown-toggle" type="button" id="signOutDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                      <i class="bi bi-escape fs-5"></i>
+                  <button class="btn btn-link text-dark dropdown-toggle" type="button" id="signOutDropdown"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-escape fs-5"></i>
                   </button>
                   <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="signOutDropdown">
-                      <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">Cerrar Sesión</a></li>
+                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">Cerrar
+                        Sesión</a></li>
                   </ul>
-              </div>
+                </div>
               </div>
             </div>
           </nav>
@@ -164,7 +169,7 @@
                 <div class="card">
                   <div class="card-header bg-white">
                     <div class="d-flex justify-content-between align-items-center">
-                     
+
                       <div class="dropdown">
                         <button class="btn btn-outline-secondary dropdown-toggle" type="button"
                           data-bs-toggle="dropdown">
@@ -191,263 +196,262 @@
                   </div>
                   <div class="card-body">
                     <!-- Current Reservations -->
-                    <div class="list-group"
-                      <div class="list-group-item">
-                        <div class="d-flex justify-content-between align-items-center">
-                          <div>
-                            <h6 class="mb-1">APT #101</h6>
-                            <small class="text-muted">22-11-2024 - 23-11-2024</small>
-                          </div>
-                          <div>
-                            <button class="btn btn-sm btn-outline-primary me-1" data-bs-toggle="modal"
-                              data-bs-target="#editReservationModal">
-                              <i class="bi bi-pencil"></i>
-                            </button>
-                            <button class="btn btn-sm btn-outline-secondary me-1" data-bs-toggle="modal"
-                              data-bs-target="#viewReservationModal">
-                              <i class="bi bi-eye"></i>
-                            </button>
-                            <button class="btn btn-sm btn-outline-danger" onclick="confirmDelete(this)">
-                              <i class="bi bi-trash"></i>
-                            </button>
-                          </div>
+                    <div class="list-group" <div class="list-group-item">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                          <h6 class="mb-1">APT #101</h6>
+                          <small class="text-muted">22-11-2024 - 23-11-2024</small>
+                        </div>
+                        <div>
+                          <button class="btn btn-sm btn-outline-primary me-1" data-bs-toggle="modal"
+                            data-bs-target="#editReservationModal">
+                            <i class="bi bi-pencil"></i>
+                          </button>
+                          <button class="btn btn-sm btn-outline-secondary me-1" data-bs-toggle="modal"
+                            data-bs-target="#viewReservationModal">
+                            <i class="bi bi-eye"></i>
+                          </button>
+                          <button class="btn btn-sm btn-outline-danger" onclick="confirmDelete(this)">
+                            <i class="bi bi-trash"></i>
+                          </button>
                         </div>
                       </div>
-                      <div class="list-group-item">
-                        <div class="d-flex justify-content-between align-items-center">
-                          <div>
-                            <h6 class="mb-1">APT #101</h6>
-                            <small class="text-muted">22-11-2024 - 23-11-2024</small>
-                          </div>
-                          <div>
-                            <button class="btn btn-sm btn-outline-primary me-1" data-bs-toggle="modal"
-                              data-bs-target="#editReservationModal">
-                              <i class="bi bi-pencil"></i>
-                            </button>
-                            <button class="btn btn-sm btn-outline-secondary me-1" data-bs-toggle="modal"
-                              data-bs-target="#viewReservationModal">
-                              <i class="bi bi-eye"></i>
-                            </button>
-                            <button class="btn btn-sm btn-outline-danger" onclick="confirmDelete(this)">
-                              <i class="bi bi-trash"></i>
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="list-group-item">
-                        <div class="d-flex justify-content-between align-items-center">
-                          <div>
-                            <h6 class="mb-1">APT #101</h6>
-                            <small class="text-muted">22-11-2024 - 23-11-2024</small>
-                          </div>
-                          <div>
-                            <button class="btn btn-sm btn-outline-primary me-1" data-bs-toggle="modal"
-                              data-bs-target="#editReservationModal">
-                              <i class="bi bi-pencil"></i>
-                            </button>
-                            <button class="btn btn-sm btn-outline-secondary me-1" data-bs-toggle="modal"
-                              data-bs-target="#viewReservationModal">
-                              <i class="bi bi-eye"></i>
-                            </button>
-                            <button class="btn btn-sm btn-outline-danger" onclick="confirmDelete(this)">
-                              <i class="bi bi-trash"></i>
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- Add more reservations as needed -->
                     </div>
-
-                    <!-- Add Reservation Button -->
-                    <button class="btn btn-primary w-100 mt-3" data-bs-toggle="modal"
-                      data-bs-target="#createReservationModal">
-                      <i class="bi bi-plus-circle me-2"></i>Nueva Reserva
-                    </button>
+                    <div class="list-group-item">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                          <h6 class="mb-1">APT #101</h6>
+                          <small class="text-muted">22-11-2024 - 23-11-2024</small>
+                        </div>
+                        <div>
+                          <button class="btn btn-sm btn-outline-primary me-1" data-bs-toggle="modal"
+                            data-bs-target="#editReservationModal">
+                            <i class="bi bi-pencil"></i>
+                          </button>
+                          <button class="btn btn-sm btn-outline-secondary me-1" data-bs-toggle="modal"
+                            data-bs-target="#viewReservationModal">
+                            <i class="bi bi-eye"></i>
+                          </button>
+                          <button class="btn btn-sm btn-outline-danger" onclick="confirmDelete(this)">
+                            <i class="bi bi-trash"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="list-group-item">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                          <h6 class="mb-1">APT #101</h6>
+                          <small class="text-muted">22-11-2024 - 23-11-2024</small>
+                        </div>
+                        <div>
+                          <button class="btn btn-sm btn-outline-primary me-1" data-bs-toggle="modal"
+                            data-bs-target="#editReservationModal">
+                            <i class="bi bi-pencil"></i>
+                          </button>
+                          <button class="btn btn-sm btn-outline-secondary me-1" data-bs-toggle="modal"
+                            data-bs-target="#viewReservationModal">
+                            <i class="bi bi-eye"></i>
+                          </button>
+                          <button class="btn btn-sm btn-outline-danger" onclick="confirmDelete(this)">
+                            <i class="bi bi-trash"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Add more reservations as needed -->
                   </div>
-                </div>
 
+                  <!-- Add Reservation Button -->
+                  <button class="btn btn-primary w-100 mt-3" data-bs-toggle="modal"
+                    data-bs-target="#createReservationModal">
+                    <i class="bi bi-plus-circle me-2"></i>Nueva Reserva
+                  </button>
+                </div>
               </div>
+
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Create Reservation Modal -->
-    <div class="modal fade" id="createReservationModal" tabindex="-1" aria-labelledby="createReservationModalLabel"
-      aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="createReservationModalLabel">Crear Reservación</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <form id="createReservationForm" class="needs-validation" novalidate>
-              <div class="mb-3">
-                <label for="createTipoZona" class="form-label">Tipo de Zona</label>
-                <select class="form-select" id="createTipoZona" required>
-                  <option value="">Seleccione una zona</option>
-                  <option value="SALON COMUNAL">SALON COMUNAL</option>
-                  <option value="PARRILLA">PARRILLA</option>
-                  <option value="PISCINA">PISCINA</option>
-                </select>
-                <div class="invalid-feedback">
-                  Por favor seleccione una zona
-                </div>
+  <!-- Create Reservation Modal -->
+  <div class="modal fade" id="createReservationModal" tabindex="-1" aria-labelledby="createReservationModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="createReservationModalLabel">Crear Reservación</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="createReservationForm" class="needs-validation" novalidate>
+            <div class="mb-3">
+              <label for="createTipoZona" class="form-label">Tipo de Zona</label>
+              <select class="form-select" id="createTipoZona" required>
+                <option value="">Seleccione una zona</option>
+                <option value="SALON COMUNAL">SALON COMUNAL</option>
+                <option value="PARRILLA">PARRILLA</option>
+                <option value="PISCINA">PISCINA</option>
+              </select>
+              <div class="invalid-feedback">
+                Por favor seleccione una zona
               </div>
-              <div class="mb-3">
-                <label for="createFecha" class="form-label">Fecha</label>
-                <div class="calendar-wrapper border rounded p-3">
-                  <input type="text" id="createFecha" class="d-none" required>
-                </div>
-                <div class="invalid-feedback">
-                  Por favor seleccione una fecha
-                </div>
+            </div>
+            <div class="mb-3">
+              <label for="createFecha" class="form-label">Fecha</label>
+              <div class="calendar-wrapper border rounded p-3">
+                <input type="text" id="createFecha" class="d-none" required>
               </div>
-              <div class="mb-3">
-                <label for="createHora" class="form-label">Hora</label>
-                <select class="form-select" id="createHora" required>
-                  <option value="">Seleccione una hora</option>
-                  <option value="08:00">8:00 AM</option>
-                  <option value="10:00">10:00 AM</option>
-                  <option value="12:00">12:00 PM</option>
-                  <option value="14:00">2:00 PM</option>
-                  <option value="16:00">4:00 PM</option>
-                  <option value="18:00">6:00 PM</option>
-                </select>
-                <div class="invalid-feedback">
-                  Por favor seleccione una hora
-                </div>
+              <div class="invalid-feedback">
+                Por favor seleccione una fecha
               </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn btn-primary" onclick="validateAndSubmit()">Guardar</button>
-          </div>
+            </div>
+            <div class="mb-3">
+              <label for="createHora" class="form-label">Hora</label>
+              <select class="form-select" id="createHora" required>
+                <option value="">Seleccione una hora</option>
+                <option value="08:00">8:00 AM</option>
+                <option value="10:00">10:00 AM</option>
+                <option value="12:00">12:00 PM</option>
+                <option value="14:00">2:00 PM</option>
+                <option value="16:00">4:00 PM</option>
+                <option value="18:00">6:00 PM</option>
+              </select>
+              <div class="invalid-feedback">
+                Por favor seleccione una hora
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" onclick="validateAndSubmit()">Guardar</button>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- View Reservation Modal -->
-    <div class="modal fade" id="viewReservationModal" tabindex="-1" aria-labelledby="viewReservationModalLabel"
-      aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="viewReservationModalLabel">Ver Reservación</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <form>
-              <div class="mb-3">
-                <label for="viewTipoZona" class="form-label">Tipo de Zona</label>
-                <input type="text" class="form-control" id="viewTipoZona" value="" readonly>
-              </div>
-              <div class="mb-3">
-                <label for="viewFechaInicial" class="form-label">Fecha Inicial</label>
-                <input type="text" class="form-control" id="viewFechaInicial" readonly>
-              </div>
-              <div class="mb-3">
-                <label for="viewFechaFinal" class="form-label">Fecha Final</label>
-                <input type="text" class="form-control" id="viewFechaFinal" readonly>
-              </div>
-              <div class="mb-3">
-                <label for="viewHora" class="form-label">Hora</label>
-                <input type="text" class="form-control" id="viewHora" readonly>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          </div>
+  <!-- View Reservation Modal -->
+  <div class="modal fade" id="viewReservationModal" tabindex="-1" aria-labelledby="viewReservationModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="viewReservationModalLabel">Ver Reservación</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="viewTipoZona" class="form-label">Tipo de Zona</label>
+              <input type="text" class="form-control" id="viewTipoZona" value="" readonly>
+            </div>
+            <div class="mb-3">
+              <label for="viewFechaInicial" class="form-label">Fecha Inicial</label>
+              <input type="text" class="form-control" id="viewFechaInicial" readonly>
+            </div>
+            <div class="mb-3">
+              <label for="viewFechaFinal" class="form-label">Fecha Final</label>
+              <input type="text" class="form-control" id="viewFechaFinal" readonly>
+            </div>
+            <div class="mb-3">
+              <label for="viewHora" class="form-label">Hora</label>
+              <input type="text" class="form-control" id="viewHora" readonly>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Edit Reservation Modal -->
-    <div class="modal fade" id="editReservationModal" tabindex="-1" aria-labelledby="editReservationModalLabel"
-      aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="editReservationModalLabel">Editar Reservación</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <form id="editReservationForm" class="needs-validation" novalidate>
-              <div class="mb-3">
-                <label for="editTipoZona" class="form-label">Tipo de Zona</label>
-                <select class="form-select" id="editTipoZona" required>
-                  <option value="">Seleccione una zona</option>
-                  <option value="SALON COMUNAL">SALON COMUNAL</option>
-                  <option value="PARRILLA">PARRILLA</option>
-                  <option value="PISCINA">PISCINA</option>
-                </select>
-                <div class="invalid-feedback">
-                  Por favor seleccione una zona
-                </div>
+  <!-- Edit Reservation Modal -->
+  <div class="modal fade" id="editReservationModal" tabindex="-1" aria-labelledby="editReservationModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editReservationModalLabel">Editar Reservación</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="editReservationForm" class="needs-validation" novalidate>
+            <div class="mb-3">
+              <label for="editTipoZona" class="form-label">Tipo de Zona</label>
+              <select class="form-select" id="editTipoZona" required>
+                <option value="">Seleccione una zona</option>
+                <option value="SALON COMUNAL">SALON COMUNAL</option>
+                <option value="PARRILLA">PARRILLA</option>
+                <option value="PISCINA">PISCINA</option>
+              </select>
+              <div class="invalid-feedback">
+                Por favor seleccione una zona
               </div>
-              <div class="mb-3">
-                <label for="editFecha" class="form-label">Fecha</label>
-                <div class="calendar-wrapper border rounded p-3">
-                  <input type="text" id="editFecha" class="d-none" required>
-                </div>
-                <div class="invalid-feedback">
-                  Por favor seleccione una fecha
-                </div>
+            </div>
+            <div class="mb-3">
+              <label for="editFecha" class="form-label">Fecha</label>
+              <div class="calendar-wrapper border rounded p-3">
+                <input type="text" id="editFecha" class="d-none" required>
               </div>
-              <div class="mb-3">
-                <label for="editHora" class="form-label">Hora</label>
-                <select class="form-select" id="editHora" required>
-                  <option value="">Seleccione una hora</option>
-                  <option value="08:00">8:00 AM</option>
-                  <option value="10:00">10:00 AM</option>
-                  <option value="12:00">12:00 PM</option>
-                  <option value="14:00">2:00 PM</option>
-                  <option value="16:00">4:00 PM</option>
-                  <option value="18:00">6:00 PM</option>
-                </select>
-                <div class="invalid-feedback">
-                  Por favor seleccione una hora
-                </div>
+              <div class="invalid-feedback">
+                Por favor seleccione una fecha
               </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn btn-primary" onclick="validateAndSubmitEdit()">Guardar Cambios</button>
-          </div>
+            </div>
+            <div class="mb-3">
+              <label for="editHora" class="form-label">Hora</label>
+              <select class="form-select" id="editHora" required>
+                <option value="">Seleccione una hora</option>
+                <option value="08:00">8:00 AM</option>
+                <option value="10:00">10:00 AM</option>
+                <option value="12:00">12:00 PM</option>
+                <option value="14:00">2:00 PM</option>
+                <option value="16:00">4:00 PM</option>
+                <option value="18:00">6:00 PM</option>
+              </select>
+              <div class="invalid-feedback">
+                Por favor seleccione una hora
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" onclick="validateAndSubmitEdit()">Guardar Cambios</button>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Logout Modal -->
-    <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="logoutModalLabel">Confirmar Cierre de Sesión</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            ¿Estás seguro que deseas cerrar sesión?
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <a href="../home-page.html" class="btn btn-primary">Cerrar Sesión</a>
-          </div>
+  <!-- Logout Modal -->
+  <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="logoutModalLabel">Confirmar Cierre de Sesión</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ¿Estás seguro que deseas cerrar sesión?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <a href="../home-page.html" class="btn btn-primary">Cerrar Sesión</a>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Bootstrap JS (includes Popper.js) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Bootstrap JS (includes Popper.js) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Toggle Script -->
-   <script src="../../../scripts/components/reservations2.js"></script>
-    <script src="../../../scripts/components/navbarToggle.js"></script>
+  <!-- Toggle Script -->
+  <script src="../../../scripts/components/reservations2.js"></script>
+  <script src="../../../scripts/components/navbarToggle.js"></script>
 </body>
 
 </html>
