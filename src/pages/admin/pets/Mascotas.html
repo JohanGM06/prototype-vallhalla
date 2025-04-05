@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VALHALLA - Sistema de Administración de Propiedades</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row flex-nowrap">
+            <div id="sidebar" class="col-auto px-0 bg-white border-end" style="width: 280px">
+                <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 min-vh-100">
+                    <a href="/" class="d-flex align-items-center pb-3 mb-md-1 mt-md-3 me-md-auto text-dark text-decoration-none">
+                        <span class="fs-5 fw-bolder">VALHALLA</span>
+                    </a>
+                    <ul class="nav flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start w-100">
+                        <li><a href="#" class="nav-link text-dark"><i class="bi bi-house me-2"></i>INICIO</a></li>
+                        <li><a href="#" class="nav-link text-dark"><i class="bi bi-people me-2"></i>PROPIETARIOS</a></li>
+                        <li><a href="#" class="nav-link text-dark"><i class="bi bi-person-check me-2"></i>ARRENDATARIOS</a></li>
+                        <li><a href="#" class="nav-link text-dark"><i class="bi bi-shield me-2"></i>VIGILANTE</a></li>
+                        <li><a href="#" class="nav-link text-dark"><i class="bi bi-house-door me-2"></i>APARTAMENTOS</a></li>
+                        <li><a href="#" class="nav-link text-dark"><i class="bi bi-credit-card me-2"></i>PAGOS</a></li>
+                        <li><a href="#" class="nav-link text-dark"><i class="bi bi-clipboard-data me-2"></i>ENCUESTAS</a></li>
+                        <li><a href="#" class="nav-link text-dark"><i class="bi bi-calendar-check me-2"></i>RESERVAS</a></li>
+                        <li><a href="#" class="nav-link text-dark"><i class="bi bi-question-circle me-2"></i>PQRS</a></li>
+                        <li><a href="#" class="nav-link text-dark"><i class="bi bi-bell me-2"></i>NOTIFICACIONES</a></li>
+                        <li><a href="#" class="nav-link text-dark"><i class="bi bi-p-square me-2"></i>PARQUEADERO</a></li>
+                        <li><a href="#" class="nav-link text-dark active bg-light"><i class="bi bi-heart me-2"></i>MASCOTAS</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col p-0">
+                <nav class="navbar navbar-expand-lg bg-white border-bottom px-3">
+                    <div class="container-fluid">
+                        <span class="navbar-text fs-5">BIENVENIDO ADMINISTRADOR</span>
+                    </div>
+                </nav>
+                <div class="container p-4">
+                    <h3>Administrador de Mascotas</h3>
+                    <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addPetModal">
+                        <i class="bi bi-plus"></i> Añadir Mascota
+                    </button>
+                    <div class="row row-cols-1 row-cols-md-4 g-4">
+                        <div class="col">
+                            <div class="card h-100">
+                                <img src="Img/mascota1.jpeg" class="card-img-top" alt="Mascota">
+                                <div class="card-body">
+                                    <h5 class="card-title">Nombre: Max</h5>
+                                    <p class="card-text">Raza: Labrador</p>
+                                    <p class="card-text">Edad: 3 años</p>
+                                    <div class="d-flex justify-content-between">
+                                        <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#viewPetModal"><i class="bi bi-eye"></i></button>
+                                        <button class="btn btn-outline-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editPetModal"><i class="bi bi-pencil"></i></button>
+                                        <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deletePetModal"><i class="bi bi-trash"></i></button>
+                    
+                                    </div>
+                        
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                          <div class="card h-100">
+                              <img src="Img\mascota2.jpg" class="card-img-top" alt="Mascota" height="230">
+                              <div class="card-body">
+                                  <h5 class="card-title">Nombre: Rocky</h5>
+                                  <p class="card-text">Raza: Labrador</p>
+                                  <p class="card-text">Edad: 4 Meses</p>
+                                  <div class="d-flex justify-content-between">
+                                      <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#viewPetModal2"><i class="bi bi-eye"></i></button>
+                                      <button class="btn btn-outline-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editPetModal"><i class="bi bi-pencil"></i></button>
+                                      <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deletePetModal"><i class="bi bi-trash"></i></button>
+                                  </div>
+                              </div>
+                          </div>
+                        </div>
+                      <div class="col">
+                          <div class="card h-100">
+                              <img src="Img\mascota3.jpg" class="card-img-top" alt="Mascota" height="230">
+                              <div class="card-body">
+                                  <h5 class="card-title">Nombre: Ana</h5>
+                                  <p class="card-text">Raza: Frespuder</p>
+                                  <p class="card-text">Edad: 5 AÑOS</p>
+                                  <div class="d-flex justify-content-between">
+                                      <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#viewPetModal3"><i class="bi bi-eye"></i></button>
+                                      <button class="btn btn-outline-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editPetModal"><i class="bi bi-pencil"></i></button>
+                                      <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deletePetModal"><i class="bi bi-trash"></i></button>
+                                  </div>
+                              </div>
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="card h-100">
+                              <img src="Img\mascota4.jpg" class="card-img-top" alt="Mascota" height="230">
+                              <div class="card-body">
+                                  <h5 class="card-title">Nombre: Barbaro</h5>
+                                  <p class="card-text">Raza: Bulldog</p>
+                                  <p class="card-text">Edad: 3 AÑOS</p>
+                                  <div class="d-flex justify-content-between">
+                                      <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#viewPetModal4"><i class="bi bi-eye"></i></button>
+                                      <button class="btn btn-outline-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editPetModal"><i class="bi bi-pencil"></i></button>
+                                      <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deletePetModal"><i class="bi bi-trash"></i></button>
+                                  </div>
+                              </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!--Modales 1-->
+    <div class="modal fade" id="viewPetModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Detalles de Mascota</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="Img/mascota1.jpeg" class="img-fluid mb-3" alt="Mascota">
+                    <p><strong>Nombre:</strong> Max</p>
+                    <p><strong>Raza:</strong> Labrador</p>
+                    <p><strong>Edad:</strong> 3 años</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="editPetModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Editar Mascota</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <label>Foto de la Mascota:</label>
+                    <input type="file" class="form-control mb-2">
+                    <label>Nombre:</label>
+                    <input type="text" class="form-control mb-2">
+                    <label>Raza:</label>
+                    <input type="text" class="form-control mb-2">
+                    <label>Edad:</label>
+                    <input type="number" class="form-control">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deletePetModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Eliminar Mascota</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">¿Estás seguro de que deseas eliminar esta mascota?</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="addPetModal" tabindex="-1">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title">Añadir Mascota</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+              </div>
+              <div class="modal-body">
+                  <label>Foto de la Mascota:</label>
+                  <input type="file" class="form-control mb-2">
+                  <label>Nombre:</label>
+                  <input type="text" class="form-control mb-2">
+                  <label>Raza:</label>
+                  <input type="text" class="form-control mb-2">
+                  <label>Edad:</label>
+                  <input type="number" class="form-control">
+              </div>
+          </div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-primary">Guardar Mascota</button>
+      </div>
+  </div>
+  
+  <!--Modales 2-->
+  <div class="modal fade" id="viewPetModal2" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Detalles de Mascota</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body text-center">
+                <img src="Img\mascota2.jpg" class="img-fluid mb-3" alt="Mascota">
+                <p><strong>Nombre:</strong> Rocky </p>
+                <p><strong>Raza:</strong> Labrador </p>
+                <p><strong>Edad:</strong> 4 Meses</p>
+            </div>
+        </div>
+    </div>
+  </div>
+  <!--Modales 3-->
+  <div class="modal fade" id="viewPetModal3" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Detalles de Mascota</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body text-center">
+                <img src="Img\mascota3.jpg" class="img-fluid mb-3" alt="Mascota">
+                <p><strong>Nombre:</strong> Ana </p>
+                <p><strong>Raza:</strong> Fespuder </p>
+                <p><strong>Edad:</strong> 5 Años</p>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <!--Modales 4-->
+  <div class="modal fade" id="viewPetModal4" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Detalles de Mascota</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body text-center">
+                <img src="Img\mascota4.jpg" class="img-fluid mb-3" alt="Mascota">
+                <p><strong>Nombre:</strong> Barbaro </p>
+                <p><strong>Raza:</strong> Bulldog </p>
+                <p><strong>Edad:</strong> 3 Años</p>
+            </div>
+        </div>
+    </div>
+  </div>
+  
+
+  
+  
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
