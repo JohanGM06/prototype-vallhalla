@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sistema de gestión de apartamentos para el conjunto residencial Valhalla - Administre eficientemente la información de unidades residenciales">
+    <meta name="keywords" content="apartamentos, gestión inmobiliaria, propiedades, conjunto residencial, valhalla">
+    <meta name="author" content="Valhalla Residencial">
+    <meta name="robots" content="index, follow">
+    <title>Gestión de Apartamentos | VALHALLA</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <!-- Select2 -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" rel="stylesheet" />
+    
+    <!-- Minimal required CSS -->
+   <link rel="stylesheet" href="/src/styles/components/navbar.css">
+   <link rel="stylesheet" href="/src/styles/components/apartment.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row flex-nowrap">
+            <!-- Sidebar (same as dashboard) -->
+            <nav id="sidebar" class="col-auto px-0 bg-white border-end" style="width: 280px;">
+                <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 min-vh-100">
+                    <a href="../dashboard.html" class="d-flex align-items-center pb-3 mb-md-1 mt-md-3 me-md-auto text-dark text-decoration-none">
+                        <span class="fs-5 fw-bolder">VALHALLA</span>
+                    </a>
+                    <ul class="nav flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start w-100">
+                        <li class="nav-item w-100">
+                            <a href="../dashboard.html" class="nav-link text-dark px-0">
+                                <i class="bi bi-house"></i> <span class="ms-2">INICIO</span>
+                            </a>
+                        </li>
+                        <li class="nav-item w-100">
+                            <a href="../owners/owners.html" class="nav-link text-dark px-0">
+                                <i class="bi bi-people"></i> <span class="ms-2">PROPIETARIOS</span>
+                            </a>
+                        </li>
+                        <li class="nav-item w-100">
+                            <a href="../tenant/tenant.html" class="nav-link text-dark px-0">
+                                <i class="bi bi-person-check"></i> <span class="ms-2">ARRENDATARIOS</span>
+                            </a>
+                        </li>
+                        <li class="nav-item w-100">
+                            <a href="../guard/guard.html" class="nav-link text-dark px-0">
+                                <i class="bi bi-shield"></i> <span class="ms-2">VIGILANTE</span>
+                            </a>
+                        </li>
+                        <li class="nav-item w-100">
+                            <a href="../apartments/apartments.html" class="nav-link active text-dark px-0">
+                                <i class="bi bi-house-door"></i> <span class="ms-2">APARTAMENTOS</span>
+                            </a>
+                        </li>
+                        <li class="nav-item w-100">
+                            <a href="../payments/payments.html" class="nav-link text-dark px-0">
+                                <i class="bi bi-credit-card"></i> <span class="ms-2">PAGOS</span>
+                            </a>
+                        </li>
+                        <li class="nav-item w-100">
+                            <a href="../surveys/surveys.html" class="nav-link text-dark px-0">
+                                <i class="bi bi-clipboard-data"></i> <span class="ms-2">ENCUESTAS</span>
+                            </a>
+                        </li>
+                        <li class="nav-item w-100">
+                            <a href="../reservations/reservations.html" class="nav-link text-dark px-0">
+                                <i class="bi bi-calendar-check"></i> <span class="ms-2">RESERVAS</span>
+                            </a>
+                        </li>
+                        <li class="nav-item w-100">
+                            <a href="../pqrs/PQRS.html" class="nav-link text-dark px-0">
+                                <i class="bi bi-question-circle"></i> <span class="ms-2">PQRS</span>
+                            </a>
+                        </li>
+                        <li class="nav-item w-100">
+                            <a href="../notifications/notifications.html" class="nav-link text-dark px-0">
+                                <i class="bi bi-bell"></i> <span class="ms-2">NOTIFICACIONES</span>
+                            </a>
+                        </li>
+                        <li class="nav-item w-100">
+                            <a href="../parking/parking.html" class="nav-link text-dark px-0">
+                                <i class="bi bi-p-square"></i> <span class="ms-2">PARQUEADERO</span>
+                            </a>
+                        </li>
+                        <li class="nav-item w-100">
+                            <a href="../pets/pets.html" class="nav-link text-dark px-0">
+                                <i class="bi bi-heart"></i> <span class="ms-2">MASCOTA</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Main Content -->
+            <main class="col p-0">
+                <!-- Topbar (same as dashboard) -->
+                <nav class="navbar navbar-expand-lg bg-white border-bottom px-3">
+                    <div class="container-fluid">
+                        <div class="d-flex align-items-center">
+                            <button class="btn btn-link text-dark px-0 me-3" id="sidebarToggle">
+                                <i class="bi bi-list fs-4"></i>
+                            </button>
+                            <span class="navbar-text fs-5">BIENVENIDO ADMINISTRADOR</span>
+                        </div>
+
+                        <div class="d-flex align-items-center ms-auto">
+                            <div class="input-group me-3">
+                                <span class="input-group-text bg-white border-end-0">
+                                    <i class="bi bi-search"></i>
+                                </span>
+                                <input type="text" class="form-control border-start-0" placeholder="Search">
+                            </div>
+
+                            <button class="btn btn-link text-dark">
+                                <i class="bi bi-bell fs-5"></i>
+                            </button>
+                            <button class="btn btn-link text-dark">
+                                <i class="bi bi-envelope fs-5"></i>
+                            </button>
+                            <div class="dropdown">
+                                <button class="btn btn-link text-dark dropdown-toggle" type="button" id="signOutDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-escape fs-5"></i>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="signOutDropdown">
+                                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">Cerrar Sesión</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- Page Content -->
+                <section class="flex-grow-1 overflow-auto p-4">
+                    <div class="container-fluid">
+                        <header class="d-flex justify-content-between align-items-center mb-4">
+                            <h1 class="h3 mb-0">Gestión de Apartamentos</h1>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#apartmentModal">
+                                <i class="bi bi-plus-lg"></i> Añadir Apartamento
+                            </button>
+                        </header>
+
+                        <!-- Apartment Filter -->
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <div class="row g-3">
+                                    <div class="col-md-4">
+                                        <label for="towerFilter" class="form-label">Torre</label>
+                                        <select class="form-select" id="towerFilter">
+                                            <option value="">Todas las torres</option>
+                                            <option value="1">Torre 1</option>
+                                            <option value="2">Torre 2</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="statusFilter" class="form-label">Estado</label>
+                                        <select class="form-select" id="statusFilter">
+                                            <option value="">Todos los estados</option>
+                                            <option value="occupied">Ocupado</option>
+                                            <option value="vacant">Vacío</option>
+                                            <option value="rented">Arrendado</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="searchApartment" class="form-label">Buscar</label>
+                                        <input type="search" class="form-control" id="searchApartment" placeholder="Buscar apartamento...">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Apartments Grid -->
+                        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4" id="apartmentsGrid">
+                            <!-- Apartments will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- Apartment Modal -->
+    <div class="modal fade" id="apartmentModal" tabindex="-1" aria-labelledby="apartmentModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="apartmentModalLabel">Añadir Apartamento</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="apartmentForm">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="tower" class="form-label">Torre</label>
+                                <input type="number" class="form-control" id="tower" required min="1">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="apartment" class="form-label">Número de Apartamento</label>
+                                <input type="number" class="form-control" id="apartment" required min="101">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="status" class="form-label">Estado</label>
+                                <select class="form-select" id="status" required>
+                                    <option value="vacant">Vacío</option>
+                                    <option value="occupied">Ocupado</option>
+                                    <option value="rented">Arrendado</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="owner" class="form-label">Propietario</label>
+                                <select class="form-select" id="owner" required>
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 tenant-field" style="display: none;">
+                                <label for="tenant" class="form-label">Arrendatario</label>
+                                <select class="form-select" id="tenant">
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" form="apartmentForm" class="btn btn-primary">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="/src/scripts/components/apartmentManager.js"></script>    <script src="/src/scripts/components/navbarToggle.js"></script>
+</body>
+</html> 

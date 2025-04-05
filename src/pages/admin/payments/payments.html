@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Sistema de gestión de pagos para el conjunto residencial Valhalla - Control y seguimiento de pagos de administración, cuotas y servicios"
+    />
+    <meta
+      name="keywords"
+      content="pagos, administración, conjunto residencial, valhalla, gestión financiera, control de pagos, cuotas, servicios"
+    />
+    <meta name="author" content="Valhalla Residencial" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Gestión de Pagos | Valhalla Residencial"
+    />
+    <meta
+      property="og:description"
+      content="Sistema de gestión de pagos para el conjunto residencial Valhalla"
+    />
+    <meta property="og:site_name" content="Valhalla Residencial" />
+
+    <title>Gestión de Pagos | Valhalla Residencial</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="/src/styles/components/navbar.css" />
+    <link rel="stylesheet" href="/src/styles/components/payments.css" />
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <div class="row flex-nowrap">
+        <!-- Sidebar -->
+        <div
+          id="sidebar"
+          class="col-auto px-0 bg-white border-end"
+          style="width: 280px"
+        >
+          <div
+            class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 min-vh-100"
+          >
+            <a
+              href="../dashboard.html"
+              class="d-flex align-items-center pb-3 mb-md-1 mt-md-3 me-md-auto text-dark text-decoration-none"
+            >
+              <span class="fs-5 fw-bolder">VALHALLA</span>
+            </a>
+            <ul
+              class="nav flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start w-100"
+            >
+              <li class="nav-item w-100">
+                <a href="../dashboard.html" class="nav-link text-dark px-0">
+                  <i class="bi bi-house"></i> <span class="ms-2">INICIO</span>
+                </a>
+              </li>
+              <li class="nav-item w-100">
+                <a href="../owners/owners.html" class="nav-link text-dark px-0">
+                  <i class="bi bi-people"></i>
+                  <span class="ms-2">PROPIETARIOS</span>
+                </a>
+              </li>
+              <li class="nav-item w-100">
+                <a href="../tenant/tenant.html" class="nav-link text-dark px-0">
+                  <i class="bi bi-person-check"></i>
+                  <span class="ms-2">ARRENDATARIOS</span>
+                </a>
+              </li>
+              <li class="nav-item w-100">
+                <a href="../guard/guard.html" class="nav-link text-dark px-0">
+                  <i class="bi bi-shield"></i>
+                  <span class="ms-2">VIGILANTE</span>
+                </a>
+              </li>
+
+              <li class="nav-item w-100">
+                <a
+                  href="../apartments/apartments.html"
+                  class="nav-link text-dark px-0"
+                >
+                  <i class="bi bi-house-door"></i>
+                  <span class="ms-2">APARTAMENTOS</span>
+                </a>
+              </li>
+              <li class="nav-item w-100">
+                <a
+                  href="../payments/payments.html"
+                  class="nav-link text-dark px-0 active"
+                >
+                  <i class="bi bi-credit-card"></i>
+                  <span class="ms-2">PAGOS</span>
+                </a>
+              </li>
+              <li class="nav-item w-100">
+                <a
+                  href="../surveys/surveys.html"
+                  class="nav-link text-dark px-0"
+                >
+                  <i class="bi bi-clipboard-data"></i>
+                  <span class="ms-2">ENCUESTAS</span>
+                </a>
+              </li>
+              <li class="nav-item w-100">
+                <a
+                  href="../reservations/reservations.html"
+                  class="nav-link text-dark px-0"
+                >
+                  <i class="bi bi-calendar-check"></i>
+                  <span class="ms-2">RESERVAS</span>
+                </a>
+              </li>
+              <li class="nav-item w-100">
+                <a href="../pqrs/PQRS.html" class="nav-link text-dark px-0">
+                  <i class="bi bi-question-circle"></i>
+                  <span class="ms-2">PQRS</span>
+                </a>
+              </li>
+              <li class="nav-item w-100">
+                <a
+                  href="../notifications/notifications.html"
+                  class="nav-link text-dark px-0"
+                >
+                  <i class="bi bi-bell"></i>
+                  <span class="ms-2">NOTIFICACIONES</span>
+                </a>
+              </li>
+              <li class="nav-item w-100">
+                <a
+                  href="../parking/parking.html"
+                  class="nav-link text-dark px-0"
+                >
+                  <i class="bi bi-p-square"></i>
+                  <span class="ms-2">PARQUEADERO</span>
+                </a>
+              </li>
+              <li class="nav-item w-100">
+                <a href="../pets/pets.html" class="nav-link text-dark px-0">
+                  <i class="bi bi-heart"></i> <span class="ms-2">MASCOTA</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="col p-0">
+          <!-- Topbar -->
+          <nav class="navbar navbar-expand-lg bg-white border-bottom px-3">
+            <div class="container-fluid">
+              <div class="d-flex align-items-center">
+                <button
+                  class="btn btn-link text-dark px-0 me-3"
+                  id="sidebarToggle"
+                >
+                  <i class="bi bi-list fs-4"></i>
+                </button>
+                <span class="navbar-text fs-5">BIENVENIDO ADMINISTRADOR</span>
+              </div>
+
+              <div class="d-flex align-items-center ms-auto">
+                <div class="input-group me-3">
+                  <span class="input-group-text bg-white border-end-0">
+                    <i class="bi bi-search"></i>
+                  </span>
+                  <input
+                    type="text"
+                    class="form-control border-start-0"
+                    placeholder="Search"
+                  />
+                </div>
+
+                <button class="btn btn-link text-dark">
+                  <i class="bi bi-bell fs-5"></i>
+                </button>
+                <button class="btn btn-link text-dark">
+                  <i class="bi bi-envelope fs-5"></i>
+                </button>
+                <button class="btn btn-link text-dark">
+                  <i class="bi bi-escape fs-5"></i>
+                </button>
+              </div>
+            </div>
+          </nav>
+
+          <!-- Main content area -->
+          <div class="container-fluid p-4">
+            <h3 class="mb-4">Lista de pagos pendiente</h3>
+
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex justify-content-between mb-3">
+                  <div></div>
+                  <div class="input-group" style="max-width: 300px">
+                    <span class="input-group-text bg-white border-end-0">
+                      <i class="bi bi-search"></i>
+                    </span>
+                    <input
+                      type="text"
+                      class="form-control border-start-0"
+                      id="searchInput"
+                      placeholder="Search"
+                    />
+                  </div>
+                </div>
+
+                <div class="table-responsive">
+                  <table
+                    class="table table-hover table-bordered"
+                    id="paymentsTable"
+                  >
+                    <thead class="table-light">
+                      <tr>
+                        <th style="width: 40px"></th>
+                        <th class="sortable" data-sort="pago">#Pago</th>
+                        <th class="sortable" data-sort="nombres">Nombres</th>
+                        <th class="sortable" data-sort="apellidos">
+                          Apellidos
+                        </th>
+                        <th class="sortable" data-sort="torre">Torre</th>
+                        <th class="sortable" data-sort="casa">#Casa</th>
+                        <th class="sortable" data-sort="celular">Celular</th>
+                        <th class="sortable" data-sort="estado">
+                          Estado Servicio
+                        </th>
+                        <th class="sortable" data-sort="email">Email</th>
+                        <th class="sortable" data-sort="estadoPago">
+                          Estado de pago
+                        </th>
+                        <th style="width: 100px">ACCIONES</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="text-center">
+                          <i class="bi bi-dash-square"></i>
+                        </td>
+                        <td>000001</td>
+                        <td>Juan Andres</td>
+                        <td>Quintero</td>
+                        <td>3</td>
+                        <td>106</td>
+                        <td>3116743525</td>
+                        <td><span class="badge bg-success">activo</span></td>
+                        <td>juan.quintero@gmail.com</td>
+                        <td>
+                          <span class="badge badge-pendiente rounded-pill"
+                            >Pendiente por pagar</span
+                          >
+                        </td>
+                        <td class="text-center">
+                          <button class="btn btn-sm btn-outline-secondary me-1">
+                            <i class="bi bi-eye"></i>
+                          </button>
+                          <button class="btn btn-sm btn-outline-primary">
+                            <i class="bi bi-pencil"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">
+                          <i class="bi bi-dash-square"></i>
+                        </td>
+                        <td>000002</td>
+                        <td>Pepe</td>
+                        <td>Cierra</td>
+                        <td>3</td>
+                        <td>107</td>
+                        <td>3148904655</td>
+                        <td>
+                          <span class="badge bg-secondary">inactivo</span>
+                        </td>
+                        <td>pepe.cierra@gmail.com</td>
+                        <td>
+                          <span class="badge badge-pendiente rounded-pill"
+                            >Pendiente por pagar</span
+                          >
+                        </td>
+                        <td class="text-center">
+                          <button class="btn btn-sm btn-outline-secondary me-1">
+                            <i class="bi bi-eye"></i>
+                          </button>
+                          <button class="btn btn-sm btn-outline-primary">
+                            <i class="bi bi-pencil"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">
+                          <i class="bi bi-dash-square"></i>
+                        </td>
+                        <td>000003</td>
+                        <td>Arturo</td>
+                        <td>Ortega</td>
+                        <td>1</td>
+                        <td>201</td>
+                        <td>3167283909</td>
+                        <td><span class="badge bg-success">activo</span></td>
+                        <td>arturo.ortega@gmail.com</td>
+                        <td>
+                          <span class="badge badge-pagado rounded-pill"
+                            >Pagado</span
+                          >
+                        </td>
+                        <td class="text-center">
+                          <button class="btn btn-sm btn-outline-secondary me-1">
+                            <i class="bi bi-eye"></i>
+                          </button>
+                          <button class="btn btn-sm btn-outline-primary">
+                            <i class="bi bi-pencil"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">
+                          <i class="bi bi-dash-square"></i>
+                        </td>
+                        <td>000004</td>
+                        <td>Maria</td>
+                        <td>Hurtado</td>
+                        <td>2</td>
+                        <td>307</td>
+                        <td>3220009878</td>
+                        <td><span class="badge bg-success">activo</span></td>
+                        <td>maria.hurtado@gmail.com</td>
+                        <td>
+                          <span class="badge badge-pendiente rounded-pill"
+                            >Pendiente por pagar</span
+                          >
+                        </td>
+                        <td class="text-center">
+                          <button class="btn btn-sm btn-outline-secondary me-1">
+                            <i class="bi bi-eye"></i>
+                          </button>
+                          <button class="btn btn-sm btn-outline-primary">
+                            <i class="bi bi-pencil"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">
+                          <i class="bi bi-dash-square"></i>
+                        </td>
+                        <td>000005</td>
+                        <td>Aldaida</td>
+                        <td>Solano</td>
+                        <td>3</td>
+                        <td>207</td>
+                        <td>3172903789</td>
+                        <td><span class="badge bg-success">activo</span></td>
+                        <td>aldaida.solado@gmail.com</td>
+                        <td>
+                          <span class="badge badge-pendiente rounded-pill"
+                            >Pendiente por pagar</span
+                          >
+                        </td>
+                        <td class="text-center">
+                          <button class="btn btn-sm btn-outline-secondary me-1">
+                            <i class="bi bi-eye"></i>
+                          </button>
+                          <button class="btn btn-sm btn-outline-primary">
+                            <i class="bi bi-pencil"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <!-- Añadir más filas según sea necesario -->
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="mt-3">
+                  <button class="btn btn-primary">
+                    <i class="bi bi-download me-2"></i>Descargar reporte de
+                    pagos
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    <!-- Modal de Vista -->
+    <div
+      class="modal fade"
+      id="viewModal"
+      tabindex="-1"
+      aria-labelledby="viewModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="viewModalLabel">
+              Vista de pago #<span id="viewPaymentId"></span>
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="viewNombre" class="form-label">Nombre:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="viewNombre"
+                  disabled
+                />
+              </div>
+              <div class="col-md-6">
+                <label for="viewApellido" class="form-label">Apellido:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="viewApellido"
+                  disabled
+                />
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="viewTorre" class="form-label">Torre:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="viewTorre"
+                  disabled
+                />
+              </div>
+              <div class="col-md-6">
+                <label for="viewCasa" class="form-label">Casa:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="viewCasa"
+                  disabled
+                />
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="viewCelular" class="form-label">Celular:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="viewCelular"
+                  disabled
+                />
+              </div>
+              <div class="col-md-6">
+                <label for="viewCorreo" class="form-label">Correo:</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="viewCorreo"
+                  disabled
+                />
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="viewEstadoServicio" class="form-label"
+                  >Estado Servicio:</label
+                >
+                <div id="viewEstadoServicio" class="estado-badge"></div>
+              </div>
+              <div class="col-md-6">
+                <label for="viewEstadoPago" class="form-label"
+                  >Estado de Pago:</label
+                >
+                <div id="viewEstadoPago" class="estado-badge"></div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cerrar
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              id="btnEditarDesdeVista"
+            >
+              <i class="bi bi-pencil me-1"></i>Editar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal de Edición -->
+    <div
+      class="modal fade"
+      id="editModal"
+      tabindex="-1"
+      aria-labelledby="editModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editModalLabel">
+              Editar pago #<span id="editPaymentId"></span>
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="editNombre" class="form-label">Nombre:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="editNombre"
+                  disabled
+                />
+              </div>
+              <div class="col-md-6">
+                <label for="editApellido" class="form-label">Apellido:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="editApellido"
+                  disabled
+                />
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="editTorre" class="form-label">Torre:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="editTorre"
+                  disabled
+                />
+              </div>
+              <div class="col-md-6">
+                <label for="editCasa" class="form-label">Casa:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="editCasa"
+                  disabled
+                />
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="editCelular" class="form-label">Celular:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="editCelular"
+                  disabled
+                />
+              </div>
+              <div class="col-md-6">
+                <label for="editCorreo" class="form-label">Correo:</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="editCorreo"
+                  disabled
+                />
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="editEstadoServicio" class="form-label"
+                  >Estado Servicio:</label
+                >
+                <select class="form-select" id="editEstadoServicio">
+                  <option value="activo">Activo</option>
+                  <option value="inactivo">Inactivo</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label for="editEstadoPago" class="form-label"
+                  >Estado de Pago:</label
+                >
+                <select class="form-select" id="editEstadoPago">
+                  <option value="Pendiente por pagar">
+                    Pendiente por pagar
+                  </option>
+                  <option value="Pagado">Pagado</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancelar
+            </button>
+            <button type="button" class="btn btn-primary" id="btnConfirmar">
+              Confirmar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="/src/scripts/components/payments2.js"></script>
+    <script src="/src/scripts/components/navbarToggle.js"></script>
+  </body>
+</html>

@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Enhanced SEO Meta Tags -->
+    <meta name="description" content="Sistema de gestión de encuestas para el conjunto residencial Valhalla - Administre y analice encuestas de satisfacción, servicios y sugerencias de mejora" />
+    <meta name="keywords" content="encuestas, gestión encuestas, satisfacción residentes, evaluación servicios, sugerencias mejora, administración residencial, valhalla" />
+    <meta name="author" content="Valhalla Residencial" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="VALHALLA - Sistema de Gestión de Encuestas" />
+    <meta property="og:description" content="Gestione eficientemente las encuestas y evaluaciones del conjunto residencial" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Valhalla Residencial" />
+    <meta property="og:locale" content="es_CO" />
+
+    <title>VALHALLA - Sistema de Gestión de Encuestas</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"
+    />
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="../../../styles/components/navbar.css">
+    <link rel="stylesheet" href="../../../styles/components/surveys.css">
+    <!-- Minimal required CSS for toggle functionality -->
+
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row flex-nowrap">
+        <!-- Semantic Sidebar Navigation -->
+        <aside
+          id="sidebar"
+          class="col-auto px-0 bg-white border-end"
+          style="width: 280px"
+          role="navigation"
+          aria-label="Menú principal"
+        >
+          <div
+            class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 min-vh-100"
+          >
+            <a
+              href="/src/pages/admin/dashboard.html"
+              class="d-flex align-items-center pb-3 mb-md-1 mt-md-3 me-md-auto text-dark text-decoration-none"
+            >
+              <span class="fs-5 fw-bolder">VALHALLA</span>
+            </a>
+            <ul
+              class="nav flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start w-100"
+            >
+              <li class="nav-item w-100">
+                <a href="/src/pages/admin/dashboard.html" class="nav-link text-dark px-0">
+                  <i class="bi bi-house"></i> <span class="ms-2">INICIO</span>
+                </a>
+              </li>
+              <li class="nav-item w-100">
+                <a href="/src/pages/admin/owners/owners.html" class="nav-link text-dark px-0">
+                  <i class="bi bi-people"></i>
+                  <span class="ms-2">PROPIETARIOS</span>
+                </a>
+              </li>
+              <li class="nav-item w-100">
+                <a href="/src/pages/admin/tenant/tenant.html" class="nav-link text-dark px-0">
+                  <i class="bi bi-person-check"></i>
+                  <span class="ms-2">ARRENDATARIOS</span>
+                </a>
+              </li>
+              <li class="nav-item w-100">
+                <a href="/src/pages/admin/guard/vigilante.html" class="nav-link text-dark px-0">
+                  <i class="bi bi-shield"></i>
+                  <span class="ms-2">VIGILANTE</span>
+                </a>
+              </li>
+              <li class="nav-item w-100">
+                <a href="/src/pages/admin/apartments/apartments.html" class="nav-link text-dark px-0">
+                  <i class="bi bi-house-door"></i>
+                  <span class="ms-2">APARTAMENTOS</span>
+                </a>
+              </li>
+              <li class="nav-item w-100">
+                <a href="/src/pages/admin/payments/payments.html" class="nav-link text-dark px-0">
+                  <i class="bi bi-credit-card"></i>
+                  <span class="ms-2">PAGOS</span>
+                </a>
+              </li>
+              <li class="nav-item w-100">
+                <a href="/src/pages/admin/surveys/surveys.html" class="nav-link text-dark px-0 active bg-light">
+                  <i class="bi bi-clipboard-data"></i>
+                  <span class="ms-2">ENCUESTAS</span>
+                </a>
+              </li>
+              <li class="nav-item w-100">
+                <a href="/src/pages/admin/reservations/reservations.html" class="nav-link text-dark px-0">
+                  <i class="bi bi-calendar-check"></i>
+                  <span class="ms-2">RESERVAS</span>
+                </a>
+              </li>
+              <li class="nav-item w-100">
+                <a href="/src/pages/admin/pqrs/pqrs.html" class="nav-link text-dark px-0">
+                  <i class="bi bi-question-circle"></i>
+                  <span class="ms-2">PQRS</span>
+                </a>
+              </li>
+              <li class="nav-item w-100">
+                <a href="/src/pages/admin/notifications/notifications.html" class="nav-link text-dark px-0">
+                  <i class="bi bi-bell"></i>
+                  <span class="ms-2">NOTIFICACIONES</span>
+                </a>
+              </li>
+              <li class="nav-item w-100">
+                <a href="/src/pages/admin/parking/parking.html" class="nav-link text-dark px-0">
+                  <i class="bi bi-p-square"></i>
+                  <span class="ms-2">PARQUEADERO</span>
+                </a>
+              </li>
+              <li class="nav-item w-100">
+                <a href="/src/pages/admin/pets/pets.html" class="nav-link text-dark px-0">
+                  <i class="bi bi-heart"></i> <span class="ms-2">MASCOTA</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="col p-0" role="main">
+          <!-- Semantic Header -->
+          <header class="navbar navbar-expand-lg bg-white border-bottom px-3" role="banner">
+            <div class="container-fluid">
+              <div class="d-flex align-items-center">
+                <button
+                  class="btn btn-link text-dark px-0 me-3"
+                  id="sidebarToggle"
+                >
+                  <i class="bi bi-list fs-4"></i>
+                </button>
+                <span class="navbar-text fs-5">BIENVENIDO ADMINISTRADOR</span>
+              </div>
+
+              <div class="d-flex align-items-center ms-auto">
+                <div class="input-group me-3">
+                  <span class="input-group-text bg-white border-end-0">
+                    <i class="bi bi-search"></i>
+                  </span>
+                  <input
+                    type="text"
+                    class="form-control border-start-0"
+                    placeholder="search"
+                  />
+                </div>
+
+                <button class="btn btn-link text-dark">
+                  <i class="bi bi-bell fs-5"></i>
+                </button>
+                <button class="btn btn-link text-dark">
+                  <i class="bi bi-envelope fs-5"></i>
+                </button>
+                <button class="btn btn-link text-dark">
+                  <i class="bi bi-escape fs-5"></i>
+                </button>
+              </div>
+            </div>
+          </header>
+
+          <!-- Main content area -->
+          <div class="container-fluid p-4">
+            <!-- Survey Page Content -->
+            <section aria-labelledby="surveys-heading">
+              <h1 id="surveys-heading" class="mb-4">Gestión de Encuestas</h1>
+
+              <!-- Action buttons -->
+              <div class="mb-4">
+                <a href="/src/pages/admin/surveys/crearEncuesta.html" 
+                   class="btn btn-success me-2" 
+                   role="button"
+                   aria-label="Crear nueva encuesta">
+                  <i class="bi bi-plus-lg" aria-hidden="true"></i> Crear encuesta
+                </a>
+                <button class="btn btn-primary" 
+                        id="downloadReport"
+                        aria-label="Descargar reporte de encuestas">
+                  <i class="bi bi-download" aria-hidden="true"></i> Descargar reporte de encuestas
+                </button>
+              </div>
+
+              <!-- Survey Cards with semantic markup -->
+              <div class="row mb-4">
+                <!-- Card 1 -->
+                <div class="col-md-4">
+                  <article class="card survey-card h-100" data-survey-id="1" data-questions='[{"type":"text","text":"¿Cómo calificaría el servicio general?","options":[]},{"type":"checkbox","text":"¿Qué servicios utiliza con más frecuencia?","options":["Piscina","Gimnasio","Parqueadero","Seguridad"]}]' role="article">
+                    <div class="card-body p-4">
+                      <span class="survey-status active">Activa</span>
+                      <h2 class="card-title h5">Satisfacción del Residente</h2>
+                      <p class="card-text text-muted">Encuesta trimestral sobre la satisfacción general de los residentes.</p>
+                      <div class="d-flex justify-content-between mt-4">
+                        <div>
+                          <button class="btn btn-sm btn-outline-primary me-2" onclick="showEditSurveyModal(1)">
+                            <i class="bi bi-pencil" aria-hidden="true"></i> Editar
+                          </button>
+                          <button class="btn btn-sm btn-outline-danger" onclick="showDeleteModal('Satisfacción del Residente', this)">
+                            <i class="bi bi-trash" aria-hidden="true"></i> Eliminar
+                          </button>
+                        </div>
+                        <div>
+                          <button class="btn btn-sm btn-outline-info me-2" onclick="previewSurvey(1)">
+                            <i class="bi bi-eye" aria-hidden="true"></i> Vista previa
+                          </button>
+                          <button class="btn btn-sm btn-outline-success" onclick="closeSurvey(1)">
+                            <i class="bi bi-check-circle" aria-hidden="true"></i> Finalizar
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="col-md-4">
+                  <article class="card survey-card h-100" data-survey-id="2" data-questions='[{"type":"text","text":"¿Cómo califica la atención del personal?","options":[]},{"type":"checkbox","text":"¿Qué aspectos mejorar?","options":["Limpieza","Seguridad","Mantenimiento","Comunicación"]}]' role="article">
+                    <div class="card-body p-4">
+                      <span class="survey-status closed">Cerrada</span>
+                      <h2 class="card-title h5">Evaluación de Servicios</h2>
+                      <p class="card-text text-muted">Evaluación mensual de los servicios de mantenimiento y seguridad.</p>
+                      <div class="d-flex justify-content-between mt-4">
+                        <div>
+                          <button class="btn btn-sm btn-outline-primary me-2" onclick="showEditSurveyModal(2)">
+                            <i class="bi bi-pencil" aria-hidden="true"></i> Editar
+                          </button>
+                          <button class="btn btn-sm btn-outline-danger" onclick="showDeleteModal('Evaluación de Servicios', this)">
+                            <i class="bi bi-trash" aria-hidden="true"></i> Eliminar
+                          </button>
+                        </div>
+                        <div>
+                          <button class="btn btn-sm btn-outline-info me-2" onclick="previewSurvey(2)">
+                            <i class="bi bi-eye" aria-hidden="true"></i> Vista previa
+                          </button>
+                          <button class="btn btn-sm btn-outline-success" onclick="closeSurvey(2)">
+                            <i class="bi bi-check-circle" aria-hidden="true"></i> Finalizar
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="col-md-4">
+                  <article class="card survey-card h-100" data-survey-id="3" data-questions='[{"type":"text","text":"¿Qué sugerencias tiene para mejorar?","options":[]},{"type":"checkbox","text":"¿Qué áreas necesitan mejoras?","options":["Áreas verdes","Iluminación","Señalización","Mobiliario"]}]' role="article">
+                    <div class="card-body p-4">
+                      <span class="survey-status active">Activa</span>
+                      <h2 class="card-title h5">Sugerencias de Mejora</h2>
+                      <p class="card-text text-muted">Recolección de sugerencias para mejorar las áreas comunes.</p>
+                      <div class="d-flex justify-content-between mt-4">
+                        <div>
+                          <button class="btn btn-sm btn-outline-primary me-2" onclick="showEditSurveyModal(3)">
+                            <i class="bi bi-pencil" aria-hidden="true"></i> Editar
+                          </button>
+                          <button class="btn btn-sm btn-outline-danger" onclick="showDeleteModal('Sugerencias de Mejora', this)">
+                            <i class="bi bi-trash" aria-hidden="true"></i> Eliminar
+                          </button>
+                        </div>
+                        <div>
+                          <button class="btn btn-sm btn-outline-info me-2" onclick="previewSurvey(3)">
+                            <i class="bi bi-eye" aria-hidden="true"></i> Vista previa
+                          </button>
+                          <button class="btn btn-sm btn-outline-success" onclick="closeSurvey(3)">
+                            <i class="bi bi-check-circle" aria-hidden="true"></i> Finalizar
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+            </section>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="deleteModalLabel">Confirmar eliminación</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          </div>
+          <div class="modal-body">
+            <p>¿Está seguro que desea eliminar la encuesta "<span id="surveyName"></span>"?</p>
+            <p class="text-danger">Esta acción no se puede deshacer.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-danger" id="confirmDelete">Eliminar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit Question Modal -->
+    <div class="modal fade" id="editQuestionModal" tabindex="-1" aria-labelledby="editQuestionModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editQuestionModalLabel">Editar Pregunta</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          </div>
+          <div class="modal-body">
+            <form id="editQuestionForm">
+              <div class="mb-3">
+                <label class="form-label">Tipo de pregunta</label>
+                <select class="form-select" id="editQuestionType" onchange="handleEditQuestionTypeChange()">
+                  <option value="text">Pregunta Abierta</option>
+                  <option value="checkbox">Selección Multiple</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Pregunta</label>
+                <input type="text" class="form-control" id="editQuestionText" required>
+              </div>
+
+              <!-- Options Container (for multiple choice) -->
+              <div id="editOptionsContainer" style="display: none;">
+                <label class="form-label">Opciones de respuesta</label>
+                <div id="editOptionsList">
+                  <!-- Options will be added here -->
+                </div>
+                <button type="button" class="btn btn-sm btn-outline-primary mt-2" onclick="addEditOption()">
+                  <i class="bi bi-plus-circle" aria-hidden="true"></i> Agregar opción
+                </button>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-primary" onclick="saveQuestionEdit()">Guardar cambios</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Preview Survey Modal -->
+    <div class="modal fade" id="previewModal" tabindex="-1" aria-labelledby="previewModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="previewModalLabel">Vista previa de la encuesta</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          </div>
+          <div class="modal-body" id="previewContent">
+            <!-- Preview content will be loaded here -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Create Survey Modal -->
+    <div class="modal fade" id="createSurveyModal" tabindex="-1" aria-labelledby="createSurveyModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="createSurveyModalLabel">Crear Nueva Encuesta</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          </div>
+          <div class="modal-body">
+            <form id="createSurveyForm">
+              <!-- Survey Title -->
+              <div class="mb-4">
+                <label for="surveyTitle" class="form-label">Título de la encuesta</label>
+                <input type="text" class="form-control" id="surveyTitle" required>
+              </div>
+
+              <!-- Survey Description -->
+              <div class="mb-4">
+                <label for="surveyDescription" class="form-label">Descripción</label>
+                <textarea class="form-control" id="surveyDescription" rows="3" required></textarea>
+              </div>
+
+              <!-- Questions Container -->
+              <div id="questionsContainer">
+                <!-- Question Template -->
+                <div class="question-item border rounded p-3 mb-3">
+                  <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h6 class="mb-0">Pregunta #1</h6>
+                    <button type="button" class="btn btn-sm btn-outline-danger" onclick="removeQuestion(this)">
+                      <i class="bi bi-trash" aria-hidden="true"></i>
+                    </button>
+                  </div>
+                  
+                  <div class="mb-3">
+                    <label class="form-label">Tipo de pregunta</label>
+                    <select class="form-select question-type" onchange="handleQuestionTypeChange(this)">
+                      <option value="text">Pregunta Abierta</option>
+                      <option value="checkbox">Selección Multiple</option>
+                    </select>
+                  </div>
+
+                  <div class="mb-3">
+                    <label class="form-label">Pregunta</label>
+                    <input type="text" class="form-control question-text" required>
+                  </div>
+
+                  <!-- Options Container (for multiple choice) -->
+                  <div class="options-container" style="display: none;">
+                    <label class="form-label">Opciones de respuesta</label>
+                    <div class="options-list">
+                      <div class="input-group mb-2">
+                        <input type="text" class="form-control" placeholder="Opción 1">
+                        <button class="btn btn-outline-danger" type="button" onclick="removeOption(this)">
+                          <i class="bi bi-dash-circle" aria-hidden="true"></i>
+                        </button>
+                        </div>
+                      <div class="input-group mb-2">
+                        <input type="text" class="form-control" placeholder="Opción 2">
+                        <button class="btn btn-outline-danger" type="button" onclick="removeOption(this)">
+                          <i class="bi bi-dash-circle" aria-hidden="true"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <button type="button" class="btn btn-sm btn-outline-primary" onclick="addOption(this)">
+                      <i class="bi bi-plus-circle" aria-hidden="true"></i> Agregar opción
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <button type="button" class="btn btn-outline-primary mb-4" onclick="addQuestion()">
+                <i class="bi bi-plus-circle" aria-hidden="true"></i> Agregar pregunta
+              </button>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-primary" onclick="saveSurvey()">Crear encuesta</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit Survey Modal -->
+    <div class="modal fade" id="editSurveyModal" tabindex="-1" aria-labelledby="editSurveyModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editSurveyModalLabel">Editar Encuesta</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          </div>
+          <div class="modal-body">
+            <form id="editSurveyForm">
+              <!-- Survey Title -->
+              <div class="mb-4">
+                <label for="editSurveyTitle" class="form-label">Título de la encuesta</label>
+                <input type="text" class="form-control" id="editSurveyTitle" required>
+              </div>
+
+              <!-- Survey Description -->
+              <div class="mb-4">
+                <label for="editSurveyDescription" class="form-label">Descripción</label>
+                <textarea class="form-control" id="editSurveyDescription" rows="3" required></textarea>
+              </div>
+
+              <!-- Questions Container -->
+              <div id="editQuestionsContainer">
+                <!-- Questions will be loaded here -->
+              </div>
+
+              <button type="button" class="btn btn-outline-primary mb-4" onclick="addQuestion('edit')">
+                <i class="bi bi-plus-circle" aria-hidden="true"></i> Agregar pregunta
+              </button>
+            </form>
+            </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-primary" onclick="updateSurvey()">Guardar cambios</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Custom Scripts -->
+    <script src="../../../scripts/components/surveys2.js"></script>
+    <script src="../../../scripts/components/navbarToggle.js"></script>
+
+  </body>
+</html>

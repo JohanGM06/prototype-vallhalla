@@ -1,0 +1,13 @@
+#sidebar {
+    transition: margin 0.3s ease-in-out;
+}
+#sidebar.collapsed {
+    margin-left: -280px;
+}
+.apartment-card {
+    transition: transform 0.2s;
+    cursor: pointer;
+}
+.apartment-card:hover {
+    transform: translateY(-5px);
+}

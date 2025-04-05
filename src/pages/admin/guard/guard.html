@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Sistema de Administración de Vigilantes Valhalla - Gestión integral del personal de seguridad para Puerta de la Alameda" />
+    <meta name="keywords" content="administración vigilantes, gestión seguridad, personal seguridad, vigilantes conjunto residencial" />
+    <meta name="author" content="Valhalla" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="VALHALLA - Gestión de Vigilantes" />
+    <meta property="og:description" content="Sistema integral de gestión de personal de seguridad" />
+    <meta property="og:type" content="website" />
+
+    <title>VALHALLA - Gestión de Vigilantes</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../../styles/components/navbar.css" />
+  
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row flex-nowrap">
+        <!-- Sidebar -->
+        <div
+          id="sidebar"
+          class="col-auto px-0 bg-white border-end"
+          style="width: 280px"
+        >
+          <div
+            class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 min-vh-100"
+          >
+            <a
+              href="../dashboard.html"
+              class="d-flex align-items-center pb-3 mb-md-1 mt-md-3 me-md-auto text-dark text-decoration-none"
+            >
+              <span class="fs-5 fw-bolder">VALHALLA</span>
+            </a>
+            <ul class="nav flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start w-100">
+              <li class="nav-item w-100">
+                  <a href="../dashboard.html" class="nav-link text-dark px-0">
+                      <i class="bi bi-house"></i> <span class="ms-2">INICIO</span>
+                  </a>
+              </li>
+              <li class="nav-item w-100">
+                  <a href="../owners/owners.html" class="nav-link text-dark px-0">
+                      <i class="bi bi-people"></i> <span class="ms-2">PROPIETARIOS</span>
+                  </a>
+              </li>
+              <li class="nav-item w-100">
+                  <a href="../tenant/tenant.html" class="nav-link text-dark px-0">
+                      <i class="bi bi-person-check"></i> <span class="ms-2">ARRENDATARIOS</span>
+                  </a>
+              </li>
+              <li class="nav-item w-100">
+                  <a href="../guard/guard.html" class="nav-link text-dark px-0">
+                      <i class="bi bi-shield"></i> <span class="ms-2">VIGILANTE</span>
+                  </a>
+              </li>
+              <li class="nav-item w-100">
+                  <a href="../apartments/apartments.html" class="nav-link active text-dark px-0">
+                      <i class="bi bi-house-door"></i> <span class="ms-2">APARTAMENTOS</span>
+                  </a>
+              </li>
+              <li class="nav-item w-100">
+                  <a href="../payments/payments.html" class="nav-link text-dark px-0">
+                      <i class="bi bi-credit-card"></i> <span class="ms-2">PAGOS</span>
+                  </a>
+              </li>
+              <li class="nav-item w-100">
+                  <a href="../surveys/surveys.html" class="nav-link text-dark px-0">
+                      <i class="bi bi-clipboard-data"></i> <span class="ms-2">ENCUESTAS</span>
+                  </a>
+              </li>
+              <li class="nav-item w-100">
+                  <a href="../reservations/reservations.html" class="nav-link text-dark px-0">
+                      <i class="bi bi-calendar-check"></i> <span class="ms-2">RESERVAS</span>
+                  </a>
+              </li>
+              <li class="nav-item w-100">
+                  <a href="../pqrs/PQRS.html" class="nav-link text-dark px-0">
+                      <i class="bi bi-question-circle"></i> <span class="ms-2">PQRS</span>
+                  </a>
+              </li>
+              <li class="nav-item w-100">
+                  <a href="../notifications/notifications.html" class="nav-link text-dark px-0">
+                      <i class="bi bi-bell"></i> <span class="ms-2">NOTIFICACIONES</span>
+                  </a>
+              </li>
+              <li class="nav-item w-100">
+                  <a href="../parking/parking.html" class="nav-link text-dark px-0">
+                      <i class="bi bi-p-square"></i> <span class="ms-2">PARQUEADERO</span>
+                  </a>
+              </li>
+              <li class="nav-item w-100">
+                  <a href="../pets/pets.html" class="nav-link text-dark px-0">
+                      <i class="bi bi-heart"></i> <span class="ms-2">MASCOTA</span>
+                  </a>
+              </li>
+          </ul>
+          </div>
+        </div>
+
+        <!-- Main Content -->
+        <main class="col p-0">
+          <!-- Topbar -->
+          <nav class="navbar navbar-expand-lg bg-white border-bottom px-3 fixed-navbar">
+            <div class="container-fluid">
+              <div class="d-flex align-items-center">
+                <button
+                  class="btn btn-link text-dark px-0 me-3"
+                  id="sidebarToggle"
+                >
+                  <i class="bi bi-list fs-4"></i>
+                </button>
+                <span class="navbar-text fs-5">BIENVENIDO ADMINISTRADOR</span>
+              </div>
+
+              <div class="d-flex align-items-center ms-auto">
+                <div class="input-group me-3">
+                  <span class="input-group-text bg-white border-end-0">
+                    <i class="bi bi-search"></i>
+                  </span>
+                  <input
+                    type="text"
+                    class="form-control border-start-0"
+                    placeholder="Search"
+                  />
+                </div>
+
+                <button class="btn btn-link text-dark">
+                  <i class="bi bi-bell fs-5"></i>
+                </button>
+                <button class="btn btn-link text-dark">
+                  <i class="bi bi-envelope fs-5"></i>
+                </button>
+                <button class="btn btn-link text-dark">
+                  <i class="bi bi-escape fs-5"></i>
+                </button>
+              </div>
+            </div>
+          </nav>
+
+          <!-- Main content area -->
+          <section class="container-fluid px-4 py-4">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <h2 class="h4 mb-0">Vigilantes</h2>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#guardModal">
+                <i class="bi bi-plus-lg"></i> Añadir Vigilante
+              </button>
+            </div>
+
+            <!-- Guards List -->
+            <div class="row g-4" id="guardsContainer">
+              <!-- Guard cards will be rendered here by JavaScript -->
+            </div>
+          </section>
+
+          <!-- Modals Section -->
+          <!-- Add/Edit Guard Modal -->
+          <div class="modal fade" id="guardModal" tabindex="-1" aria-labelledby="guardModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header border-0">
+                        <h3 class="modal-title fs-5" id="guardModalLabel">Añadir Vigilante</h3>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body px-4">
+                        <form id="guardForm" class="needs-validation" novalidate>
+                            <div class="row">
+                                <!-- Left Column - Photo -->
+                                <div class="col-auto">
+                                    <div class="text-center mb-3">
+                                        <div class="position-relative d-inline-block">
+                                            <img src="/src/styles/img/person.jpg" 
+                                                 class="rounded-circle border shadow-sm" 
+                                                 alt="Foto del vigilante" 
+                                                 id="guardPhoto" 
+                                                 style="width: 120px; height: 120px; object-fit: cover;">
+                                        </div>
+                                        <div class="mt-2">
+                                            <input type="file" class="d-none" id="imageUpload" accept="image/*">
+                                            <label for="imageUpload" class="btn btn-outline-secondary btn-sm">
+                                                <i class="bi bi-upload me-1"></i>Subir imagen
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Right Column - Form Fields -->
+                                <div class="col">
+                                    <!-- Personal Information -->
+                                    <div class="mb-3">
+                                        <label for="nombreCompleto" class="form-label">Nombre Completo</label>
+                                        <input type="text" 
+                                               class="form-control" 
+                                               id="nombreCompleto" 
+                                               required
+                                               placeholder="Ingrese nombre completo">
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="col-4">
+                                            <label for="tipoId" class="form-label">Tipo ID</label>
+                                            <select class="form-select form-select-sm" id="tipoId" required>
+                                                <option value="">Tipo</option>
+                                                <option value="CC">CC</option>
+                                                <option value="CE">CE</option>
+                                                <option value="TI">TI</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-8">
+                                            <label for="numeroCedula" class="form-label">Número ID</label>
+                                            <input type="text" 
+                                                   class="form-control form-control-sm" 
+                                                   id="numeroCedula" 
+                                                   required
+                                                   placeholder="Número de identificación">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Contact Information -->
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="email" class="form-label">Email</label>
+                                    <div class="input-group input-group-sm">
+                                        <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                                        <input type="email" 
+                                               class="form-control" 
+                                               id="email" 
+                                               required
+                                               placeholder="correo@ejemplo.com">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="telefono" class="form-label">Teléfono</label>
+                                    <div class="input-group input-group-sm">
+                                        <span class="input-group-text"><i class="bi bi-telephone"></i></span>
+                                        <input type="tel" 
+                                               class="form-control" 
+                                               id="telefono" 
+                                               required
+                                               placeholder="Número de teléfono">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Work Information -->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="arl" class="form-label">ARL</label>
+                                    <div class="input-group input-group-sm">
+                                        <span class="input-group-text"><i class="bi bi-shield"></i></span>
+                                        <input type="text" 
+                                               class="form-control" 
+                                               id="arl" 
+                                               list="arlOptions"
+                                               required
+                                               placeholder="Buscar ARL...">
+                                        <datalist id="arlOptions">
+                                            <option value="SURA">
+                                            <option value="COLPATRIA">
+                                            <option value="POSITIVA">
+                                            <option value="BOLIVAR">
+                                            <option value="COLMENA">
+                                        </datalist>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="eps" class="form-label">EPS</label>
+                                    <div class="input-group input-group-sm">
+                                        <span class="input-group-text"><i class="bi bi-heart-pulse"></i></span>
+                                        <input type="text" 
+                                               class="form-control" 
+                                               id="eps" 
+                                               list="epsOptions"
+                                               required
+                                               placeholder="Buscar EPS...">
+                                        <datalist id="epsOptions">
+                                            <option value="NUEVA EPS">
+                                            <option value="SURA EPS">
+                                            <option value="SANITAS">
+                                            <option value="COMPENSAR">
+                                            <option value="FAMISANAR">
+                                            <option value="SALUD TOTAL">
+                                        </datalist>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer border-0">
+                        <button type="button" 
+                                class="btn btn-outline-secondary btn-sm" 
+                                data-bs-dismiss="modal">
+                            Cancelar
+                        </button>
+                        <button type="submit" 
+                                form="guardForm" 
+                                class="btn btn-primary btn-sm">
+                            Crear
+                        </button>
+                    </div>
+                </div>
+            </div>
+          </div>
+
+          <!-- View/Edit Guard Modal -->
+          <div class="modal fade" 
+               id="viewGuardModal" 
+               tabindex="-1" 
+               role="dialog"
+               aria-labelledby="viewGuardModalLabel"
+               aria-modal="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                    <div class="modal-header border-0">
+                  <h3 class="modal-title fs-5" id="viewGuardModalLabel">DATOS BASICOS</h3>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                    <div class="modal-body px-4">
+                        <!-- View Mode Content -->
+                        <div class="view-mode">
+                  <div class="row">
+                    <!-- Photo section -->
+                    <div class="col-md-3 text-center mb-4">
+                        <div class="card h-100">
+                          <img src="/src/styles/img/person.jpg" class="card-img-top" alt="Foto vigilante" id="viewGuardPhoto"/>
+                      </div>
+                      <h5 class="mt-2">VIGILANTE</h5>
+                    </div>
+
+                    <!-- Guard details -->
+                    <div class="col-md-9">
+                      <dl class="row">
+                        <dt class="col-sm-4">Nombre:</dt>
+                        <dd class="col-sm-8" id="viewNombre"></dd>
+                        
+                        <dt class="col-sm-4">Identificación:</dt>
+                                        <dd class="col-sm-8" id="viewIdentificacion"></dd>
+                        
+                        <dt class="col-sm-4">Email:</dt>
+                        <dd class="col-sm-8" id="viewEmail"></dd>
+                        
+                        <dt class="col-sm-4">Teléfono:</dt>
+                        <dd class="col-sm-8" id="viewTelefono"></dd>
+                        
+                        <dt class="col-sm-4">ARL:</dt>
+                        <dd class="col-sm-8" id="viewArl"></dd>
+                        
+                        <dt class="col-sm-4">EPS:</dt>
+                        <dd class="col-sm-8" id="viewEps"></dd>
+                      </dl>
+                      <div class="form-check form-switch mt-3">
+                        <input class="form-check-input" type="checkbox" id="viewStatus" disabled>
+                        <label class="form-check-label" for="viewStatus">Estado del vigilante</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                        <!-- Edit Mode Content -->
+                        <div class="edit-mode d-none">
+                            <form id="editForm" class="needs-validation" novalidate>
+                                <div class="row">
+                                    <!-- Left Column - Photo -->
+                                    <div class="col-auto">
+                                        <div class="text-center mb-3">
+                                            <div class="position-relative d-inline-block">
+                                                <img src="/src/styles/img/person.jpg" 
+                                                     class="rounded-circle border shadow-sm" 
+                                                     alt="Foto del vigilante" 
+                                                     id="editGuardPhoto" 
+                                                     style="width: 120px; height: 120px; object-fit: cover;">
+                                            </div>
+                                            <div class="mt-2">
+                                                <input type="file" class="d-none" id="editImageUpload" accept="image/*">
+                                                <label for="editImageUpload" class="btn btn-outline-secondary btn-sm">
+                                                    <i class="bi bi-upload me-1"></i>Subir imagen
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Right Column - Form Fields -->
+                                    <div class="col">
+                                        <!-- Personal Information -->
+                                        <div class="mb-3">
+                                            <label for="editNombre" class="form-label">Nombre Completo</label>
+                                            <input type="text" 
+                                                   class="form-control" 
+                                                   id="editNombre" 
+                                                   required
+                                                   placeholder="Ingrese nombre completo">
+                                        </div>
+
+                                        <div class="row mb-3">
+                                            <div class="col-4">
+                                                <label for="editTipoId" class="form-label">Tipo ID</label>
+                                                <select class="form-select form-select-sm" id="editTipoId" required>
+                                                    <option value="">Tipo</option>
+                                                    <option value="CC">CC</option>
+                                                    <option value="CE">CE</option>
+                                                    <option value="TI">TI</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-8">
+                                                <label for="editNumeroId" class="form-label">Número ID</label>
+                                                <input type="text" 
+                                                       class="form-control form-control-sm" 
+                                                       id="editNumeroId" 
+                                                       required
+                                                       placeholder="Número de identificación">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Contact Information -->
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="editEmail" class="form-label">Email</label>
+                                        <div class="input-group input-group-sm">
+                                            <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                                            <input type="email" 
+                                                   class="form-control" 
+                                                   id="editEmail" 
+                                                   required
+                                                   placeholder="correo@ejemplo.com">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="editTelefono" class="form-label">Teléfono</label>
+                                        <div class="input-group input-group-sm">
+                                            <span class="input-group-text"><i class="bi bi-telephone"></i></span>
+                                            <input type="tel" 
+                                                   class="form-control" 
+                                                   id="editTelefono" 
+                                                   required
+                                                   placeholder="Número de teléfono">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Work Information -->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="editArl" class="form-label">ARL</label>
+                                        <div class="input-group input-group-sm">
+                                            <span class="input-group-text"><i class="bi bi-shield"></i></span>
+                                            <input type="text" 
+                                                   class="form-control" 
+                                                   id="editArl" 
+                                                   list="arlOptions"
+                                                   required
+                                                   placeholder="Buscar ARL...">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="editEps" class="form-label">EPS</label>
+                                        <div class="input-group input-group-sm">
+                                            <span class="input-group-text"><i class="bi bi-heart-pulse"></i></span>
+                                            <input type="text" 
+                                                   class="form-control" 
+                                                   id="editEps" 
+                                                   list="epsOptions"
+                                                   required
+                                                   placeholder="Buscar EPS...">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Guard Status -->
+                                <div class="form-check form-switch mt-3">
+                                    <input class="form-check-input" type="checkbox" id="editStatus">
+                                    <label class="form-check-label" for="editStatus">Estado del vigilante</label>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-0">
+                        <div class="view-mode">
+                            <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-dismiss="modal">
+                                Cerrar
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm" id="editDatosBtn">
+                                Editar Datos
+                            </button>
+                        </div>
+                        <div class="edit-mode d-none">
+                            <button type="button" class="btn btn-outline-secondary btn-sm" id="cancelEdit">
+                                Cancelar
+                  </button>
+                            <button type="button" class="btn btn-primary btn-sm" id="saveEdit">
+                                Actualizar
+                  </button>
+                        </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Delete Confirmation Modal -->
+          <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="deleteModalLabel">Alerta</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                  <p>¿Esta seguro que desea eliminar el vigilante <span id="deleteGuardName">XXXXX</span>?</p>
+                </div>
+                <div class="modal-footer justify-content-center">
+                  <button type="button" class="btn btn-success" id="confirmDelete">Si</button>
+                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Custom JS -->
+    <script src="../../../scripts/components/navbarToggle.js"></script>
+    <script src="../../../scripts/components/guardManagement.js"></script>
+  </body>
+</html>

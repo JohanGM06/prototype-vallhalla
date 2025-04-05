@@ -1,0 +1,178 @@
+#sidebar {
+    transition: margin 0.3s ease-in-out;
+}
+
+#sidebar.collapsed {
+    margin-left: -280px;
+}
+
+/* Navbar hover effects */
+.navbar .btn:hover {
+    background-color: #f8f9fa;
+    border-radius: 5px;
+  }
+
+  .navbar .dropdown-item:hover {
+    background-color: #f8f9fa;
+  }
+
+  /* Sidebar hover effects */
+  .nav-link:hover {
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    transform: translateX(5px);
+    transition: transform 0.3s ease;
+  }
+
+  /* Smooth transition for all hover effects */
+  .nav-link, .navbar .btn {
+    transition: all 0.3s ease;
+  }
+
+  /* Mantener los efectos para los botones de acción */
+  .btn-link:hover i {
+    transform: scale(1.2);
+    color: #3498db;
+  }
+
+  .dropdown-toggle:hover i {
+    transform: scale(1.2);
+    color: #3498db;
+  }
+
+  /* Mantener los estilos existentes del calendario */
+  .bg-success {
+    cursor: pointer;
+  }
+
+  .bg-danger {
+    cursor: pointer;
+  }
+
+  /* Mantener los estilos de Flatpickr */
+  .occupied-date {
+    background-color: #ffebee !important;
+    color: #d32f2f !important;
+    text-decoration: line-through;
+  }
+
+  .flatpickr-day.occupied-date:hover {
+    background-color: #ffcdd2 !important;
+  }
+
+  /* Add styles for Flatpickr */
+  .occupied-date {
+    background-color: #ffebee !important;
+    color: #d32f2f !important;
+    text-decoration: line-through;
+  }
+
+  .flatpickr-day.occupied-date:hover {
+    background-color: #ffcdd2 !important;
+  }
+
+  .calendar-wrapper {
+    min-height: 300px;
+  }
+
+  .flatpickr-calendar.inline {
+    width: 100%;
+    max-width: none;
+    box-shadow: none;
+  }
+
+  .flatpickr-rContainer {
+    width: 100%;
+  }
+
+  .flatpickr-days {
+    width: 100% !important;
+  }
+
+  .dayContainer {
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .flatpickr-day {
+    width: calc(100% / 7);
+    max-width: none;
+    flex-basis: calc(100% / 7);
+    height: 50px;
+    line-height: 50px;
+    margin: 0;
+    border-radius: 0;
+  }
+
+  .flatpickr-day.available {
+    background-color: #198754;
+    color: white;
+  }
+
+  .flatpickr-day.occupied {
+    background-color: #dc3545;
+    color: white;
+  }
+
+  .flatpickr-day.today {
+    border: 2px solid #0d6efd;
+  }
+
+  @media (max-width: 768px) {
+    .flatpickr-day {
+      height: 40px;
+      line-height: 40px;
+    }
+  }
+
+  /* Navbar hover effects */
+  .navbar .btn:hover {
+    background-color: #f8f9fa;
+    border-radius: 5px;
+}
+
+.navbar .dropdown-item:hover {
+    background-color: #f8f9fa;
+}
+
+/* Sidebar hover effects */
+.nav-link:hover {
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    transform: translateX(5px);
+    transition: transform 0.3s ease;
+}
+
+/* Smooth transition for all hover effects */
+.nav-link, .navbar .btn {
+    transition: all 0.3s ease;
+}
+
+/* Efectos para los botones de acción en el navbar */
+.btn-link:hover i {
+    transform: scale(1.2);
+    color: #3498db;
+}
+
+.dropdown-toggle:hover i {
+    transform: scale(1.2);
+    color: #3498db;
+}
+
+/* Mantener los efectos existentes para las tarjetas del dashboard */
+.card {
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.card:hover i {
+    transform: scale(1.2);
+    color: #3498db;
+}

@@ -54,3 +54,37 @@
     background: #f8f9fa;
     border-radius: 4px;
 }
+
+/* Navbar hover effects */
+.navbar .btn:hover {
+    background-color: #f8f9fa;
+    border-radius: 5px;
+}
+
+.navbar .dropdown-item:hover {
+    background-color: #f8f9fa;
+}
+
+/* Sidebar hover effects */
+.nav-link:hover {
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    transform: translateX(5px);
+    transition: transform 0.3s ease;
+}
+
+/* Smooth transition for all hover effects */
+.nav-link, .navbar .btn {
+    transition: all 0.3s ease;
+}
+
+/* Mantener los efectos para los botones de acción en la tabla */
+.btn-link:hover i {
+    transform: scale(1.2);
+    color: #3498db;
+}
+
+.dropdown-toggle:hover i {
+    transform: scale(1.2);
+    color: #3498db;
+}
