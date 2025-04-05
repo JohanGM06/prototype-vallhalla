@@ -1,0 +1,82 @@
+ 
+        .sortable {
+            cursor: pointer;
+        }
+        
+        .sortable:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .sortable::after {
+            content: "\F282";
+            font-family: "bootstrap-icons";
+            font-size: 0.8rem;
+            margin-left: 5px;
+            opacity: 0.5;
+        }
+        
+        .sortable.asc::after {
+            content: "\F282";
+            opacity: 1;
+        }
+        
+        .sortable.desc::after {
+            content: "\F286";
+            opacity: 1;
+        }
+        
+        /* Estilos para los pills de estado de pago */
+        .badge-pendiente {
+            background-color: #ffc107;
+            color: #212529;
+        }
+        
+        .badge-pagado {
+            background-color: #198754;
+            color: white;
+        }
+        
+        /* Mejoras para responsividad */
+        @media (max-width: 992px) {
+            .table-responsive {
+                overflow-x: auto;
+            }
+            
+            #paymentsTable th, 
+            #paymentsTable td {
+                white-space: nowrap;
+            }
+        }
+        
+        /* Estilos para los campos de formulario en modales */
+        .form-control:disabled {
+            background-color: #f8f9fa;
+        }
+        
+        .estado-badge {
+            width: 100%;
+            text-align: center;
+            padding: 8px;
+            border-radius: 4px;
+            display: block;
+        }
+        
+        .estado-activo {
+            background-color: #d1e7dd;
+            color: #0f5132;
+        }
+        
+        .estado-inactivo {
+            background-color: #e2e3e5;
+            color: #41464b;
+        }
+        
+        .estado-pendiente {
+            background-color: #fff3cd;
+            color: #664d03;
+        }
+        
+        .estado-pagado {
+            background-color: #d1e7dd;
+            color: #0f5132;
+        }
